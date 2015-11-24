@@ -22,7 +22,10 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.osgi.service.component.annotations.ReferencePolicy;
+import org.wso2.carbon.kernel.transports.CarbonTransport;
 import org.wso2.carbon.messaging.CarbonMessageProcessor;
+import org.wso2.carbon.messaging.TransportListener;
+import org.wso2.carbon.messaging.TransportSender;
 
 @Component(
         name = "org.wso2.carbon.messaging.service.MessagingServiceComponent",
@@ -44,5 +47,35 @@ public class MessagingServiceComponent {
 
     protected void removeMediationEngine(CarbonMessageProcessor carbonMessageProcessor) {
         ContextHolder.getInstance().removeEngine(carbonMessageProcessor);
+    }
+
+    @Reference(
+            name = "transport-sender",
+            service = TransportSender.class,
+            cardinality = ReferenceCardinality.AT_LEAST_ONE,
+            policy = ReferencePolicy.DYNAMIC,
+            unbind = "removeTransportSender"
+    )
+    protected void addTransportSender(TransportSender transportSender) {
+        ContextHolder.getInstance().addTransportSender(transportSender);
+    }
+
+    protected void removeTransportSender(TransportSender transportSender) {
+        ContextHolder.getInstance().removeTransportSender(transportSender);
+    }
+
+    @Reference(
+            name = "transport-listener",
+            service = TransportListener.class,
+            cardinality = ReferenceCardinality.AT_LEAST_ONE,
+            policy = ReferencePolicy.DYNAMIC,
+            unbind = "removeTransportListener"
+    )
+    protected void addTransportListenerr(TransportListener transportListener) {
+        ContextHolder.getInstance().addTransportListener(transportListener);
+    }
+
+    protected void removeTransportListener(TransportListener transportListener) {
+        ContextHolder.getInstance().removeTransportListener(transportListener);
     }
 }

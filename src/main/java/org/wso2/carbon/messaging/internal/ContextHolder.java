@@ -20,7 +20,10 @@ package org.wso2.carbon.messaging.internal;
 
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
+import org.wso2.carbon.kernel.transports.CarbonTransport;
 import org.wso2.carbon.messaging.CarbonMessageProcessor;
+import org.wso2.carbon.messaging.TransportListener;
+import org.wso2.carbon.messaging.TransportSender;
 
 import java.util.HashMap;
 import java.util.Hashtable;
@@ -34,6 +37,8 @@ public class ContextHolder {
     private static ContextHolder instance = new ContextHolder();
     private BundleContext bundleContext;
     private Map<String, CarbonMessageProcessor> engines = new HashMap<>();
+    private Map<String, TransportSender> transportSenders = new HashMap<>();
+    private Map<String, TransportListener> transportListeners = new HashMap<>();
 
     public static ContextHolder getInstance() {
         return instance;
@@ -45,10 +50,26 @@ public class ContextHolder {
 
 
     public void addEngine(CarbonMessageProcessor carbonMessageProcessor) {
-        engines.put("somename", carbonMessageProcessor);
+        engines.put("modifyInterfaceToGetName", carbonMessageProcessor);
     }
 
     public void removeEngine(CarbonMessageProcessor carbonMessageProcessor) {
-        engines.remove("somename");
+        engines.remove("modifyInterfaceToGetName");
+    }
+
+    public void addTransportSender(TransportSender transportSender) {
+        transportSenders.put("modifyInterfaceToGetName", transportSender);
+    }
+
+    public void removeTransportSender(TransportSender transportSender) {
+        transportSenders.remove("modifyInterfaceToGetName");
+    }
+
+    public void addTransportListener(TransportListener transportListener) {
+        transportListeners.put(transportListener.getId(), transportListener);
+    }
+
+    public void removeTransportListener(TransportListener transportListener) {
+        transportListeners.remove(transportListener.getId());
     }
 }
