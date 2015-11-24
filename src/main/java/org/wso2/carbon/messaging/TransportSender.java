@@ -18,9 +18,6 @@
 
 package org.wso2.carbon.messaging;
 
-import org.wso2.carbon.messaging.CarbonCallback;
-import org.wso2.carbon.messaging.CarbonMessage;
-
 /**
  * Interface for Message Sender to the BE.
  */
@@ -30,7 +27,7 @@ public interface TransportSender {
      * @param msg Mediated Request.
      * @param callback Carbon callback created by engine.
      * @return void
-     * @throws EngineException Gateway exception to singal any failures to upper layers.
+     * @throws EngineException exception to singal any failures to upper layers.
      */
     public boolean send(CarbonMessage msg, CarbonCallback callback) throws EngineException;
 
