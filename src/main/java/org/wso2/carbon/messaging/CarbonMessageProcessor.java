@@ -33,4 +33,6 @@ public interface CarbonMessageProcessor {
     boolean receive(CarbonMessage msg, CarbonCallback callback) throws Exception;
 
 
+    void setTransportSender(TransportSender sender);
+
 }

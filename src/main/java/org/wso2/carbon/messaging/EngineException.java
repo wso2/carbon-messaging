@@ -18,8 +18,19 @@
 
 package org.wso2.carbon.messaging;
 
-/**
- * Created by senduran on 11/24/15.
- */
 public class EngineException extends Exception {
+    public EngineException() {
+    }
+
+    public EngineException(String message) {
+        super(message);
+    }
+
+    public EngineException(Throwable cause) {
+        super(cause);
+    }
+
+    public EngineException(String message, Throwable cause) {
+        super(message, cause);
+    }
 }

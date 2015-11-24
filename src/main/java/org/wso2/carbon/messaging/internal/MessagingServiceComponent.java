@@ -66,12 +66,12 @@ public class MessagingServiceComponent {
 
     @Reference(
             name = "transport-listener",
-            service = TransportListener.class,
+            service = CarbonTransport.class,
             cardinality = ReferenceCardinality.AT_LEAST_ONE,
             policy = ReferencePolicy.DYNAMIC,
             unbind = "removeTransportListener"
     )
-    protected void addTransportListenerr(TransportListener transportListener) {
+    protected void addTransportListener(TransportListener transportListener) {
         ContextHolder.getInstance().addTransportListener(transportListener);
     }
 
