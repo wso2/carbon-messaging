@@ -19,14 +19,11 @@
 package org.wso2.carbon.messaging.internal;
 
 import org.osgi.framework.BundleContext;
-import org.osgi.framework.ServiceRegistration;
-import org.wso2.carbon.kernel.transports.CarbonTransport;
 import org.wso2.carbon.messaging.CarbonMessageProcessor;
 import org.wso2.carbon.messaging.TransportListener;
 import org.wso2.carbon.messaging.TransportSender;
 
 import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.Map;
 
 public class ContextHolder {
@@ -40,6 +37,8 @@ public class ContextHolder {
     private Map<String, TransportSender> transportSenders = new HashMap<>();
     private Map<String, TransportListener> transportListeners = new HashMap<>();
 
+    private String listenerName;
+
     public static ContextHolder getInstance() {
         return instance;
     }
@@ -50,6 +49,14 @@ public class ContextHolder {
 
 
     public void addEngine(CarbonMessageProcessor carbonMessageProcessor) {
+        if(!transportSenders.isEmpty()) {
+            carbonMessageProcessor.setTransportSender(transportSenders.get("modifyInterfaceToGetName"));
+        }
+
+        if(!transportListeners.isEmpty()) {
+            transportListeners.get("modifyInterfaceToGetName").setEngine(carbonMessageProcessor);
+        }
+
         engines.put("modifyInterfaceToGetName", carbonMessageProcessor);
     }
 
@@ -58,6 +65,9 @@ public class ContextHolder {
     }
 
     public void addTransportSender(TransportSender transportSender) {
+        if(!engines.isEmpty()) {
+            engines.get("modifyInterfaceToGetName").setTransportSender(transportSender);
+        }
         transportSenders.put("modifyInterfaceToGetName", transportSender);
     }
 
@@ -66,6 +76,10 @@ public class ContextHolder {
     }
 
     public void addTransportListener(TransportListener transportListener) {
+        if(!engines.isEmpty()) {
+            transportListener.setEngine(engines.get("modifyInterfaceToGetName"));
+        }
+        listenerName = transportListener.getId();
         transportListeners.put(transportListener.getId(), transportListener);
     }
 
