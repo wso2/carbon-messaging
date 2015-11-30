@@ -19,9 +19,7 @@
 package org.wso2.carbon.messaging.internal;
 
 import org.osgi.framework.BundleContext;
-import org.wso2.carbon.messaging.CarbonMessageProcessor;
-import org.wso2.carbon.messaging.TransportListener;
-import org.wso2.carbon.messaging.TransportSender;
+import org.wso2.carbon.messaging.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -36,6 +34,11 @@ public class ContextHolder {
     private Map<String, CarbonMessageProcessor> engines = new HashMap<>();
     private Map<String, TransportSender> transportSenders = new HashMap<>();
     private Map<String, TransportListener> transportListeners = new HashMap<>();
+
+
+
+    private CarbonTransportServerInitializer initializer;
+    private OverrideInitializer overrideInitializer;
 
     private String listenerName;
 
@@ -85,5 +88,17 @@ public class ContextHolder {
 
     public void removeTransportListener(TransportListener transportListener) {
         transportListeners.remove(transportListener.getId());
+    }
+
+    public void addTransportInitializer(CarbonTransportServerInitializer serverInitializer) {
+        if (overrideInitializer != null) {
+            overrideInitializer.setNewInitializer(serverInitializer.getName(), serverInitializer);
+        }
+    }
+
+    public void setOverrideInitializer(OverrideInitializer overrideInitializer) {
+        if (initializer != null) {
+            overrideInitializer.setNewInitializer(initializer.getName(), initializer);
+        }
     }
 }

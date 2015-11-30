@@ -18,30 +18,7 @@
 
 package org.wso2.carbon.messaging;
 
-import io.netty.channel.socket.SocketChannel;
 
-import java.util.Map;
-
-/**
- * An implementation of this class is used for registering additional handlers to the channel pipeline.
- */
-public interface CarbonTransportServerInitializer {
-
-    /**
-     * The setup method is called once to setup the  CarbonNettyServerInitializer.
-     *
-     * @param parameters Optional transport parameters. Key - parameter name, Value - parameter value
-     */
-    void setup(Map<String, String> parameters);
-
-    /**
-     * Initialize the Netty SocketChannel. This is called per connection.
-     *
-     * @param socketChannel Netty SocketChannel
-     */
-    void initChannel(SocketChannel socketChannel);
-
-
-    String getName();
-
+public interface OverrideInitializer {
+    void setNewInitializer(String key, CarbonTransportServerInitializer initializer);
 }
