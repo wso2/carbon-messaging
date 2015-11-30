@@ -32,6 +32,8 @@
     <version>1.0.0-SNAPSHOT</version>
 
     <properties>
+        <netty.version>4.0.30.Final</netty.version>
+
         <carbon.kernel.version>5.0.0-alpha</carbon.kernel.version>
 
         <slf4j.version>1.7.5</slf4j.version>
@@ -76,6 +78,27 @@
             <artifactId>org.eclipse.osgi.services</artifactId>
             <version>${equinox.osgi.services.version}</version>
         </dependency>
+<!--todo: remove the netty dependency once correctly modified the pipe impl and HTTPContentChunk -->
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-common</artifactId>
+            <version>${netty.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-transport</artifactId>
+            <version>${netty.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-handler</artifactId>
+            <version>${netty.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-codec-http</artifactId>
+            <version>${netty.version}</version>
+        </dependency>
     </dependencies>
 
 <build>
@@ -118,7 +141,8 @@
                         org.wso2.carbon.kernel.transports.*,
                         org.apache.log4j.*,
                         org.apache.commons.logging.*,
-                        org.slf4j.*
+                        org.slf4j.*,
+                        io.netty.*,
                     </Import-Package>
                     <_dsannotations>*</_dsannotations>
                 </instructions>
