@@ -23,7 +23,9 @@ import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.osgi.service.component.annotations.ReferencePolicy;
 import org.wso2.carbon.kernel.transports.CarbonTransport;
-import org.wso2.carbon.messaging.*;
+import org.wso2.carbon.messaging.CarbonMessageProcessor;
+import org.wso2.carbon.messaging.TransportListener;
+import org.wso2.carbon.messaging.TransportSender;
 
 @Component(
         name = "org.wso2.carbon.messaging.service.MessagingServiceComponent",
@@ -35,7 +37,7 @@ public class MessagingServiceComponent {
     @Reference(
             name = "mediation-engine",
             service = CarbonMessageProcessor.class,
-            cardinality = ReferenceCardinality.AT_LEAST_ONE,
+            cardinality = ReferenceCardinality.OPTIONAL,
             policy = ReferencePolicy.DYNAMIC,
             unbind = "removeMediationEngine"
     )
@@ -50,7 +52,7 @@ public class MessagingServiceComponent {
     @Reference(
             name = "transport-sender",
             service = TransportSender.class,
-            cardinality = ReferenceCardinality.AT_LEAST_ONE,
+            cardinality = ReferenceCardinality.OPTIONAL,
             policy = ReferencePolicy.DYNAMIC,
             unbind = "removeTransportSender"
     )
@@ -75,36 +77,6 @@ public class MessagingServiceComponent {
 
     protected void removeTransportListener(TransportListener transportListener) {
         ContextHolder.getInstance().removeTransportListener(transportListener);
-    }
-
-    @Reference(
-            name = "transport-initializer",
-            service = CarbonTransportServerInitializer.class,
-            cardinality = ReferenceCardinality.OPTIONAL,
-            policy = ReferencePolicy.DYNAMIC,
-            unbind = "removeTransportListener"
-    )
-    protected void addTransportInitializer(CarbonTransportServerInitializer serverInitializer) {
-        ContextHolder.getInstance().addTransportInitializer(serverInitializer);
-    }
-
-    protected void removeTransportInitializer(CarbonTransportServerInitializer serverInitializer) {
-       //// TODO: 11/30/15
-    }
-
-    @Reference(
-            name = "override-initializer",
-            service = OverrideInitializer.class,
-            cardinality = ReferenceCardinality.OPTIONAL,
-            policy = ReferencePolicy.DYNAMIC,
-            unbind = "removeOverrideInitializer"
-    )
-    protected void setOverrideInitializer(OverrideInitializer serverInitializer) {
-        ContextHolder.getInstance().setOverrideInitializer(serverInitializer);
-    }
-
-    protected void removeOverrideInitializer(OverrideInitializer serverInitializer) {
-        //// TODO: 11/30/15
     }
 
 }

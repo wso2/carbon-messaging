@@ -89,16 +89,4 @@ public class ContextHolder {
     public void removeTransportListener(TransportListener transportListener) {
         transportListeners.remove(transportListener.getId());
     }
-
-    public void addTransportInitializer(CarbonTransportServerInitializer serverInitializer) {
-        if (overrideInitializer != null) {
-            overrideInitializer.setNewInitializer(serverInitializer.getName(), serverInitializer);
-        }
-    }
-
-    public void setOverrideInitializer(OverrideInitializer overrideInitializer) {
-        if (initializer != null) {
-            overrideInitializer.setNewInitializer(initializer.getName(), initializer);
-        }
-    }
 }

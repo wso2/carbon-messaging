@@ -41,7 +41,4 @@ public interface CarbonTransportServerInitializer {
      */
     void initChannel(SocketChannel socketChannel);
 
-
-    String getName();
-
 }
