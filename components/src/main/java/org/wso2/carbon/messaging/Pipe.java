@@ -21,6 +21,9 @@ package org.wso2.carbon.messaging;
 import java.io.InputStream;
 import java.util.concurrent.BlockingQueue;
 
+/**
+ * Interface for create Content Holders.
+ */
 public interface Pipe {
 
     ContentChunk getContent();

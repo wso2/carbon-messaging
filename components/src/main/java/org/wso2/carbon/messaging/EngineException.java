@@ -18,6 +18,9 @@
 
 package org.wso2.carbon.messaging;
 
+/**
+ * Exception class to represent the EngineException
+ */
 public class EngineException extends Exception {
     public EngineException() {
     }

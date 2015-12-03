@@ -27,6 +27,9 @@ import org.wso2.carbon.messaging.CarbonMessageProcessor;
 import org.wso2.carbon.messaging.TransportListener;
 import org.wso2.carbon.messaging.TransportSender;
 
+/**
+ * service component to refer the registered Engine, transport listener and transport sender
+ */
 @Component(
         name = "org.wso2.carbon.messaging.service.MessagingServiceComponent",
         immediate = true

@@ -18,43 +18,37 @@
 
 package org.wso2.carbon.messaging.internal;
 
-import org.osgi.framework.BundleContext;
-import org.wso2.carbon.messaging.*;
+import org.wso2.carbon.messaging.CarbonMessageProcessor;
+import org.wso2.carbon.messaging.TransportListener;
+import org.wso2.carbon.messaging.TransportSender;
 
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * ContextHolder wires the Engine, Transport Sender and Transport Listener
+ */
 public class ContextHolder {
 
     public ContextHolder() {
     }
 
     private static ContextHolder instance = new ContextHolder();
-    private BundleContext bundleContext;
     private Map<String, CarbonMessageProcessor> engines = new HashMap<>();
     private Map<String, TransportSender> transportSenders = new HashMap<>();
     private Map<String, TransportListener> transportListeners = new HashMap<>();
 
 
-
-    private CarbonTransportServerInitializer initializer;
-    private String listenerName;
-
     public static ContextHolder getInstance() {
         return instance;
     }
 
-    public void setBundleContext(BundleContext bundleContext) {
-        this.bundleContext = bundleContext;
-    }
-
-
     public void addEngine(CarbonMessageProcessor carbonMessageProcessor) {
-        if(!transportSenders.isEmpty()) {
+        if (!transportSenders.isEmpty()) {
             carbonMessageProcessor.setTransportSender(transportSenders.get("modifyInterfaceToGetName"));
         }
 
-        if(!transportListeners.isEmpty()) {
+        if (!transportListeners.isEmpty()) {
             transportListeners.get("modifyInterfaceToGetName").setEngine(carbonMessageProcessor);
         }
 
@@ -66,7 +60,7 @@ public class ContextHolder {
     }
 
     public void addTransportSender(TransportSender transportSender) {
-        if(!engines.isEmpty()) {
+        if (!engines.isEmpty()) {
             engines.get("modifyInterfaceToGetName").setTransportSender(transportSender);
         }
         transportSenders.put("modifyInterfaceToGetName", transportSender);
@@ -77,10 +71,9 @@ public class ContextHolder {
     }
 
     public void addTransportListener(TransportListener transportListener) {
-        if(!engines.isEmpty()) {
+        if (!engines.isEmpty()) {
             transportListener.setEngine(engines.get("modifyInterfaceToGetName"));
         }
-        listenerName = transportListener.getId();
         transportListeners.put(transportListener.getId(), transportListener);
     }
 
