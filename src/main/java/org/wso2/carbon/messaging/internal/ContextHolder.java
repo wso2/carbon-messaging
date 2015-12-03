@@ -38,8 +38,6 @@ public class ContextHolder {
 
 
     private CarbonTransportServerInitializer initializer;
-    private OverrideInitializer overrideInitializer;
-
     private String listenerName;
 
     public static ContextHolder getInstance() {
