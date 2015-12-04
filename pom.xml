@@ -84,11 +84,6 @@
                 <artifactId>org.eclipse.osgi.services</artifactId>
                 <version>${equinox.osgi.services.version}</version>
             </dependency>
-            <dependency>
-                <groupId>org.wso2.carbon.messaging</groupId>
-                <artifactId>carbon-messaging-components</artifactId>
-                <version>${pom.parent.version}</version>
-            </dependency>
         </dependencies>
     </dependencyManagement>
 
