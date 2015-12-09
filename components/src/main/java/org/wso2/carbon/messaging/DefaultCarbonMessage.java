@@ -18,11 +18,26 @@
 
 package org.wso2.carbon.messaging;
 
+import java.nio.ByteBuffer;
+
 /**
- * Interface for encapsulate events in transport layer.
+ * Default implementation for carbon message
  */
-public interface ContentChunk {
+public class DefaultCarbonMessage extends CarbonMessage {
 
-    boolean isLastChunk();
+//    String stringMessageBody = "";
+
+    @Override
+    public ByteBuffer getMessageBody() {
+//        BlockingQueue<ByteBuffer> queue = new LinkedBlockingQueue<>();
+//        byte[] bytes = stringMessageBody.getBytes(Charset.defaultCharset());
+//        ByteBuffer byteBuffer = ByteBuffer.wrap(bytes);
+//        queue.add(byteBuffer);
+//        return queue;
+        return super.getMessageBody();
+    }
+
+//    public void setStringMessageBody(String stringMessageBody) {
+//        this.stringMessageBody = stringMessageBody;
+//    }
 }
-
