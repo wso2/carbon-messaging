@@ -18,8 +18,6 @@
 
 package org.wso2.carbon.messaging;
 
-import io.netty.channel.socket.SocketChannel;
-
 import java.util.Map;
 
 /**
@@ -39,6 +37,6 @@ public interface CarbonTransportServerInitializer {
      *
      * @param socketChannel Netty SocketChannel
      */
-    void initChannel(SocketChannel socketChannel);
+    void initChannel(Object socketChannel);
 
 }

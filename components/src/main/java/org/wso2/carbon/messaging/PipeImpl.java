@@ -25,11 +25,11 @@ import java.util.concurrent.LinkedBlockingQueue;
 /**
  * A class that contains the content of request.
  */
-public class PipeImpl implements Pipe {
+public class PipeImpl {
 
     private static final Logger LOG = LoggerFactory.getLogger(PipeImpl.class);
 
-    private BlockingQueue<ContentChunk> contentQueue;
+    private BlockingQueue<Object> contentQueue;
 
 
     public PipeImpl(int blockingQueueSize) {
@@ -37,7 +37,7 @@ public class PipeImpl implements Pipe {
     }
 
 
-    public ContentChunk getContent() {
+    public Object getContent() {
         try {
             return contentQueue.take();
         } catch (InterruptedException e) {
@@ -46,7 +46,7 @@ public class PipeImpl implements Pipe {
         }
     }
 
-    public void addContentChunk(ContentChunk contentChunk) {
+    public void addContentChunk(Object contentChunk) {
         contentQueue.add(contentChunk);
     }
 
