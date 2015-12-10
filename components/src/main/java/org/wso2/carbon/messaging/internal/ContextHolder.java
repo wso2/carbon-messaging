@@ -45,34 +45,37 @@ public class ContextHolder {
 
     public void addEngine(CarbonMessageProcessor carbonMessageProcessor) {
         if (!transportSenders.isEmpty()) {
-            carbonMessageProcessor.setTransportSender(transportSenders.get("modifyInterfaceToGetName"));
+            Map.Entry<String, TransportSender> senderEntry = transportSenders.entrySet().iterator().next();
+            carbonMessageProcessor.setTransportSender(senderEntry.getValue());
         }
 
         if (!transportListeners.isEmpty()) {
-            transportListeners.get("modifyInterfaceToGetName").setEngine(carbonMessageProcessor);
+            transportListeners.forEach((k, v) -> v.setEngine(carbonMessageProcessor));
         }
 
-        engines.put("modifyInterfaceToGetName", carbonMessageProcessor);
+        engines.put(carbonMessageProcessor.getId(), carbonMessageProcessor);
     }
 
     public void removeEngine(CarbonMessageProcessor carbonMessageProcessor) {
-        engines.remove("modifyInterfaceToGetName");
+        engines.remove(carbonMessageProcessor.getId());
     }
 
     public void addTransportSender(TransportSender transportSender) {
         if (!engines.isEmpty()) {
-            engines.get("modifyInterfaceToGetName").setTransportSender(transportSender);
+            Map.Entry<String, CarbonMessageProcessor> engineEntry = engines.entrySet().iterator().next();
+            engineEntry.getValue().setTransportSender(transportSender);
         }
-        transportSenders.put("modifyInterfaceToGetName", transportSender);
+        transportSenders.put(transportSender.getId(), transportSender);
     }
 
     public void removeTransportSender(TransportSender transportSender) {
-        transportSenders.remove("modifyInterfaceToGetName");
+        transportSenders.remove(transportSender.getId());
     }
 
     public void addTransportListener(TransportListener transportListener) {
         if (!engines.isEmpty()) {
-            transportListener.setEngine(engines.get("modifyInterfaceToGetName"));
+            Map.Entry<String, CarbonMessageProcessor> engineEntry = engines.entrySet().iterator().next();
+            transportListener.setEngine(engineEntry.getValue());
         }
         transportListeners.put(transportListener.getId(), transportListener);
     }

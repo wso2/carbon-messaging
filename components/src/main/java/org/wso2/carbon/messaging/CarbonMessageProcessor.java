@@ -24,15 +24,15 @@ package org.wso2.carbon.messaging;
 public interface CarbonMessageProcessor {
 
     /**
-     *
-     * @param msg CarbopnMessage received for processing.
+     * @param msg      CarbopnMessage received for processing.
      * @param callback Callback recived from transport layer to the engine.
      * @return void
      * @throws Exception Exception to signal any failure at the message processor.
      */
     boolean receive(CarbonMessage msg, CarbonCallback callback) throws Exception;
 
-
     void setTransportSender(TransportSender sender);
+
+    String getId();
 
 }

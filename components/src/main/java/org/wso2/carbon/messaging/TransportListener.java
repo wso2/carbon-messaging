@@ -22,7 +22,7 @@ package org.wso2.carbon.messaging;
 import org.wso2.carbon.kernel.transports.CarbonTransport;
 
 /**
- * Abstract class for Message listener
+ * Abstract class for Message listener.
  */
 public abstract class TransportListener extends CarbonTransport {
 

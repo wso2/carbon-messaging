@@ -24,11 +24,14 @@ package org.wso2.carbon.messaging;
 public interface TransportSender {
     /**
      * Should include the logic for handover messages to BE.
-     * @param msg Mediated Request.
+     *
+     * @param msg      Mediated Request.
      * @param callback Carbon callback created by engine.
      * @return void
      * @throws EngineException exception to singal any failures to upper layers.
      */
-    public boolean send(CarbonMessage msg, CarbonCallback callback) throws EngineException;
+    boolean send(CarbonMessage msg, CarbonCallback callback) throws EngineException;
+
+    String getId();
 
 }
