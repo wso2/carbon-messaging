@@ -19,25 +19,16 @@
 package org.wso2.carbon.messaging;
 
 import java.nio.ByteBuffer;
+import java.nio.charset.Charset;
 
 /**
  * Default implementation for carbon message
  */
 public class DefaultCarbonMessage extends CarbonMessage {
 
-//    String stringMessageBody = "";
-
-    @Override
-    public ByteBuffer getMessageBody() {
-//        BlockingQueue<ByteBuffer> queue = new LinkedBlockingQueue<>();
-//        byte[] bytes = stringMessageBody.getBytes(Charset.defaultCharset());
-//        ByteBuffer byteBuffer = ByteBuffer.wrap(bytes);
-//        queue.add(byteBuffer);
-//        return queue;
-        return super.getMessageBody();
+    public void setStringMessageBody(String stringMessageBody) {
+        addMessageBody(ByteBuffer.wrap(stringMessageBody.getBytes(Charset.defaultCharset())));
+        setEomAdded(true);
     }
 
-//    public void setStringMessageBody(String stringMessageBody) {
-//        this.stringMessageBody = stringMessageBody;
-//    }
 }

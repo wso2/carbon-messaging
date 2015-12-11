@@ -71,4 +71,12 @@ public abstract class CarbonMessage {
     public void setProperty(String key, Object value) {
         properties.put(key, value);
     }
+
+    public void removeHeader(String key) {
+        headers.remove(key);
+    }
+
+    public void removeProperty(String key) {
+        properties.remove(key);
+    }
 }
