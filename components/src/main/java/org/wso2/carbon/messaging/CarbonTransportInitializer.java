@@ -23,7 +23,7 @@ import java.util.Map;
 /**
  * An implementation of this class is used for registering additional handlers to the channel pipeline.
  */
-public interface CarbonTransportServerInitializer {
+public interface CarbonTransportInitializer {
 
     /**
      * The setup method is called once to setup the  CarbonNettyServerInitializer.
@@ -39,4 +39,9 @@ public interface CarbonTransportServerInitializer {
      */
     void initChannel(Object socketChannel);
 
+    /**
+     * This method will be true if Server Initializer
+     * @return true if ServerSide Initializer
+     */
+    boolean isServerInitializer();
 }
