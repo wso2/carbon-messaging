@@ -32,7 +32,7 @@
     <version>1.0.0-SNAPSHOT</version>
 
     <properties>
-        <carbon.kernel.version>5.0.0-alpha</carbon.kernel.version>
+        <carbon.kernel.version>5.0.0-beta</carbon.kernel.version>
 
         <slf4j.version>1.7.5</slf4j.version>
 
@@ -43,7 +43,7 @@
         <osgi.framework.import.version.range>[1.8.0, 2.0.0)</osgi.framework.import.version.range>
         <osgi.service.tracker.import.version.range>[1.5.1, 2.0.0)</osgi.service.tracker.import.version.range>
 
-        <carbon.feature.plugin.version>2.0.0-alpha</carbon.feature.plugin.version>
+        <carbon.feature.plugin.version>2.0.0-beta</carbon.feature.plugin.version>
 
         <org.wso2.carbon.messaging.version>1.0.0-SNAPSHOT</org.wso2.carbon.messaging.version>
         <org.wso2.carbon.messaging.osgi.version>1.0.0.SNAPSHOT</org.wso2.carbon.messaging.osgi.version>
