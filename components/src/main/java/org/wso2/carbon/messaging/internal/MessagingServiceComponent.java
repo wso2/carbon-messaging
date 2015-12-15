@@ -40,7 +40,7 @@ public class MessagingServiceComponent {
     @Reference(
             name = "mediation-engine",
             service = CarbonMessageProcessor.class,
-            cardinality = ReferenceCardinality.OPTIONAL,
+            cardinality = ReferenceCardinality.MULTIPLE,
             policy = ReferencePolicy.DYNAMIC,
             unbind = "removeMediationEngine"
     )
