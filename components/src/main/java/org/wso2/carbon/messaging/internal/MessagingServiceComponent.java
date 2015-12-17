@@ -40,16 +40,16 @@ public class MessagingServiceComponent {
     @Reference(
             name = "mediation-engine",
             service = CarbonMessageProcessor.class,
-            cardinality = ReferenceCardinality.MULTIPLE,
+            cardinality = ReferenceCardinality.OPTIONAL,
             policy = ReferencePolicy.DYNAMIC,
-            unbind = "removeMediationEngine"
+            unbind = "removeMessageProcessor"
     )
-    protected void addMediationEngine(CarbonMessageProcessor carbonMessageProcessor) {
-        ContextHolder.getInstance().addEngine(carbonMessageProcessor);
+    protected void addMessageProcessor(CarbonMessageProcessor carbonMessageProcessor) {
+        ContextHolder.getInstance().addMessageProcessor(carbonMessageProcessor);
     }
 
-    protected void removeMediationEngine(CarbonMessageProcessor carbonMessageProcessor) {
-        ContextHolder.getInstance().removeEngine(carbonMessageProcessor);
+    protected void removeMessageProcessor(CarbonMessageProcessor carbonMessageProcessor) {
+        ContextHolder.getInstance().removeMessageProcessor(carbonMessageProcessor);
     }
 
     @Reference(

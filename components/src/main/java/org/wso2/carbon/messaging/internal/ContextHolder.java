@@ -43,7 +43,7 @@ public class ContextHolder {
         return instance;
     }
 
-    public void addEngine(CarbonMessageProcessor carbonMessageProcessor) {
+    public void addMessageProcessor(CarbonMessageProcessor carbonMessageProcessor) {
         if (!transportSenders.isEmpty()) {
             Map.Entry<String, TransportSender> senderEntry = transportSenders.entrySet().iterator().next();
             carbonMessageProcessor.setTransportSender(senderEntry.getValue());
@@ -56,7 +56,7 @@ public class ContextHolder {
         engines.put(carbonMessageProcessor.getId(), carbonMessageProcessor);
     }
 
-    public void removeEngine(CarbonMessageProcessor carbonMessageProcessor) {
+    public void removeMessageProcessor(CarbonMessageProcessor carbonMessageProcessor) {
         engines.remove(carbonMessageProcessor.getId());
     }
 
