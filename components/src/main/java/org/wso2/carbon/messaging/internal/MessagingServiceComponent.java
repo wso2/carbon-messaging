@@ -38,7 +38,7 @@ import org.wso2.carbon.messaging.TransportSender;
 public class MessagingServiceComponent {
 
     @Reference(
-            name = "mediation-engine",
+            name = "message-processor",
             service = CarbonMessageProcessor.class,
             cardinality = ReferenceCardinality.OPTIONAL,
             policy = ReferencePolicy.DYNAMIC,
