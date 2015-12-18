@@ -46,18 +46,6 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.osgi</groupId>
-            <artifactId>org.osgi.core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.wso2.eclipse.osgi</groupId>
-            <artifactId>org.eclipse.osgi</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.wso2.eclipse.osgi</groupId>
-            <artifactId>org.eclipse.osgi.services</artifactId>
-        </dependency>
     </dependencies>
 
     <build>
@@ -74,14 +62,10 @@
         </plugins>
     </build>
     <properties>
-        <private.package>org.wso2.carbon.messaging.internal</private.package>
         <export.package>
-            !org.wso2.carbon.messaging.internal,
             org.wso2.carbon.messaging.*
         </export.package>
         <import.package>
-            org.osgi.framework.*;version="${osgi.framework.import.version.range}",
-            org.osgi.util.tracker; version="${osgi.service.tracker.import.version.range}",
             org.wso2.carbon.kernel.transports.*,
             org.apache.log4j.*,
             org.apache.commons.logging.*,
