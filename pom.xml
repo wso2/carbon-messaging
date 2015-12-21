@@ -31,19 +31,6 @@
     <packaging>pom</packaging>
     <version>1.0.0-SNAPSHOT</version>
 
-    <repositories>
-        <repository>
-            <id>wso2-nexus-staging</id>
-            <name>WSO2 staging Repository</name>
-            <url>http://maven.wso2.org/nexus/content/repositories/orgwso2carbon-210/</url>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-                <checksumPolicy>ignore</checksumPolicy>
-            </releases>
-        </repository>
-    </repositories>
-
     <properties>
         <carbon.kernel.version>5.0.0</carbon.kernel.version>
 
