@@ -25,7 +25,7 @@ public interface CarbonMessageProcessor {
 
     /**
      * @param msg      CarbopnMessage received for processing.
-     * @param callback Callback recived from transport layer to the engine.
+     * @param callback Callback received from transport layer to the CarbonMessageProcessor.
      * @return void
      * @throws Exception Exception to signal any failure at the message processor.
      */

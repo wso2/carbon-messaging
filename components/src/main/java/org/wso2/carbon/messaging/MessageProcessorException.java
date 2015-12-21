@@ -19,21 +19,21 @@
 package org.wso2.carbon.messaging;
 
 /**
- * Exception class to represent the EngineException.
+ * Exception class to represent the MessageProcessorExceptions.
  */
-public class EngineException extends Exception {
-    public EngineException() {
+public class MessageProcessorException extends Exception {
+    public MessageProcessorException() {
     }
 
-    public EngineException(String message) {
+    public MessageProcessorException(String message) {
         super(message);
     }
 
-    public EngineException(Throwable cause) {
+    public MessageProcessorException(Throwable cause) {
         super(cause);
     }
 
-    public EngineException(String message, Throwable cause) {
+    public MessageProcessorException(String message, Throwable cause) {
         super(message, cause);
     }
 }

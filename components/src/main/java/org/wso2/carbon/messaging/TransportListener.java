@@ -30,5 +30,5 @@ public abstract class TransportListener extends CarbonTransport {
         super(id);
     }
 
-    public abstract void setEngine(CarbonMessageProcessor engine);
+    public abstract void setMessageProcessor(CarbonMessageProcessor messageProcessor);
 }

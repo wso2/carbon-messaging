@@ -26,11 +26,11 @@ public interface TransportSender {
      * Should include the logic for handover messages to BE.
      *
      * @param msg      Mediated Request.
-     * @param callback Carbon callback created by engine.
+     * @param callback Carbon callback created by Carbon Message Processor.
      * @return void
-     * @throws EngineException exception to singal any failures to upper layers.
+     * @throws MessageProcessorException to signal any failures to the upper layers.
      */
-    boolean send(CarbonMessage msg, CarbonCallback callback) throws EngineException;
+    boolean send(CarbonMessage msg, CarbonCallback callback) throws MessageProcessorException;
 
     String getId();
 
