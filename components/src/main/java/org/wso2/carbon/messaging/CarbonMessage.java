@@ -72,6 +72,10 @@ public abstract class CarbonMessage {
         }
     }
 
+    public Map<String, Object> getProperties() {
+        return properties;
+    }
+
     public void setProperty(String key, Object value) {
         properties.put(key, value);
     }
