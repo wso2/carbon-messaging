@@ -61,7 +61,7 @@ public abstract class CarbonMessage {
     }
 
     public void setHeaders(Map<String, String> headerMap) {
-        headerMap.forEach((k, v) -> headers.put(k, v));
+        headerMap.forEach(headers::put);
     }
 
     public Object getProperty(String key) {
