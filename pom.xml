@@ -48,7 +48,7 @@
         <carbon.feature.plugin.version>2.0.0</carbon.feature.plugin.version>
 
         <org.wso2.carbon.messaging.version>1.0.0-SNAPSHOT</org.wso2.carbon.messaging.version>
-        <org.wso2.carbon.messaging.osgi.version>1.0.0.SNAPSHOT</org.wso2.carbon.messaging.osgi.version>
+        <org.wso2.carbon.messaging.osgi.version>1.0.0.alpha</org.wso2.carbon.messaging.osgi.version>
     </properties>
 
     <dependencyManagement>
