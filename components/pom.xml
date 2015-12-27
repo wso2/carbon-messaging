@@ -30,6 +30,7 @@
     <artifactId>org.wso2.carbon.messaging</artifactId>
     <packaging>bundle</packaging>
     <version>1.0.0-SNAPSHOT</version>
+    <name>WSO2 Carbon Messaging Component</name>
 
     <dependencies>
         <dependency>
@@ -60,16 +61,18 @@
             </plugin>
         </plugins>
     </build>
+
     <properties>
         <export.package>
-            org.wso2.carbon.messaging.*
+            org.wso2.carbon.messaging.*;version="${carbon.messaging.package.export.version}"
         </export.package>
         <import.package>
-            org.wso2.carbon.kernel.transports.*,
+            org.wso2.carbon.kernel.transports.*;version="${carbon.kernel.package.import.version.range}",
+            org.slf4j.*;version="${slf4j.logging.package.import.version.range}",
             org.apache.log4j.*,
-            org.apache.commons.logging.*,
-            org.slf4j.*,
+            org.apache.commons.logging.*
         </import.package>
+
     </properties>
 
 </project>
