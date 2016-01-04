@@ -19,6 +19,7 @@ public abstract class CarbonMessage {
     protected Map<String, String> headers = new HashMap<>();
     protected Map<String, Object> properties = new HashMap<>();
     protected BlockingQueue<ByteBuffer> messageBody = new LinkedBlockingQueue<>();
+    protected BlockingQueue<ByteBuffer> clonedMessageBody = new LinkedBlockingQueue<>();
 
     private boolean eomAdded = false;
 
@@ -42,6 +43,16 @@ public abstract class CarbonMessage {
             return null;
         }
 
+    }
+
+    public BlockingQueue<ByteBuffer> getClonedMessageBody() {
+        if (!this.messageBody.isEmpty()) {
+            if (!clonedMessageBody.isEmpty()) {
+                clonedMessageBody.clear();
+            }
+            this.clonedMessageBody.addAll(this.messageBody);
+        }
+        return this.clonedMessageBody;
     }
 
     public void addMessageBody(ByteBuffer msgBody) {
