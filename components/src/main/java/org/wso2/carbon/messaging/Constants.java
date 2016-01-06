@@ -37,6 +37,8 @@ public final class Constants {
 
     public static final String TEXT_XML = "text/xml";
 
+    public static final String TEXT_PLAIN = "text/plain";
+
     public static final String GZIP = "gzip";
 
     public static final String HTTP_CONTENT_LENGTH = "Content-Length";
@@ -75,6 +77,8 @@ public final class Constants {
     public static final String DIRECTION_RESPONSE = "DIRECTION_RESPONSE";
 
     public static final String CALL_BACK = "CALL_BACK";
+
+    public static final String EXCHANGE = "EXCHANGE";
 
     private Constants() {}
 }
