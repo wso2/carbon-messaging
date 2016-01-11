@@ -39,6 +39,8 @@ public final class Constants {
 
     public static final String TEXT_PLAIN = "text/plain";
 
+    public static final String APPLICATION_XML = "application/xml";
+
     public static final String GZIP = "gzip";
 
     public static final String HTTP_CONTENT_LENGTH = "Content-Length";
