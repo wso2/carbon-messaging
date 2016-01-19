@@ -40,7 +40,7 @@ public interface CarbonTransportInitializer {
     void initChannel(Object socketChannel);
 
     /**
-     * This method will be true if Server Initializer
+     * This method will be true if Server Initializer.
      * @return true if ServerSide Initializer
      */
     boolean isServerInitializer();

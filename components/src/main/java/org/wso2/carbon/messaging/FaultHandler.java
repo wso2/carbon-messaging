@@ -16,7 +16,7 @@
 package org.wso2.carbon.messaging;
 
 /**
- * A interface responsible for implement fault handling logic
+ * A interface responsible for implement fault handling logic.
  */
 public interface FaultHandler {
 

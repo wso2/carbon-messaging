@@ -19,7 +19,7 @@
 package org.wso2.carbon.messaging;
 
 /**
- * Common constants used in message property
+ * Common constants used in message property.
  */
 public final class Constants {
 

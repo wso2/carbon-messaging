@@ -22,7 +22,7 @@ import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 
 /**
- * Default implementation for carbon message
+ * Default implementation for carbon message.
  */
 public class DefaultCarbonMessage extends CarbonMessage {
 
