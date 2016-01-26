@@ -18,7 +18,6 @@
 
 package org.wso2.carbon.messaging;
 
-
 import org.wso2.carbon.kernel.transports.CarbonTransport;
 
 /**

@@ -20,7 +20,6 @@ package org.wso2.carbon.messaging;
  */
 public interface FaultHandler {
 
-
     public void handleFault(String message);
 
     public void handleFault();

@@ -65,7 +65,6 @@ public final class Constants {
 
     public static final String RESPONSE_CALLBACK = "RESPONSE_CALLBACK";
 
-
     public static final String HOST = "HOST";
 
     public static final String PORT = "PORT";
@@ -82,5 +81,6 @@ public final class Constants {
 
     public static final String EXCHANGE = "EXCHANGE";
 
-    private Constants() {}
+    private Constants() {
+    }
 }

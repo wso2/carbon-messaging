@@ -20,9 +20,7 @@ public abstract class CarbonMessage {
     protected Map<String, String> headers = new HashMap<>();
     protected Map<String, Object> properties = new HashMap<>();
     protected BlockingQueue<ByteBuffer> messageBody = new LinkedBlockingQueue<>();
-    protected Stack<FaultHandler>  faultHandlerStack = new Stack();
-
-
+    protected Stack<FaultHandler> faultHandlerStack = new Stack<>();
 
     private boolean eomAdded = false;
 

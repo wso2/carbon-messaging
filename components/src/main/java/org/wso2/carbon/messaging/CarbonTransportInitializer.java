@@ -41,6 +41,7 @@ public interface CarbonTransportInitializer {
 
     /**
      * This method will be true if Server Initializer.
+     *
      * @return true if ServerSide Initializer
      */
     boolean isServerInitializer();
