@@ -24,7 +24,7 @@
     <parent>
         <groupId>org.wso2.carbon.messaging</groupId>
         <artifactId>org.wso2.carbon.messaging.parent</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>1.0.0-alpha2</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
