@@ -22,7 +22,7 @@ package org.wso2.carbon.messaging;
  * This enumerator represents the location in which a given engage method is invoked.
  */
 public enum EngagedLocation {
-    CLIENT_CONNECTION_iNITIATED,
+    CLIENT_CONNECTION_INITIATED,
     CLIENT_CONNECTION_COMPLETED,
     SERVER_CONNECTION_INITIATED,
     SERVER_CONNECTION_COMPLETED,
