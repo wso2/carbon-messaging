@@ -1,0 +1,1037 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <!--
+      TIPS:
+
+      - use "mvn versions:display-dependency-updates" to see what dependencies
+        have updates available.
+
+      - use "mvn versions:display-plugin-updates" to see whan plugins have
+        updates available.
+  -->
+
+  <!-- Used for making releases. -->
+  <parent>
+    <artifactId>oss-parent</artifactId>
+    <groupId>org.sonatype.oss</groupId>
+    <version>7</version>
+  </parent>
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.puppycrawl.tools</groupId>
+  <artifactId>checkstyle</artifactId>
+  <version>6.2</version>
+  <packaging>jar</packaging>
+  <name>checkstyle</name>
+  <url>http://checkstyle.sourceforge.net/</url>
+  <issueManagement>
+    <system>GitHub Issues</system>
+    <url>https://github.com/checkstyle/checkstyle/issues</url>
+  </issueManagement>
+  <ciManagement>
+    <system>travis</system>
+    <url>https://travis-ci.org/checkstyle/checkstyle</url>
+  </ciManagement>
+  <inceptionYear>2001</inceptionYear>
+
+  <description>Checkstyle is a development tool to help programmers write Java code that adheres to a coding standard</description>
+
+  <licenses>
+    <license>
+      <name>GNU Lesser General Public License</name>
+      <url>http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt</url>
+    </license>
+  </licenses>
+
+  <scm>
+    <connection>scm:git:git@github.com:checkstyle/checkstyle.git</connection>
+    <developerConnection>scm:git:git@github.com:checkstyle/checkstyle.git</developerConnection>
+    <url>https://github.com/checkstyle/checkstyle</url>
+  </scm>
+
+  <distributionManagement>
+    <site>
+      <id>sourceforge-snapshot-site</id>
+      <name>Snapshot Site</name>
+      <url>scp://shell.sourceforge.net/home/project-web/checkstyle/htdocs/snapshot</url>
+    </site>
+  </distributionManagement>
+
+  <developers>
+    <developer>
+      <id>oburn</id>
+      <name>Oliver Burn</name>
+      <roles>
+        <role>founder</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>romanivanov</id>
+      <name>Roman Ivanov</name>
+      <roles>
+        <role>lead developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>daniilyar</id>
+      <name>Daniil Yaroslavtsev</name>
+      <roles>
+        <role>developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>moradan</id>
+      <name>Ivan Sopov</name>
+      <roles>
+        <role>developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>lkuehne</id>
+      <name>Lars Kühne</name>
+      <roles>
+        <role>former developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>rickgiles</id>
+      <name>Rick Giles</name>
+      <roles>
+        <role>former developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>o_sukhodolsky</id>
+      <name>Oleg Sukhodolsky</name>
+      <roles>
+        <role>former developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>mstudman</id>
+      <name>Michael Studman</name>
+      <roles>
+        <role>former developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>tschneeberger</id>
+      <name>Travis Schneeberger</name>
+      <roles>
+        <role>former developer</role>
+      </roles>
+    </developer>
+  </developers>
+
+  <mailingLists>
+    <mailingList>
+      <name>checkstyle-announce</name>
+      <archive>https://groups.google.com/forum/#!forum/checkstyle-announce</archive>
+      <subscribe>mailto:checkstyle-announce%2Bsubscribe@googlegroups.com</subscribe>
+      <unsubscribe>mailto:checkstyle-announce%2Bunsubscribe@googlegroups.com</unsubscribe>
+    </mailingList>
+    <mailingList>
+      <name>checkstyle</name>
+      <archive>https://groups.google.com/forum/#!forum/checkstyle</archive>
+      <subscribe>mailto:checkstyle%2Bsubscribe@googlegroups.com</subscribe>
+      <unsubscribe>mailto:checkstyle%2Bunsubscribe@googlegroups.com</unsubscribe>
+    </mailingList>
+    <mailingList>
+      <name>checkstyle-devel</name>
+      <archive>https://groups.google.com/forum/#!forum/checkstyle-devel</archive>
+      <subscribe>mailto:checkstyle-devel%2Bsubscribe@googlegroups.com</subscribe>
+      <unsubscribe>mailto:checkstyle-devel%2Bunsubscribe@googlegroups.com</unsubscribe>
+    </mailingList>
+  </mailingLists>
+
+  <properties>
+    <project.build.sourceEncoding>iso-8859-1</project.build.sourceEncoding>
+    <projectVersion>${project.version}</projectVersion>
+    <maven.site.plugin.version>3.4</maven.site.plugin.version>
+    <tools.jar.version>1.7.0</tools.jar.version>
+    <tools.jar.path>${java.home}/../lib/tools.jar</tools.jar.path>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>antlr</groupId>
+      <artifactId>antlr</artifactId>
+      <version>2.7.7</version>
+    </dependency>
+    <dependency>
+      <groupId>org.antlr</groupId>
+      <artifactId>antlr4-runtime</artifactId>
+      <version>4.3</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-beanutils</groupId>
+      <artifactId>commons-beanutils-core</artifactId>
+      <version>1.8.3</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-cli</groupId>
+      <artifactId>commons-cli</artifactId>
+      <version>1.2</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>18.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.ant</groupId>
+      <artifactId>ant</artifactId>
+      <!-- Do not upgrade as this is the earliest version of ANT supported -->
+      <version>1.7.0</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- test scope stuff -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <!-- This plugin's configuration is used to store Eclipse
+             m2e settings only. It has no influence on the Maven build itself.
+        -->
+        <plugin>
+          <groupId>org.eclipse.m2e</groupId>
+          <artifactId>lifecycle-mapping</artifactId>
+          <version>1.0.0</version>
+          <configuration>
+            <lifecycleMappingMetadata>https://github.com/checkstyle/checkstyle/issues
+              <pluginExecutions>
+                <pluginExecution>
+                  <pluginExecutionFilter>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-antrun-plugin</artifactId>
+                    <versionRange>[1.0,)</versionRange>
+                    <goals>
+                      <goal>run</goal>
+                    </goals>
+                  </pluginExecutionFilter>
+                  <action>
+                    <execute />
+                  </action>
+                </pluginExecution>
+                <pluginExecution>
+                  <pluginExecutionFilter>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>antlr-maven-plugin</artifactId>
+                    <versionRange>[1.0,)</versionRange>
+                    <goals>
+                      <goal>generate</goal>
+                    </goals>
+                  </pluginExecutionFilter>
+                  <action>
+                    <execute />
+                  </action>
+                </pluginExecution>
+                <pluginExecution>
+                  <pluginExecutionFilter>
+                    <groupId>org.antlr</groupId>
+                    <artifactId>antlr4-maven-plugin</artifactId>
+                    <versionRange>[4.0,)</versionRange>
+                    <goals>
+                      <goal>antlr4</goal>
+                    </goals>
+                  </pluginExecutionFilter>
+                  <action>
+                    <execute>
+                      <runOnIncremental>true</runOnIncremental>
+                    </execute>
+                  </action>
+                </pluginExecution>
+                <pluginExecution>
+                  <pluginExecutionFilter>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-enforcer-plugin</artifactId>
+                    <versionRange>[1.2,)</versionRange>
+                    <goals>
+                      <goal>enforce</goal>
+                    </goals>
+                  </pluginExecutionFilter>
+                  <action>
+                    <ignore />
+                  </action>
+                </pluginExecution>
+              </pluginExecutions>
+            </lifecycleMappingMetadata>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.3.2</version>
+        <configuration>
+          <source>1.7</source>
+          <target>1.7</target>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
+        <version>${maven.site.plugin.version}</version>
+        <configuration>
+          <xdocDirectory>${basedir}/src/xdocs</xdocDirectory>
+          <validate>true</validate>
+        </configuration>
+        <dependencies>
+          <!-- add support for ssh/scp -->
+          <dependency>
+            <groupId>org.apache.maven.wagon</groupId>
+            <artifactId>wagon-ssh</artifactId>
+            <version>1.0</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <version>1.3.1</version>
+        <executions>
+          <execution>
+            <id>enforce-versions</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <requireJavaVersion>
+                  <version>1.6</version>
+                </requireJavaVersion>
+                <!-- we can not use this as it require
+                compilation on 1.6 only, due to dependecy to 'tools'
+                <enforceBytecodeVersion>
+                  <maxJdkVersion>1.6</maxJdkVersion>
+                </enforceBytecodeVersion>
+                -->
+              </rules>
+            </configuration>
+          </execution>
+        </executions>
+        <!-- we can not use this as it require
+        compilation on 1.6 only, due to dependecy to 'tool'
+        <dependencies>
+          <dependency>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>extra-enforcer-rules</artifactId>
+            <version>1.0-beta-2</version>
+            <scope>compile</scope>
+          </dependency>
+        </dependencies>
+        -->
+      </plugin>
+
+      <!-- Generate the ANTLRv2 grammar -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>antlr-maven-plugin</artifactId>
+        <version>2.2</version>
+        <configuration>
+          <sourceDirectory>${basedir}/src/main/resources/com/puppycrawl/tools/checkstyle/grammars</sourceDirectory>
+          <grammars>java.g</grammars>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- Generate the ANTLRv4 grammar -->
+      <plugin>
+        <groupId>org.antlr</groupId>
+        <artifactId>antlr4-maven-plugin</artifactId>
+        <version>4.3</version>
+        <configuration>
+          <visitor>true</visitor>
+          <sourceDirectory>${basedir}/src/main/resources/com/puppycrawl/tools/checkstyle/grammars/javadoc</sourceDirectory>
+          <outputDirectory>${project.build.directory}/generated-sources/antlr/com/puppycrawl/tools/checkstyle/grammars/javadoc</outputDirectory>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>antlr4</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <version>1.9.1</version>
+        <executions>
+          <execution>
+            <id>add-source</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>add-source</goal>
+            </goals>
+            <configuration>
+              <sources>
+                <source>${project.build.directory}/generated-sources/antlr/</source>
+                <source>${project.build.directory}/generated-sources/antlr/javadoc</source>
+              </sources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- Generate checkstylecompilation.properties -->
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <version>1.7</version>
+        <executions>
+          <execution>
+            <id>ant-phase-compile</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <target>
+                <property name="mvn.project.build.outputDirectory" value="${project.build.outputDirectory}" />
+                <property name="mvn.project.version" value="${project.version}" />
+                <property name="mvn.compile_classpath" refid="maven.compile.classpath" />
+                <ant antfile="ant-phase-compile.xml" />
+              </target>
+            </configuration>
+          </execution>
+          <execution>
+            <id>ant-phase-verify</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <target>
+                <property name="mvn.project.build.directory" value="${project.build.directory}" />
+                <property name="mvn.project.version" value="${project.version}" />
+                <property name="mvn.runtime_classpath" refid="maven.runtime.classpath" />
+                <ant antfile="ant-phase-verify.xml" />
+              </target>
+            </configuration>
+          </execution>
+        </executions>
+        <dependencies>
+          <dependency>
+            <groupId>org.apache.ant</groupId>
+            <artifactId>ant-nodeps</artifactId>
+            <version>1.7.1</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+
+      <!-- Used to set custom properties -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.9</version>
+        <configuration>
+          <argLine>-Duser.language=en -Duser.country=US -XX:-UseSplitVerifier</argLine>
+        </configuration>
+      </plugin>
+
+      <!-- Ensure the manifest has all the gory details -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>2.3.1</version>
+        <configuration>
+          <archive>
+            <manifest>
+              <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+              <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+            </manifest>
+          </archive>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>test-jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>cobertura-maven-plugin</artifactId>
+        <version>2.5.1</version>
+        <configuration>
+          <instrumentation>
+            <excludes>
+              <exclude>com/puppycrawl/tools/checkstyle/CheckStyleTask*.class</exclude>
+              <exclude>com/puppycrawl/tools/checkstyle/doclets/*.class</exclude>
+              <exclude>com/puppycrawl/tools/checkstyle/grammars/*.class</exclude>
+              <exclude>com/puppycrawl/tools/checkstyle/gui/*.class</exclude>
+            </excludes>
+          </instrumentation>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-linkcheck-plugin</artifactId>
+        <version>1.2</version>
+        <configuration>
+          <excludedPages>
+            <excludedPage>dependencies.html</excludedPage>
+          </excludedPages>
+          <excludedLinks>
+            <excludedLink>reports/google-style/guava</excludedLink>
+            <excludedLink>reports/javadoc/openjdk8</excludedLink>
+            <excludedLink>https://travis-ci.org/checkstyle/checkstyle</excludedLink>
+            <excludedLink>https://coveralls.io/r/checkstyle/checkstyle</excludedLink>
+            <excludedLink>http://search.maven.org/*</excludedLink>
+            <excludedLink>hhttp://junit.org</excludedLink>
+          </excludedLinks>
+          <excludedHttpStatusErrors>
+            <excludedHttpStatusError>401</excludedHttpStatusError>
+          </excludedHttpStatusErrors>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-eclipse-plugin</artifactId>
+        <version>2.8</version>
+        <configuration>
+          <downloadSources>true</downloadSources>
+          <downloadJavadocs>true</downloadJavadocs>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.17</version>
+        <configuration>
+          <additionalClasspathElements>
+            <additionalClasspathElement>src/test/resources-noncompilable</additionalClasspathElement>
+          </additionalClasspathElements>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <version>1.9</version>
+        <executions>
+          <execution>
+            <id>add-test-source</id>
+            <phase>generate-test-sources</phase>
+            <goals>
+              <goal>add-test-source</goal>
+            </goals>
+            <configuration>
+              <sources>
+                <source>src/test/resources</source>
+              </sources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>2.10.1</version>
+        <configuration>
+          <source>1.7</source>
+          <failOnError>false</failOnError>
+          <linksource>true</linksource>
+        </configuration>
+        <reportSets>
+          <reportSet>
+            <id>default</id>
+            <reports>
+              <report>javadoc</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+
+      <plugin>
+        <groupId>com.github.sevntu-checkstyle</groupId>
+        <artifactId>dsm-maven-plugin</artifactId>
+        <version>2.1.3</version>
+        <configuration>
+          <obfuscatePackageNames>true</obfuscatePackageNames>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-linkcheck-plugin</artifactId>
+        <version>1.2</version>
+        <configuration>
+          <excludedPages>
+            <excludedPage>dependencies.html</excludedPage>
+          </excludedPages>
+          <excludedLinks>
+            <excludedLink>reports/google-style/guava</excludedLink>
+            <excludedLink>reports/javadoc/openjdk8</excludedLink>
+            <excludedLink>https://travis-ci.org/checkstyle/checkstyle</excludedLink>
+            <excludedLink>https://coveralls.io/r/checkstyle/checkstyle</excludedLink>
+            <excludedLink>http://search.maven.org/*</excludedLink>
+            <excludedLink>hhttp://junit.org</excludedLink>
+          </excludedLinks>
+          <excludedHttpStatusErrors>
+            <excludedHttpStatusError>401</excludedHttpStatusError>
+          </excludedHttpStatusErrors>
+        </configuration>
+      </plugin>
+
+    </plugins>
+  </reporting>
+
+  <profiles>
+    <profile>
+      <!-- To be used when making distributions. Run the command-->
+      <!-- mvn -Pdistro package -->
+      <id>distro</id>
+
+      <build>
+        <plugins>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-checkstyle-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>verify_checkstyle</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>checkstyle</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <configLocation>checkstyle_checks.xml</configLocation>
+              <suppressionsFileExpression>checkstyle.suppressions.file</suppressionsFileExpression>
+              <suppressionsLocation>suppressions.xml</suppressionsLocation>
+              <headerLocation>java.header</headerLocation>
+              <propertyExpansion>checkstyle.importcontrol.file=import-control.xml</propertyExpansion>
+              <enableFilesSummary>false</enableFilesSummary>
+            </configuration>
+          </plugin>
+
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>cobertura-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>verify_cobertura</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>cobertura</goal>
+                </goals>
+                <configuration>
+                  <formats>
+                    <format>xml</format>
+                    <format>html</format>
+                  </formats>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-pmd-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>verify_pmd</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>pmd</goal>
+                </goals>
+                <configuration>
+                  <targetJdk>1.7</targetJdk>
+                  <minimumTokens>20</minimumTokens>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>findbugs-maven-plugin</artifactId>
+            <version>3.0.0</version>
+            <executions>
+              <execution>
+                <id>verify_findbugs</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>findbugs</goal>
+                </goals>
+                <configuration>
+                  <reportFormat>xml</reportFormat>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+
+          <!-- Generates the site, which is required for assembly -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-site-plugin</artifactId>
+            <version>${maven.site.plugin.version}</version>
+            <executions>
+              <execution>
+                <id>gen-site</id>
+                <phase>prepare-package</phase>
+                <goals>
+                  <goal>site</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+
+          <!-- Creates the all inclusive uber jar -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-shade-plugin</artifactId>
+            <version>1.4</version>
+            <executions>
+              <execution>
+                <phase>package</phase>
+                <goals>
+                  <goal>shade</goal>
+                </goals>
+                <configuration>
+                  <shadedArtifactAttached>true</shadedArtifactAttached>
+                  <shadedClassifierName>all</shadedClassifierName>
+                  <transformers>
+                    <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                      <mainClass>com.puppycrawl.tools.checkstyle.Main</mainClass>
+                    </transformer>
+                  </transformers>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+
+          <!-- Creates the binary and source distributions -->
+          <plugin>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <version>2.2.1</version>
+            <configuration>
+              <descriptors>
+                <descriptor>config/assembly-bin.xml</descriptor>
+                <descriptor>config/assembly-src.xml</descriptor>
+              </descriptors>
+              <tarLongFileMode>gnu</tarLongFileMode>
+            </configuration>
+            <executions>
+              <execution>
+                <id>make-bundle</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>single</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+
+      <!-- Reports -->
+      <reporting>
+        <plugins>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-checkstyle-plugin</artifactId>
+            <configuration>
+              <configLocation>${project.build.directory}/../checkstyle_checks.xml</configLocation>
+              <suppressionsFileExpression>checkstyle.suppressions.file</suppressionsFileExpression>
+              <suppressionsLocation>suppressions.xml</suppressionsLocation>
+              <headerLocation>java.header</headerLocation>
+              <!-- this does not work
+              <propertyExpansion>translation.severity=ignore</propertyExpansion>
+              -->
+              <propertyExpansion>checkstyle.importcontrol.file=import-control.xml</propertyExpansion>
+
+            </configuration>
+          </plugin>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-report-plugin</artifactId>
+          </plugin>
+
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>cobertura-maven-plugin</artifactId>
+            <configuration>
+              <formats>
+                <format>xml</format>
+                <format>html</format>
+              </formats>
+            </configuration>
+          </plugin>
+
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>taglist-maven-plugin</artifactId>
+            <version>2.4</version>
+            <configuration>
+              <tags>
+                <tag>TODO</tag>
+                <tag>@todo</tag>
+                <tag>FIXME</tag>
+              </tags>
+            </configuration>
+          </plugin>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-pmd-plugin</artifactId>
+            <configuration>
+              <targetJdk>1.7</targetJdk>
+              <minimumTokens>20</minimumTokens>
+            </configuration>
+            <reportSets>
+              <reportSet>
+                <reports>
+                  <report>pmd</report>
+                </reports>
+              </reportSet>
+            </reportSets>
+          </plugin>
+
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>findbugs-maven-plugin</artifactId>
+            <version>3.0.0</version>
+          </plugin>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jxr-plugin</artifactId>
+            <version>2.4</version>
+          </plugin>
+
+        </plugins>
+
+      </reporting>
+    </profile>
+
+    <profile>
+      <id>release</id>
+      <distributionManagement>
+        <site>
+          <id>sourceforge-site</id>
+          <name>Default Site</name>
+          <url>scp://shell.sourceforge.net/home/project-web/checkstyle/htdocs</url>
+        </site>
+      </distributionManagement>
+    </profile>
+
+    <profile>
+      <id>release-sign-artifacts</id>
+      <activation>
+        <property>
+          <name>performRelease</name>
+          <value>true</value>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>1.4</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <!-- Bring in tools.jar for platforms which provide it
+    that is required for javadoc docklets that are in use -->
+    <profile>
+      <id>tools.jar-sun</id>
+      <activation>
+        <property>
+          <name>java.vendor</name>
+          <value>Sun Microsystems Inc.</value>
+        </property>
+      </activation>
+      <dependencies>
+        <dependency>
+          <groupId>com.sun</groupId>
+          <artifactId>tools</artifactId>
+          <version>${tools.jar.version}</version>
+          <scope>system</scope>
+          <systemPath>${tools.jar.path}</systemPath>
+        </dependency>
+      </dependencies>
+    </profile>
+    <profile>
+      <id>default-tools.jar-oracle</id>
+      <activation>
+        <property>
+          <name>java.vendor</name>
+          <value>Oracle Corporation</value>
+        </property>
+      </activation>
+      <dependencies>
+        <dependency>
+          <groupId>com.sun</groupId>
+          <artifactId>tools</artifactId>
+          <version>${tools.jar.version}</version>
+          <scope>system</scope>
+          <systemPath>${tools.jar.path}</systemPath>
+        </dependency>
+      </dependencies>
+    </profile>
+
+    <profile>
+      <!-- that profile is used only for coveralls.io banner that show coverage at ReadMe.md  -->
+      <id>travis</id>
+      <build>
+        <plugins>
+
+          <!-- Used to set custom properties by means of ${argLine}, that is required for jacoco -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>2.9</version>
+            <configuration>
+              <argLine>${argLine} -Duser.language=en -Duser.country=US</argLine>
+            </configuration>
+          </plugin>
+
+          <plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>0.7.1.201405082137</version>
+            <configuration>
+              <excludes>
+                <exclude>com/puppycrawl/tools/checkstyle/CheckStyleTask*.class</exclude>
+                <exclude>com/puppycrawl/tools/checkstyle/doclets/*.class</exclude>
+                <exclude>com/puppycrawl/tools/checkstyle/grammars/*.class</exclude>
+                <exclude>com/puppycrawl/tools/checkstyle/gui/*.class</exclude>
+              </excludes>
+            </configuration>
+            <executions>
+              <execution>
+                <id>prepare-agent</id>
+                <goals>
+                  <goal>prepare-agent</goal>
+                </goals>
+              </execution>
+              <execution>
+                <id>report</id>
+                <goals>
+                  <goal>report</goal>
+                </goals>
+                <phase>prepare-package</phase>
+              </execution>
+            </executions>
+          </plugin>
+
+          <plugin>
+            <groupId>org.eluder.coveralls</groupId>
+            <artifactId>coveralls-maven-plugin</artifactId>
+            <version>2.2.0</version>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <!-- To be used during development. Run the command-->
+      <!-- mvn -Passembly package -->
+      <id>assembly</id>
+
+      <build>
+        <plugins>
+
+          <!-- Creates the all inclusive uber jar -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-shade-plugin</artifactId>
+            <version>1.4</version>
+            <executions>
+              <execution>
+                <phase>package</phase>
+                <goals>
+                  <goal>shade</goal>
+                </goals>
+                <configuration>
+                  <shadedArtifactAttached>true</shadedArtifactAttached>
+                  <shadedClassifierName>all</shadedClassifierName>
+                  <transformers>
+                    <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                      <mainClass>com.puppycrawl.tools.checkstyle.Main</mainClass>
+                    </transformer>
+                  </transformers>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+
+          <!-- Creates the binary and source distributions -->
+          <plugin>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <version>2.2.1</version>
+            <configuration>
+              <descriptors>
+                <descriptor>config/assembly-bin.xml</descriptor>
+                <descriptor>config/assembly-src.xml</descriptor>
+              </descriptors>
+              <tarLongFileMode>gnu</tarLongFileMode>
+            </configuration>
+            <executions>
+              <execution>
+                <id>make-bundle</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>single</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+
+    </profile>
+
+
+  </profiles>
+</project>
