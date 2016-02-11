@@ -21,7 +21,8 @@ package org.wso2.carbon.messaging;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * The class that is responsible for engaging all the interceptors.
@@ -29,16 +30,22 @@ import java.util.ArrayList;
 public class Interceptor {
 
     private static final Logger LOG = LoggerFactory.getLogger(Interceptor.class);
-    private ArrayList<MessagingHandler> handlers = new ArrayList<>();
+    private Map<String, MessagingHandler> handlers = new HashMap<>();
 
     public boolean engage(CarbonMessage carbonMessage, EngagedLocation engagedLocation) {
         try {
-            for (MessagingHandler mHandler : handlers) {
-                mHandler.invoke(carbonMessage, engagedLocation);
-            }
+            handlers.forEach((k, v) -> v.invoke(carbonMessage, engagedLocation));
         } catch (Exception e) {
             LOG.error("Error while executing handler", e);
         }
         return true;
+    }
+
+    public void addHandler(MessagingHandler messagingHandler) {
+        handlers.put(messagingHandler.handlerName(), messagingHandler);
+    }
+
+    public void removeHandler(MessagingHandler messagingHandler) {
+        handlers.remove(messagingHandler.handlerName());
     }
 }
