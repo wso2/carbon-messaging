@@ -21,4 +21,5 @@ package org.wso2.carbon.messaging;
  */
 public interface MessagingHandler {
     boolean invoke(CarbonMessage cMessage, EngagedLocation engagedLocation);
+    String handlerName();
 }
