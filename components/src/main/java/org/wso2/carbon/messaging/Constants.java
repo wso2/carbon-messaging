@@ -125,6 +125,8 @@ public final class Constants {
 
     public static final String RESPONSE_BODY_READ_TIMER = "response.body.read.timer";
 
+    public static final String CONNECTION_ID = "connection.id";
+
     private Constants() {
     }
 }
