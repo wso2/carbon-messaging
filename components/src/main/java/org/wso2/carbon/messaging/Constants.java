@@ -45,6 +45,8 @@ public final class Constants {
 
     public static final String HTTP_CONTENT_LENGTH = "Content-Length";
 
+    public static final String HTTP_TRANSFER_ENCODING = "Transfer-Encoding";
+
     public static final String HTTP_CONNECTION = "Connection";
 
     public static final String KEEP_ALIVE = "keep-alive";
