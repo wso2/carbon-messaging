@@ -91,7 +91,7 @@ public final class Constants {
 
     public static final String TYPE_SERVER_RESPONSE = "TYPE_SERVER_RESPONSE";
 
-    public static final String TYPE_SERVER_CONNECTION = "TYPE_SERVER_CONNECTION";
+    public static final String TYPE_SOURCE_CONNECTION = "TYPE_SOURCE_CONNECTION";
 
     public static final String TYPE_CLIENT_CONNECTION = "TYPE_CLIENT_CONNECTION";
 
@@ -124,6 +124,8 @@ public final class Constants {
     public static final String RESPONSE_HEADER_READ_TIMER = "response.header.read.timer";
 
     public static final String RESPONSE_BODY_READ_TIMER = "response.body.read.timer";
+
+    public static final String CONNECTION_TIMER = "connection.timer";
 
     public static final String CONNECTION_ID = "connection.id";
 
