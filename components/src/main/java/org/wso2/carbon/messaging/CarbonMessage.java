@@ -4,7 +4,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 import java.util.concurrent.BlockingQueue;
@@ -44,6 +46,27 @@ public abstract class CarbonMessage {
             return null;
         }
 
+    }
+
+    /**
+     * Calling this method will be blocked until all the message content is received
+     *
+     * @return Full message body as list of {@link ByteBuffer}
+     */
+    public List<ByteBuffer> getFullMessageBody() {
+        List<ByteBuffer> byteBufferList = new ArrayList<>();
+
+        while (true) {
+            try {
+                byteBufferList.add(messageBody.take());
+                if (eomAdded && messageBody.isEmpty()) {
+                    break;
+                }
+            } catch (InterruptedException e) {
+                LOG.error("Error while getting full message body", e);
+            }
+        }
+        return byteBufferList;
     }
 
     public void addMessageBody(ByteBuffer msgBody) {

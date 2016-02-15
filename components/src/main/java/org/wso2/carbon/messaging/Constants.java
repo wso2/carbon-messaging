@@ -81,6 +81,8 @@ public final class Constants {
 
     public static final String EXCHANGE = "EXCHANGE";
 
+    public static final String LISTENER_PORT = "LISTENER_PORT";
+
     private Constants() {
     }
 }
