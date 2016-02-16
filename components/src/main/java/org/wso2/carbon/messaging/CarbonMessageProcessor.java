@@ -34,5 +34,4 @@ public interface CarbonMessageProcessor {
     void setTransportSender(TransportSender sender);
 
     String getId();
-
 }

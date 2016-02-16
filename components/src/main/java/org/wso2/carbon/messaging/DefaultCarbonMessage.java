@@ -30,5 +30,4 @@ public class DefaultCarbonMessage extends CarbonMessage {
         addMessageBody(ByteBuffer.wrap(stringMessageBody.getBytes(Charset.defaultCharset())));
         setEomAdded(true);
     }
-
 }
