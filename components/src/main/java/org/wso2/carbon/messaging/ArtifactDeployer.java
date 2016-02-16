@@ -6,7 +6,7 @@
  * in compliance with the License.
  * You may obtain a copy of the License at
  *
- *    http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
@@ -18,18 +18,16 @@
 
 package org.wso2.carbon.messaging;
 
-import org.wso2.carbon.kernel.transports.CarbonTransport;
+import org.wso2.carbon.kernel.deployment.Deployer;
 
 /**
- * Abstract class for Message listener.
+ * Interface which can be used to implement ArtifactDeployers and publish information to Listener side for
+ * hot update of listeners according to information published by Artifacts
  */
-public abstract class TransportListener extends CarbonTransport {
+public interface ArtifactDeployer extends Deployer {
 
-    public TransportListener(String id) {
-        super(id);
-    }
 
-    public abstract void setMessageProcessor(CarbonMessageProcessor messageProcessor);
+    public void registerTransportListener(String id, TransportListener transportListener);
 
-    public abstract boolean listen(String host, int port);
+
 }
