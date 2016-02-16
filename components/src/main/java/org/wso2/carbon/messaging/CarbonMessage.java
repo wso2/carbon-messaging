@@ -67,7 +67,7 @@ public abstract class CarbonMessage {
     }
 
     /**
-     * Calling this method will be blocked until all the message content is received
+     * Calling this method will be blocked until all the message content is received.
      *
      * @return Full message body as list of {@link ByteBuffer}
      */
