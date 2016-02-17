@@ -26,5 +26,5 @@ public interface TransportListenerManager {
 
     public TransportListener getTransportListener(String id);
 
-    public void addTransportListener(TransportListener transportListener);
+    public void registerTransportListener(String id, TransportListener transportListener);
 }
