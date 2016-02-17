@@ -16,18 +16,13 @@
  * under the License.
  */
 
-package org.wso2.carbon.messaging;
+package org.wso2.carbon.messaging.exceptions;
 
 /**
- * Callbacks are created in request path for execute in response path.
- * When response arrives callback methods should execute.
+ * A class that represent EndpointTimeout Exception.
  */
-public interface CarbonCallback {
-
-    /**
-     * Calls in response path   to do work for response.
-     *
-     * @param cMsg CarbonMessage to be processed.
-     */
-    void done(CarbonMessage cMsg);
+public class EndPointTimeOut extends Exception {
+    public EndPointTimeOut(String message) {
+        super(message);
+    }
 }

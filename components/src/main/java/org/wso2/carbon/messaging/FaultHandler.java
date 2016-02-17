@@ -27,5 +27,4 @@ public interface FaultHandler {
     public void handleFault(String message, CarbonCallback carbonCallback);
 
     public void handleFault(String message, Throwable throwable, CarbonCallback carbonCallback);
-
 }
