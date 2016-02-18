@@ -85,6 +85,14 @@ public final class Constants {
 
     public static final String LISTENER_PORT = "LISTENER_PORT";
 
+    public static final String ERROR_MESSAGE = "ERROR_MESSAGE";
+
+    public static final String ERROR_DETAIL = "ERROR_DETAIL";
+
+    public static final String ERROR_CODE = "ERROR_CODE";
+
+    public static final String ERROR_EXCEPTION = "ERROR_EXCEPTION";
+
     private Constants() {
     }
 }

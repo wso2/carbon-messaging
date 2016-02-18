@@ -32,4 +32,6 @@ public abstract class TransportListener extends CarbonTransport {
     public abstract void setMessageProcessor(CarbonMessageProcessor messageProcessor);
 
     public abstract boolean listen(String host, int port);
+
+    public abstract boolean stopListening(String host, int port);
 }
