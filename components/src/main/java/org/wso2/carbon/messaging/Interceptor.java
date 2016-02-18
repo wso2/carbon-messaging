@@ -36,7 +36,7 @@ public class Interceptor {
         try {
             handlers.forEach((k, v) -> v.invoke(carbonMessage, engagedLocation));
         } catch (Exception e) {
-            LOG.error("Error while executing handler", e);
+            LOG.error("Error while executing handler at " + engagedLocation, e);
         }
         return true;
     }
