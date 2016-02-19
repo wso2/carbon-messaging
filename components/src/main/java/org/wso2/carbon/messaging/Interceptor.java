@@ -43,9 +43,11 @@ public class Interceptor {
 
     public void addHandler(MessagingHandler messagingHandler) {
         handlers.put(messagingHandler.handlerName(), messagingHandler);
+        LOG.info("A new handler named " + messagingHandler.handlerName() + " is added to the Interceptor");
     }
 
     public void removeHandler(MessagingHandler messagingHandler) {
         handlers.remove(messagingHandler.handlerName());
+        LOG.info("A new handler named " + messagingHandler.handlerName() + " is removed from the Interceptor");
     }
 }
