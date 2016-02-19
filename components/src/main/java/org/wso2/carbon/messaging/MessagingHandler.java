@@ -20,6 +20,14 @@ package org.wso2.carbon.messaging;
  * This the handler that need to be extended when you extend the GW.
  */
 public interface MessagingHandler {
-    boolean invoke(CarbonMessage cMessage, EngagedLocation engagedLocation);
+
+    boolean sourceConnection(String metadata, State state);
+    boolean sourceRequest(CarbonMessage carbonMessage, State state);
+    boolean sourceResponse(CarbonMessage carbonMessage, State state);
+
+    boolean targetConnection(String metadata, State state);
+    boolean targetRequest(CarbonMessage carbonMessage, State state);
+    boolean targetResponse(CarbonMessage carbonMessage, State state);
+
     String handlerName();
 }
