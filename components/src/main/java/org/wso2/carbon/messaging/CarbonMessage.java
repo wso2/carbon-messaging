@@ -23,11 +23,11 @@ import org.slf4j.LoggerFactory;
 
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.LinkedBlockingQueue;
 
 /**
@@ -37,8 +37,8 @@ public abstract class CarbonMessage {
 
     private static final Logger LOG = LoggerFactory.getLogger(CarbonMessage.class);
 
-    protected Map<String, String> headers = new HashMap<>();
-    protected Map<String, Object> properties = new HashMap<>();
+    protected Map<String, String> headers = new ConcurrentHashMap<>();
+    protected Map<String, Object> properties = new ConcurrentHashMap<>();
     protected BlockingQueue<ByteBuffer> messageBody = new LinkedBlockingQueue<>();
     protected Stack<FaultHandler> faultHandlerStack = new Stack<>();
 

@@ -85,6 +85,8 @@ public final class Constants {
 
     public static final String LISTENER_PORT = "LISTENER_PORT";
 
+    public static final String CONNECTION_ID = "connection.id";
+
     private Constants() {
     }
 }
