@@ -32,7 +32,7 @@ public class Interceptor {
     private static final Logger LOG = LoggerFactory.getLogger(Interceptor.class);
     private Map<String, MessagingHandler> handlers = new HashMap<>();
 
-    boolean sourceConnection(String metadata, State state) {
+    public boolean sourceConnection(String metadata, State state) {
         try {
             handlers.forEach((k, v) -> v.sourceConnection(metadata, state));
         } catch (Exception e) {
@@ -41,7 +41,7 @@ public class Interceptor {
         return true;
     }
 
-    boolean sourceRequest(CarbonMessage carbonMessage, State state) {
+    public boolean sourceRequest(CarbonMessage carbonMessage, State state) {
         try {
             handlers.forEach((k, v) -> v.sourceRequest(carbonMessage, state));
         } catch (Exception e) {
@@ -50,7 +50,7 @@ public class Interceptor {
         return true;
     }
 
-    boolean sourceResponse(CarbonMessage carbonMessage, State state) {
+    public boolean sourceResponse(CarbonMessage carbonMessage, State state) {
         try {
             handlers.forEach((k, v) -> v.sourceResponse(carbonMessage, state));
         } catch (Exception e) {
@@ -59,7 +59,7 @@ public class Interceptor {
         return true;
     }
 
-    boolean targetConnection(CarbonMessage carbonMessage, State state) {
+    public boolean targetConnection(CarbonMessage carbonMessage, State state) {
         try {
             handlers.forEach((k, v) -> v.targetConnection(carbonMessage, state));
         } catch (Exception e) {
@@ -68,7 +68,7 @@ public class Interceptor {
         return true;
     }
 
-    boolean targetRequest(CarbonMessage carbonMessage, State state) {
+    public boolean targetRequest(CarbonMessage carbonMessage, State state) {
         try {
             handlers.forEach((k, v) -> v.targetRequest(carbonMessage, state));
         } catch (Exception e) {
@@ -77,7 +77,7 @@ public class Interceptor {
         return true;
     }
 
-    boolean targetResponse(CarbonMessage carbonMessage, State state) {
+    public boolean targetResponse(CarbonMessage carbonMessage, State state) {
         try {
             handlers.forEach((k, v) -> v.targetResponse(carbonMessage, state));
         } catch (Exception e) {
