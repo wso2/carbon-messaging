@@ -25,7 +25,7 @@ public interface MessagingHandler {
     boolean sourceRequest(CarbonMessage carbonMessage, State state);
     boolean sourceResponse(CarbonMessage carbonMessage, State state);
 
-    boolean targetConnection(CarbonMessage carbonMessage, State state);
+    boolean targetConnection(String metadata, State state);
     boolean targetRequest(CarbonMessage carbonMessage, State state);
     boolean targetResponse(CarbonMessage carbonMessage, State state);
 

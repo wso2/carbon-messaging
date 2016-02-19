@@ -59,9 +59,9 @@ public class Interceptor {
         return true;
     }
 
-    public boolean targetConnection(CarbonMessage carbonMessage, State state) {
+    public boolean targetConnection(String metadata, State state) {
         try {
-            handlers.forEach((k, v) -> v.targetConnection(carbonMessage, state));
+            handlers.forEach((k, v) -> v.targetConnection(metadata, state));
         } catch (Exception e) {
             LOG.error("Error while executing handler at TargetConnection with " + state, e);
         }
