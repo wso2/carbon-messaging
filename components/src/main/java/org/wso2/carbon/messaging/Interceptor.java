@@ -32,11 +32,56 @@ public class Interceptor {
     private static final Logger LOG = LoggerFactory.getLogger(Interceptor.class);
     private Map<String, MessagingHandler> handlers = new HashMap<>();
 
-    public boolean engage(CarbonMessage carbonMessage, EngagedLocation engagedLocation) {
+    boolean sourceConnection(String metadata, State state) {
         try {
-            handlers.forEach((k, v) -> v.invoke(carbonMessage, engagedLocation));
+            handlers.forEach((k, v) -> v.sourceConnection(metadata, state));
         } catch (Exception e) {
-            LOG.error("Error while executing handler at " + engagedLocation, e);
+            LOG.error("Error while executing handler at SourceConnection with " + state, e);
+        }
+        return true;
+    }
+
+    boolean sourceRequest(CarbonMessage carbonMessage, State state) {
+        try {
+            handlers.forEach((k, v) -> v.sourceRequest(carbonMessage, state));
+        } catch (Exception e) {
+            LOG.error("Error while executing handler at SourceRequest with " + state, e);
+        }
+        return true;
+    }
+
+    boolean sourceResponse(CarbonMessage carbonMessage, State state) {
+        try {
+            handlers.forEach((k, v) -> v.sourceResponse(carbonMessage, state));
+        } catch (Exception e) {
+            LOG.error("Error while executing handler at SourceResponse with " + state, e);
+        }
+        return true;
+    }
+
+    boolean targetConnection(CarbonMessage carbonMessage, State state) {
+        try {
+            handlers.forEach((k, v) -> v.targetConnection(carbonMessage, state));
+        } catch (Exception e) {
+            LOG.error("Error while executing handler at TargetConnection with " + state, e);
+        }
+        return true;
+    }
+
+    boolean targetRequest(CarbonMessage carbonMessage, State state) {
+        try {
+            handlers.forEach((k, v) -> v.targetRequest(carbonMessage, state));
+        } catch (Exception e) {
+            LOG.error("Error while executing handler at TargetRequest with " + state, e);
+        }
+        return true;
+    }
+
+    boolean targetResponse(CarbonMessage carbonMessage, State state) {
+        try {
+            handlers.forEach((k, v) -> v.targetResponse(carbonMessage, state));
+        } catch (Exception e) {
+            LOG.error("Error while executing handler at TargetResponse with " + state, e);
         }
         return true;
     }
