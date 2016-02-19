@@ -28,6 +28,6 @@ public class DefaultCarbonMessage extends CarbonMessage {
 
     public void setStringMessageBody(String stringMessageBody) {
         addMessageBody(ByteBuffer.wrap(stringMessageBody.getBytes(Charset.defaultCharset())));
-        setEomAdded(true);
+        setEndOfMsgAdded(true);
     }
 }

@@ -42,14 +42,14 @@ public abstract class CarbonMessage {
     protected BlockingQueue<ByteBuffer> messageBody = new LinkedBlockingQueue<>();
     protected Stack<FaultHandler> faultHandlerStack = new Stack<>();
 
-    private boolean eomAdded = false;
+    private boolean endOfMsgAdded = false;
 
-    public boolean isEomAdded() {
-        return eomAdded;
+    public boolean isEndOfMsgAdded() {
+        return endOfMsgAdded;
     }
 
-    public void setEomAdded(boolean eomAdded) {
-        this.eomAdded = eomAdded;
+    public void setEndOfMsgAdded(boolean endOfMsgAdded) {
+        this.endOfMsgAdded = endOfMsgAdded;
     }
 
     public boolean isEmpty() {
@@ -77,7 +77,7 @@ public abstract class CarbonMessage {
         while (true) {
             try {
                 byteBufferList.add(messageBody.take());
-                if (eomAdded && messageBody.isEmpty()) {
+                if (endOfMsgAdded && messageBody.isEmpty()) {
                     break;
                 }
             } catch (InterruptedException e) {
