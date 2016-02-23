@@ -20,11 +20,7 @@ package org.wso2.carbon.messaging;
  */
 public interface FaultHandler {
 
-    public void handleFault(String message);
 
-    public void handleFault();
-
-    public void handleFault(String message, CarbonCallback carbonCallback);
-
-    public void handleFault(String message, Throwable throwable, CarbonCallback carbonCallback);
+    public void handleFault(String message, Throwable throwable, CarbonMessage carbonMessage,
+                            CarbonCallback carbonCallback);
 }

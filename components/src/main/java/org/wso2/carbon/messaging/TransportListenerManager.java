@@ -6,7 +6,7 @@
  * in compliance with the License.
  * You may obtain a copy of the License at
  *
- *    http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
@@ -18,20 +18,13 @@
 
 package org.wso2.carbon.messaging;
 
-import org.wso2.carbon.kernel.transports.CarbonTransport;
-
 /**
- * Abstract class for Message listener.
+ * A class that manages Transport Listeners
  */
-public abstract class TransportListener extends CarbonTransport {
+public interface TransportListenerManager {
 
-    public TransportListener(String id) {
-        super(id);
-    }
 
-    public abstract void setMessageProcessor(CarbonMessageProcessor messageProcessor);
+    public TransportListener getTransportListener(String id);
 
-    public abstract boolean listen(String host, int port);
-
-    public abstract boolean stopListening(String host, int port);
+    public void registerTransportListener(String id, TransportListener transportListener);
 }
