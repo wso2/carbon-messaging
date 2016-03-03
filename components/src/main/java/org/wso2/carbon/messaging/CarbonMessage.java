@@ -29,6 +29,8 @@ import java.util.Stack;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Data carrier between the components.
@@ -41,6 +43,8 @@ public abstract class CarbonMessage {
     protected Map<String, Object> properties = new ConcurrentHashMap<>();
     protected BlockingQueue<ByteBuffer> messageBody = new LinkedBlockingQueue<>();
     protected Stack<FaultHandler> faultHandlerStack = new Stack<>();
+
+    protected Lock lock = new ReentrantLock();
 
     private boolean endOfMsgAdded = false;
 
@@ -137,5 +141,9 @@ public abstract class CarbonMessage {
 
     public void setFaultHandlerStack(Stack<FaultHandler> faultHandlerStack) {
         this.faultHandlerStack = faultHandlerStack;
+    }
+
+    public Lock getLock() {
+        return lock;
     }
 }
