@@ -21,34 +21,6 @@ package org.wso2.carbon.messaging.handler;
 import org.wso2.carbon.messaging.CarbonCallback;
 import org.wso2.carbon.messaging.CarbonMessage;
 
-/**
- *                 +------------+------------------+------------+
- *            5    |            |  6           7   |            |   8
- *            +--------------------->          +--------------------->
- *                 |            |                  |            |
- * 1          2    | Transport  |      Message     | Transport  |  3           4
- * +-----------+   | Listener   |     Processor    |  Sender    |  +-----------+
- *                 |            |                  |            |
- *             12  |            |  11           10 |            |    9
- *            <---------------------+          <---------------------+
- *                 |            |                  |            |
- *                 +------------+------------------+------------+
- *
- * 1.  source connection initiated
- * 2.  source connection terminated
- * 3.  target connection initiated
- * 4.  target connection terminated
- * 5.  source request receiving (start reading the message from client)
- * 6.  source request sending (message reading completed, i.e sending to Message processor)
- * 7.  target request receiving (processed message, receiving from Message processor to send to back-end)
- * 8.  target request sending (sending message to back-end)
- * 9.  target response receiving (start reading the response from back-end)
- * 10. target response sending (response reading completed, i.e sending to Message processor)
- * 11. source response receiving (processed response receiving from Message processor to send to client)
- * 12. source response sending (sending response to client)
- *
- */
-
 public interface MessagingHandler {
 
     //todo description + diagram update + impl
