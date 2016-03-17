@@ -21,6 +21,9 @@ package org.wso2.carbon.messaging.handler;
 import org.wso2.carbon.messaging.CarbonCallback;
 import org.wso2.carbon.messaging.CarbonMessage;
 
+/**
+ * Interface for MessagingHandler.
+ */
 public interface MessagingHandler {
 
     //todo description + diagram update + impl
