@@ -31,9 +31,4 @@ public interface CarbonCallback {
      */
     void done(CarbonMessage cMsg);
 
-    /**
-     * If this is set to true then logic executes in separate thread either in Disruptor or Thread pool
-     * @param value
-     */
-    void workInSeparateThread(boolean value);
-}
+    }
