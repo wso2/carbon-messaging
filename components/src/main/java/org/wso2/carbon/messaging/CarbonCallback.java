@@ -30,5 +30,4 @@ public interface CarbonCallback {
      * @param cMsg CarbonMessage to be processed.
      */
     void done(CarbonMessage cMsg);
-
-    }
+}
