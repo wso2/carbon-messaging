@@ -80,10 +80,10 @@ public abstract class CarbonMessage {
 
         while (true) {
             try {
-                byteBufferList.add(messageBody.take());
                 if (endOfMsgAdded && messageBody.isEmpty()) {
                     break;
                 }
+                byteBufferList.add(messageBody.take());
             } catch (InterruptedException e) {
                 LOG.error("Error while getting full message body", e);
             }
