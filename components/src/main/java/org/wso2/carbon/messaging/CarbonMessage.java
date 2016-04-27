@@ -146,4 +146,14 @@ public abstract class CarbonMessage {
     public Lock getLock() {
         return lock;
     }
+
+    public int getFullMessageLength() {
+        List<ByteBuffer> fullMessageBody = getFullMessageBody();
+        int size = 0;
+        for (ByteBuffer byteBuffer : fullMessageBody) {
+            messageBody.add(byteBuffer);
+            size += byteBuffer.limit();
+        }
+        return size;
+    }
 }
