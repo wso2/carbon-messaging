@@ -46,14 +46,27 @@ public abstract class CarbonMessage {
 
     protected Lock lock = new ReentrantLock();
 
+    protected boolean bufferContent = true;
+
     private boolean endOfMsgAdded = false;
+
+    private Writer writer;
+
+    public CarbonMessage() {
+    }
+
+    /**
+     * This enable you to avoid filling content in to internal buffer
+     * Use this constructor when creating response message and need to write content and
+     *
+     * @param buffercontent
+     */
+    public CarbonMessage(Boolean buffercontent) {
+        this.bufferContent = buffercontent;
+    }
 
     public boolean isEndOfMsgAdded() {
         return endOfMsgAdded;
-    }
-
-    public void setEndOfMsgAdded(boolean endOfMsgAdded) {
-        this.endOfMsgAdded = endOfMsgAdded;
     }
 
     public boolean isEmpty() {
@@ -92,6 +105,15 @@ public abstract class CarbonMessage {
     }
 
     public void addMessageBody(ByteBuffer msgBody) {
+        if (bufferContent) {
+            messageBody.add(msgBody);
+        } else {
+            if (writer != null) {
+                writer.write(msgBody);
+            } else {
+                LOG.error("Cannot write content no registered writer found");
+            }
+        }
         messageBody.add(msgBody);
     }
 
@@ -155,5 +177,24 @@ public abstract class CarbonMessage {
             size += byteBuffer.limit();
         }
         return size;
+    }
+
+    public void setEndOfMsgAdded(boolean endOfMsgAdded) {
+        this.endOfMsgAdded = endOfMsgAdded;
+        if (writer != null) {
+            writer.writeLastContent(this);
+        }
+    }
+
+    public Writer getWriter() {
+        return writer;
+    }
+
+    public void setWriter(Writer writer) {
+        this.writer = writer;
+    }
+
+    public boolean isBufferContent() {
+        return bufferContent;
     }
 }

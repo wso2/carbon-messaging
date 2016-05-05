@@ -75,8 +75,11 @@
 
         <carbon.feature.plugin.version>2.0.0</carbon.feature.plugin.version>
 
+
         <carbon.messaging.version>1.0.3-SNAPSHOT</carbon.messaging.version>
-        <carbon.messaging.package.export.version>1.0.3</carbon.messaging.package.export.version>
+
+        <carbon.messaging.package.export.version>1.0.3-SNAPSHOT</carbon.messaging.package.export.version>
+
 
         <!--following versions are used in the parent pom-->
         <wso2.maven.compiler.source>1.8</wso2.maven.compiler.source>
