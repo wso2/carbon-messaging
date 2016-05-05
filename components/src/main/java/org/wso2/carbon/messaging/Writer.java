@@ -6,7 +6,7 @@
  * in compliance with the License.
  * You may obtain a copy of the License at
  *
- *    http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
@@ -18,28 +18,21 @@
 
 package org.wso2.carbon.messaging;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.nio.ByteBuffer;
-import java.nio.charset.Charset;
 
 /**
- * Default implementation for carbon message.
+ * An interface which represents Write byte content directly
  */
-public class DefaultCarbonMessage extends CarbonMessage {
-    private static final Logger log = LoggerFactory.getLogger(DefaultCarbonMessage.class);
+public interface Writer {
+    /**
+     * A method which is used to write content to underlying IO channel directly
+     * @param byteBuffer
+     */
+    public void write(ByteBuffer byteBuffer);
 
-    public DefaultCarbonMessage() {
-    }
-
-    public DefaultCarbonMessage(Boolean buffercontent) {
-        super(buffercontent);
-    }
-
-    public void setStringMessageBody(String stringMessageBody) {
-        addMessageBody(ByteBuffer.wrap(stringMessageBody.getBytes(Charset.defaultCharset())));
-        setEndOfMsgAdded(true);
-    }
-
+    /**
+     * A method which is used to write Last content and flush  to underlying IO channel directly
+     * @param carbonMessage
+     */
+    public void writeLastContent(CarbonMessage carbonMessage);
 }
