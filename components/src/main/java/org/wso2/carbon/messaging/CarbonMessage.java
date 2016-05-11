@@ -114,7 +114,6 @@ public abstract class CarbonMessage {
                 LOG.error("Cannot write content no registered writer found");
             }
         }
-        messageBody.add(msgBody);
     }
 
     public Map<String, String> getHeaders() {
