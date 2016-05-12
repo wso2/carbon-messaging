@@ -21,18 +21,20 @@ package org.wso2.carbon.messaging;
 import java.nio.ByteBuffer;
 
 /**
- * An interface which represents Write byte content directly
+ * An interface which represents Write byte content directly.
  */
 public interface Writer {
     /**
-     * A method which is used to write content to underlying IO channel directly
+     * A method which is used to write content to underlying IO channel directly.
+     *
      * @param byteBuffer
      */
-    public void write(ByteBuffer byteBuffer);
+    void write(ByteBuffer byteBuffer);
 
     /**
-     * A method which is used to write Last content and flush  to underlying IO channel directly
+     * A method which is used to write Last content and flush  to underlying IO channel directly.
+     *
      * @param carbonMessage
      */
-    public void writeLastContent(CarbonMessage carbonMessage);
+    void writeLastContent(CarbonMessage carbonMessage);
 }

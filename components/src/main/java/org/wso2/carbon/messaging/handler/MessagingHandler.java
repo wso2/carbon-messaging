@@ -26,53 +26,68 @@ import org.wso2.carbon.messaging.CarbonMessage;
  */
 public interface MessagingHandler {
 
-    //todo description + diagram update + impl
+    /**
+     * Invoked when source request's headers are received at the source handler.
+     *
+     * @param carbonMessage client request with headers
+     * @param callback      response callback
+     * @return true to continue the message flow,
+     *         false to discontinue the flow and done the callback with response message.
+     */
     boolean validateRequestContinuation(CarbonMessage carbonMessage, CarbonCallback callback);
 
     /**
-     * Invoked when source connection is initiated
+     * Invoked when source connection is initiated.
+     *
      * @param metadata unique string key to identify the connection
      */
     void invokeAtSourceConnectionInitiation(String metadata);
 
     /**
-     * Invoked when source connection is terminated
+     * Invoked when source connection is terminated.
+     *
      * @param metadata unique string key to identify the connection
      */
     void invokeAtSourceConnectionTermination(String metadata);
 
     /**
-     * Invoked when target connection is initiated
+     * Invoked when target connection is initiated.
+     *
      * @param metadata unique string key to identify the connection
      */
     void invokeAtTargetConnectionInitiation(String metadata);
 
     /**
-     * Invoked when target connection is terminated
+     * Invoked when target connection is terminated.
+     *
      * @param metadata unique string key to identify the connection
      */
     void invokeAtTargetConnectionTermination(String metadata);
 
     /**
-     * Invoked when source request is started receiving at source handler
+     * Invoked when source request is started receiving at source handler.
+     *
      * @param carbonMessage newly created carbon message.
      */
     void invokeAtSourceRequestReceiving(CarbonMessage carbonMessage);
 
     /**
-     * Invoked when source request is started sending to the message processor
+     * Invoked when source request is started sending to the message processor.
+     *
      * @param carbonMessage client request (i.e headers, property and message body)
      */
     void invokeAtSourceRequestSending(CarbonMessage carbonMessage);
 
     /**
-     * Invoked when the request is received again to the transport level after being processed at message processor
+     * Invoked when the request is received again to the transport level after being processed at message processor.
+     *
      * @param carbonMessage processed (or mediated) request (i.e headers, properties and message body)
      */
     void invokeAtTargetRequestReceiving(CarbonMessage carbonMessage);
 
     /**
      * Invoked when the request is started sending to the backend.
+     *
      * @param carbonMessage sent request (i.e the message is already had started to send to backend)
      *                      So no message body will be available. Even though the headers and properties are available,
      *                      manipulating them won't change the request send to the back end (because the headers are
@@ -81,32 +96,37 @@ public interface MessagingHandler {
     void invokeAtTargetRequestSending(CarbonMessage carbonMessage);
 
     /**
-     * Invoked when target response is started receiving at target handler
+     * Invoked when target response is started receiving at target handler.
+     *
      * @param carbonMessage newly created carbon message.
      */
     void invokeAtTargetResponseReceiving(CarbonMessage carbonMessage);
 
     /**
-     * Invoked when target response is started sending to the message processor
+     * Invoked when target response is started sending to the message processor.
+     *
      * @param carbonMessage target response (i.e headers, property and message body)
      */
     void invokeAtTargetResponseSending(CarbonMessage carbonMessage);
 
     /**
-     * Invoked when the response is received again to the transport level after being processed at message processor
+     * Invoked when the response is received again to the transport level after being processed at message processor.
+     *
      * @param carbonMessage processed (or mediated) response (i.e headers, properties and message body)
      */
     void invokeAtSourceResponseReceiving(CarbonMessage carbonMessage);
 
     /**
      * Invoked when the response is started sending to the client.
+     *
      * @param carbonMessage sent response (i.e with empty message body.
      *                      similar carbon message to {@link #invokeAtTargetRequestSending(CarbonMessage)}
      */
     void invokeAtSourceResponseSending(CarbonMessage carbonMessage);
 
     /**
-     * Gives handler name
+     * Gives handler name.
+     *
      * @return handler name
      */
     String handlerName();

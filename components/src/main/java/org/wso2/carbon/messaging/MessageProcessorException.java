@@ -22,6 +22,7 @@ package org.wso2.carbon.messaging;
  * Exception class to represent the MessageProcessorExceptions.
  */
 public class MessageProcessorException extends Exception {
+
     public MessageProcessorException() {
     }
 

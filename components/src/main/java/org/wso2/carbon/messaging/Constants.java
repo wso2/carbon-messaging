@@ -93,7 +93,6 @@ public final class Constants {
 
     public static final String ERROR_EXCEPTION = "ERROR_EXCEPTION";
 
-
     public static final String CERTPASS = "certPass";
 
     public static final String KEYSTOREPASS = "keyStorePass";

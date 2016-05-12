@@ -22,6 +22,7 @@ package org.wso2.carbon.messaging.exceptions;
  * A class that represent EndpointTimeout Exception.
  */
 public class EndPointTimeOut extends Exception {
+
     public EndPointTimeOut(String message) {
         super(message);
     }

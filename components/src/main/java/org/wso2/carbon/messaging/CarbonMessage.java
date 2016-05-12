@@ -56,7 +56,7 @@ public abstract class CarbonMessage {
     }
 
     /**
-     * This enable you to avoid filling content in to internal buffer
+     * This enable you to avoid filling content in to internal buffer.
      * Use this constructor when creating response message and need to write content and
      *
      * @param buffercontent
