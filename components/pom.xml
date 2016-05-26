@@ -39,7 +39,12 @@
         </dependency>
         <dependency>
             <groupId>org.wso2.carbon</groupId>
-            <artifactId>wso2carbon-kernel</artifactId>
+            <artifactId>org.wso2.carbon.kernel.feature</artifactId>
+            <type>zip</type>
+        </dependency>
+        <dependency>
+            <groupId>org.wso2.carbon</groupId>
+            <artifactId>org.wso2.carbon.runtime.feature</artifactId>
             <type>zip</type>
         </dependency>
         <dependency>

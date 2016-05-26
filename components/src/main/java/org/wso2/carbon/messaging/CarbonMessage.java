@@ -21,6 +21,8 @@ package org.wso2.carbon.messaging;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,12 +43,17 @@ public abstract class CarbonMessage {
 
     protected Map<String, String> headers = new ConcurrentHashMap<>();
     protected Map<String, Object> properties = new ConcurrentHashMap<>();
-    protected BlockingQueue<ByteBuffer> messageBody = new LinkedBlockingQueue<>();
+    protected BlockingQueue messageBody = new LinkedBlockingQueue<>();
     protected Stack<FaultHandler> faultHandlerStack = new Stack<>();
+    protected MessageDataSource messageDataSource;
+
+    protected ByteBufferInputStream byteBufferInputStream;
 
     protected Lock lock = new ReentrantLock();
 
     protected boolean bufferContent = true;
+
+    protected boolean alreadyBuild;
 
     private boolean endOfMsgAdded = false;
 
@@ -75,7 +82,7 @@ public abstract class CarbonMessage {
 
     public ByteBuffer getMessageBody() {
         try {
-            return messageBody.take();
+            return (ByteBuffer) messageBody.take();
         } catch (InterruptedException e) {
             LOG.error("Error while retrieving chunk from queue.", e);
             return null;
@@ -96,7 +103,7 @@ public abstract class CarbonMessage {
                 if (endOfMsgAdded && messageBody.isEmpty()) {
                     break;
                 }
-                byteBufferList.add(messageBody.take());
+                byteBufferList.add((ByteBuffer) messageBody.take());
             } catch (InterruptedException e) {
                 LOG.error("Error while getting full message body", e);
             }
@@ -196,4 +203,70 @@ public abstract class CarbonMessage {
     public boolean isBufferContent() {
         return bufferContent;
     }
+
+    public MessageDataSource getMessageDataSource() {
+        return messageDataSource;
+    }
+
+    public void setMessageDataSource(MessageDataSource messageDataSource) {
+        this.messageDataSource = messageDataSource;
+    }
+
+    public boolean isAlreadyBuild() {
+        return alreadyBuild;
+    }
+
+    public void setAlreadyBuild(boolean alreadyBuild) {
+        this.alreadyBuild = alreadyBuild;
+    }
+
+    /**
+     * This is a blocking call and provides full message as inputStream
+     * removes original content from queue.
+     *
+     * @return
+     */
+    public InputStream getInputStream() {
+        if (byteBufferInputStream == null) {
+            byteBufferInputStream = new ByteBufferInputStream();
+        }
+        return byteBufferInputStream;
+    }
+
+    /**
+     * A class which represents the InputStream of the ByteBuffers
+     * No need to worry about thread safety of this class this is called only once by
+     * for a message instance from one thread.
+     */
+    protected class ByteBufferInputStream extends InputStream {
+
+        private int count;
+        private boolean chunkFinished = true;
+        private int limit;
+        private ByteBuffer byteBuffer;
+
+        @Override
+        public int read() throws IOException {
+
+            if (!alreadyBuild) {
+                if (isEndOfMsgAdded() && isEmpty() && chunkFinished) {
+                    return -1;
+                } else if (chunkFinished) {
+                    byteBuffer = getMessageBody();
+                    count = 0;
+                    limit = byteBuffer.limit();
+                    chunkFinished = false;
+                }
+                count++;
+                if (count == limit) {
+                    chunkFinished = true;
+                }
+                return byteBuffer.get() & 0xff;
+            }
+
+            return -1;
+
+        }
+    }
+
 }
