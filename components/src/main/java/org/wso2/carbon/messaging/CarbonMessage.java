@@ -248,7 +248,6 @@ public abstract class CarbonMessage {
         @Override
         public int read() throws IOException {
 
-            if (!alreadyBuild) {
                 if (isEndOfMsgAdded() && isEmpty() && chunkFinished) {
                     return -1;
                 } else if (chunkFinished) {
@@ -262,10 +261,6 @@ public abstract class CarbonMessage {
                     chunkFinished = true;
                 }
                 return byteBuffer.get() & 0xff;
-            }
-
-            return -1;
-
         }
     }
 
