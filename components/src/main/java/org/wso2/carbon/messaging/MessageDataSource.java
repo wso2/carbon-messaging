@@ -18,8 +18,6 @@
 
 package org.wso2.carbon.messaging;
 
-import java.nio.ByteBuffer;
-
 /**
  * An interface which represents the message after loading in to memory (After first built)
  */
@@ -35,6 +33,6 @@ public interface MessageDataSource {
 
     public void setContentType(String type);
 
-    public ByteBuffer getDataAsByteBuffer();
+    public void serializeData();
 
 }

@@ -23,6 +23,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,11 +50,13 @@ public abstract class CarbonMessage {
 
     protected ByteBufferInputStream byteBufferInputStream;
 
+    private ByteBufferOutputStream byteBufferOutputStream;
+
     protected Lock lock = new ReentrantLock();
 
     protected boolean bufferContent = true;
 
-    protected boolean alreadyBuild;
+    protected boolean alreadyRead;
 
     private boolean endOfMsgAdded = false;
 
@@ -212,12 +215,12 @@ public abstract class CarbonMessage {
         this.messageDataSource = messageDataSource;
     }
 
-    public boolean isAlreadyBuild() {
-        return alreadyBuild;
+    public boolean isAlreadyRead() {
+        return alreadyRead;
     }
 
-    public void setAlreadyBuild(boolean alreadyBuild) {
-        this.alreadyBuild = alreadyBuild;
+    public void setAlreadyRead(boolean alreadyRead) {
+        this.alreadyRead = alreadyRead;
     }
 
     /**
@@ -231,6 +234,19 @@ public abstract class CarbonMessage {
             byteBufferInputStream = new ByteBufferInputStream();
         }
         return byteBufferInputStream;
+    }
+
+    /**
+     * This provide access to write byte stream in to message content Queue as
+     * Stream
+     *
+     * @return
+     */
+    public OutputStream getOutputStream() {
+        if (byteBufferOutputStream == null) {
+            byteBufferOutputStream = new ByteBufferOutputStream();
+        }
+        return byteBufferOutputStream;
     }
 
     /**
@@ -248,19 +264,47 @@ public abstract class CarbonMessage {
         @Override
         public int read() throws IOException {
 
-                if (isEndOfMsgAdded() && isEmpty() && chunkFinished) {
-                    return -1;
-                } else if (chunkFinished) {
-                    byteBuffer = getMessageBody();
-                    count = 0;
-                    limit = byteBuffer.limit();
-                    chunkFinished = false;
-                }
-                count++;
-                if (count == limit) {
-                    chunkFinished = true;
-                }
-                return byteBuffer.get() & 0xff;
+            if (isEndOfMsgAdded() && isEmpty() && chunkFinished) {
+                setAlreadyRead(true);
+                return -1;
+            } else if (chunkFinished) {
+                byteBuffer = getMessageBody();
+                count = 0;
+                limit = byteBuffer.limit();
+                chunkFinished = false;
+            }
+            count++;
+            if (count == limit) {
+                chunkFinished = true;
+            }
+            return byteBuffer.get() & 0xff;
+        }
+    }
+
+    /**
+     * A class which write byteStream into ByteBuffers and add those
+     * ByteBuffers to Content Queue.
+     * No need to worry about thread safety of this class this is called only once by
+     * one thread at particular time.
+     */
+    protected class ByteBufferOutputStream extends OutputStream {
+
+        private ByteBuffer buffer;
+
+        @Override
+        public void write(int b) throws IOException {
+            if (buffer == null) {
+                buffer = BufferFactory.getInstance().getBuffer();
+                addMessageBody(buffer);
+            }
+            if (buffer.hasRemaining()) {
+                buffer.put((byte) b);
+            } else {
+                buffer = BufferFactory.getInstance().getBuffer();
+                addMessageBody(buffer);
+                buffer.put((byte) b);
+            }
+
         }
     }
 
