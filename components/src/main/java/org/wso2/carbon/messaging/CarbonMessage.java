@@ -61,6 +61,7 @@ public abstract class CarbonMessage {
     private boolean endOfMsgAdded = false;
 
     private Writer writer;
+    private boolean isMessageBodyAdded;
 
     public CarbonMessage() {
     }
@@ -73,6 +74,14 @@ public abstract class CarbonMessage {
      */
     public CarbonMessage(Boolean buffercontent) {
         this.bufferContent = buffercontent;
+    }
+
+    public void setBufferContent(boolean bufferContent) {
+        if (isMessageBodyAdded) {
+            throw new IllegalStateException("CarbonMessage#setBufferContent cannot " +
+                    "be called after adding message body");
+        }
+        this.bufferContent = bufferContent;
     }
 
     public boolean isEndOfMsgAdded() {
@@ -115,6 +124,7 @@ public abstract class CarbonMessage {
     }
 
     public void addMessageBody(ByteBuffer msgBody) {
+        isMessageBodyAdded = true;
         if (bufferContent) {
             messageBody.add(msgBody);
         } else {
