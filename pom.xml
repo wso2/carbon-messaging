@@ -71,7 +71,7 @@
     </dependencyManagement>
 
     <properties>
-        <carbon.kernel.version>5.1.0-beta</carbon.kernel.version>
+        <carbon.kernel.version>5.1.0</carbon.kernel.version>
         <carbon.kernel.package.import.version.range>[5.0.0, 6.0.0)</carbon.kernel.package.import.version.range>
 
         <slf4j.version>1.7.5</slf4j.version>
