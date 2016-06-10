@@ -296,13 +296,12 @@ public abstract class CarbonMessage {
         public void write(int b) throws IOException {
             if (buffer == null) {
                 buffer = BufferFactory.getInstance().getBuffer();
-                addMessageBody(buffer);
             }
             if (buffer.hasRemaining()) {
                 buffer.put((byte) b);
             } else {
-                buffer = BufferFactory.getInstance().getBuffer();
                 addMessageBody(buffer);
+                buffer = BufferFactory.getInstance().getBuffer();
                 buffer.put((byte) b);
             }
 
