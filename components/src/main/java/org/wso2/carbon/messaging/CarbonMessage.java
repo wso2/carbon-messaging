@@ -58,7 +58,6 @@ public abstract class CarbonMessage {
 
     protected boolean alreadyRead;
 
-
     private boolean endOfMsgAdded = false;
 
     private Writer writer;
@@ -191,6 +190,10 @@ public abstract class CarbonMessage {
 
     public void setEndOfMsgAdded(boolean endOfMsgAdded) {
         this.endOfMsgAdded = endOfMsgAdded;
+        if (byteBufferOutputStream != null) {
+            this.byteBufferOutputStream.flushContent();
+        }
+        ;
         if (writer != null) {
             writer.writeLastContent(this);
         }
@@ -223,7 +226,6 @@ public abstract class CarbonMessage {
     public void setAlreadyRead(boolean alreadyRead) {
         this.alreadyRead = alreadyRead;
     }
-
 
     /**
      * This is a blocking call and provides full message as inputStream
@@ -305,6 +307,12 @@ public abstract class CarbonMessage {
                 buffer.put((byte) b);
             }
 
+        }
+
+        public void flushContent() {
+            if (buffer != null && buffer.position() > 0) {
+                addMessageBody(buffer);
+            }
         }
     }
 
