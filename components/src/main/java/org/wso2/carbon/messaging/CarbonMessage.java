@@ -58,6 +58,7 @@ public abstract class CarbonMessage {
 
     protected boolean alreadyRead;
 
+
     private boolean endOfMsgAdded = false;
 
     private Writer writer;
@@ -233,6 +234,7 @@ public abstract class CarbonMessage {
         this.alreadyRead = alreadyRead;
     }
 
+
     /**
      * This is a blocking call and provides full message as inputStream
      * removes original content from queue.
@@ -273,9 +275,8 @@ public abstract class CarbonMessage {
 
         @Override
         public int read() throws IOException {
-
+            setAlreadyRead(true);
             if (isEndOfMsgAdded() && isEmpty() && chunkFinished) {
-                setAlreadyRead(true);
                 return -1;
             } else if (chunkFinished) {
                 byteBuffer = getMessageBody();

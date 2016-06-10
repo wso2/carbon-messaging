@@ -23,7 +23,7 @@ package org.wso2.carbon.messaging;
  */
 public interface MessageDataSource {
 
-    public String getStringValue(String path);
+    public String getValueAsString(String path);
 
     public Object getValue(String path);
 
