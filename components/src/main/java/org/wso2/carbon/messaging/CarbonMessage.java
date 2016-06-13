@@ -312,6 +312,7 @@ public abstract class CarbonMessage {
             if (buffer.hasRemaining()) {
                 buffer.put((byte) b);
             } else {
+                buffer.flip();
                 addMessageBody(buffer);
                 buffer = BufferFactory.getInstance().getBuffer();
                 buffer.put((byte) b);
@@ -321,6 +322,7 @@ public abstract class CarbonMessage {
 
         public void flushContent() {
             if (buffer != null && buffer.position() > 0) {
+                buffer.flip();
                 addMessageBody(buffer);
             }
         }
