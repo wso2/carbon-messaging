@@ -201,7 +201,12 @@ public abstract class CarbonMessage {
     public void setEndOfMsgAdded(boolean endOfMsgAdded) {
         this.endOfMsgAdded = endOfMsgAdded;
         if (byteBufferOutputStream != null) {
-            this.byteBufferOutputStream.flushContent();
+            try {
+                this.byteBufferOutputStream.flush();
+            } catch (IOException e) {
+                LOG.error("Exception occured while flushing the buffer", e);
+                byteBufferOutputStream.close();
+            }
         }
         ;
         if (writer != null) {
@@ -320,11 +325,26 @@ public abstract class CarbonMessage {
 
         }
 
-        public void flushContent() {
+        @Override
+        public void flush() throws IOException {
             if (buffer != null && buffer.position() > 0) {
                 buffer.flip();
                 addMessageBody(buffer);
+                buffer = BufferFactory.getInstance().getBuffer();
             }
+        }
+
+        @Override
+        public void close() {
+            try {
+                super.close();
+            } catch (IOException e) {
+                LOG.error("Error while closing output stream but underlying resources are reset", e);
+            } finally {
+                byteBufferOutputStream = null;
+                buffer = null;
+            }
+
         }
     }
 
