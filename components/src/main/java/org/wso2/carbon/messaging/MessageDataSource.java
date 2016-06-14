@@ -18,12 +18,16 @@
 
 package org.wso2.carbon.messaging;
 
+import java.util.Map;
+
 /**
  * An interface which represents the message after loading in to memory (After first built)
  */
 public interface MessageDataSource {
 
     public String getValueAsString(String path);
+
+    public String getValueAsString(String path, Map<String, String> properties);
 
     public Object getValue(String path);
 
