@@ -23,47 +23,8 @@ package org.wso2.carbon.messaging;
  */
 public final class Constants {
 
-    public static final String DISRUPTOR = "Disruptor";
-
-    public static final String PROTOCOL_NAME = "http";
 
     public static final String PROTOCOL = "PROTOCOL";
-
-    public static final String HTTP_VERSION = "HTTP_VERSION";
-
-    public static final String HTTP_METHOD = "HTTP_METHOD";
-
-    public static final String HTTP_CONTENT_TYPE = "Content-Type";
-
-    public static final String TEXT_XML = "text/xml";
-
-    public static final String TEXT_PLAIN = "text/plain";
-
-    public static final String APPLICATION_XML = "application/xml";
-
-    public static final String GZIP = "gzip";
-
-    public static final String HTTP_CONTENT_LENGTH = "Content-Length";
-
-    public static final String HTTP_TRANSFER_ENCODING = "Transfer-Encoding";
-
-    public static final String HTTP_CONNECTION = "Connection";
-
-    public static final String KEEP_ALIVE = "keep-alive";
-
-    public static final String HTTP_SOAP_ACTION = "SOAPAction";
-
-    public static final String HTTP_CONTENT_ENCODING = "Accept-Encoding";
-
-    public static final String HTTP_HOST = "Host";
-
-    public static final String TRANSPORT_HEADERS = "TRANSPORT_HEADERS";
-
-    public static final String HTTP_STATUS_CODE = "HTTP_STATUS_CODE";
-
-    public static final String CHNL_HNDLR_CTX = "CHNL_HNDLR_CTX";
-
-    public static final String SRC_HNDLR = "SRC_HNDLR";
 
     public static final String RESPONSE_CALLBACK = "RESPONSE_CALLBACK";
 
@@ -93,15 +54,7 @@ public final class Constants {
 
     public static final String ERROR_EXCEPTION = "ERROR_EXCEPTION";
 
-    public static final String CERTPASS = "certPass";
 
-    public static final String KEYSTOREPASS = "keyStorePass";
-
-    public static final String KEYSTOREFILE = "keyStoreFile";
-
-    public static final String TRUSTSTOREFILE = "trustStoreFile";
-
-    public static final String TRUSTSTOREPASS = "trustStorePass";
 
     private Constants() {
     }
