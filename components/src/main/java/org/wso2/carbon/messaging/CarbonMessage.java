@@ -182,10 +182,21 @@ public abstract class CarbonMessage {
         List<ByteBuffer> fullMessageBody = getFullMessageBody();
         int size = 0;
         for (ByteBuffer byteBuffer : fullMessageBody) {
-            messageBody.add(byteBuffer);
+            addMessageBody(byteBuffer);
             size += byteBuffer.limit();
         }
         return size;
+    }
+
+    public List<ByteBuffer> getCopyOfFullMessageBody() {
+        List<ByteBuffer> fullMessageBody = getFullMessageBody();
+        List<ByteBuffer> newCopy = new ArrayList<>();
+        for (ByteBuffer byteBuffer : fullMessageBody) {
+            newCopy.add(MessageUtil.deepCopy(byteBuffer));
+            addMessageBody(byteBuffer);
+
+        }
+        return newCopy;
     }
 
     public void setEndOfMsgAdded(boolean endOfMsgAdded) {
