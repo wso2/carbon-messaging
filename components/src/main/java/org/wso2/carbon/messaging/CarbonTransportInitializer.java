@@ -33,13 +33,6 @@ public interface CarbonTransportInitializer {
     void setup(Map<String, String> parameters);
 
     /**
-     * Initialize the Netty SocketChannel. This is called per connection.
-     *
-     * @param socketChannel Netty SocketChannel
-     */
-    void initChannel(Object socketChannel);
-
-    /**
      * This method will be true if Server Initializer.
      *
      * @return true if ServerSide Initializer
