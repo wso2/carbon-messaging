@@ -42,9 +42,7 @@ public class MessageUtil {
 
         Map<String, Object> propertiesMap = carbonMessage.getProperties();
 
-        for (Map.Entry<String, Object> entry : propertiesMap.entrySet()) {
-            newCarbonMessage.setProperty((String) entry.getKey(), entry.getValue());
-        }
+        propertiesMap.forEach((key, value) -> newCarbonMessage.setProperty(key, value));
 
         newCarbonMessage.setWriter(carbonMessage.getWriter());
         newCarbonMessage.setFaultHandlerStack(carbonMessage.getFaultHandlerStack());
@@ -67,9 +65,7 @@ public class MessageUtil {
 
         Map<String, Object> propertiesMap = carbonMessage.getProperties();
 
-        for (Map.Entry<String, Object> entry : propertiesMap.entrySet()) {
-            newCarbonMessage.setProperty((String) entry.getKey(), entry.getValue());
-        }
+        propertiesMap.forEach((key, value) -> newCarbonMessage.setProperty(key, value));
 
         newCarbonMessage.setWriter(carbonMessage.getWriter());
         newCarbonMessage.setFaultHandlerStack(carbonMessage.getFaultHandlerStack());
