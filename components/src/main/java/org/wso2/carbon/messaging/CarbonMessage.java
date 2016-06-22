@@ -34,6 +34,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.stream.Collectors;
 
 /**
  * Data carrier between the components.
@@ -190,22 +191,16 @@ public abstract class CarbonMessage {
 
     public int getFullMessageLength() {
         List<ByteBuffer> fullMessageBody = getFullMessageBody();
-        int size = 0;
-        for (ByteBuffer byteBuffer : fullMessageBody) {
-            addMessageBody(byteBuffer);
-            size += byteBuffer.limit();
-        }
+        int size = (int) fullMessageBody.stream().mapToInt(byteBuffer -> byteBuffer.limit()).count();
+        fullMessageBody.forEach(byteBuffer -> addMessageBody(byteBuffer));
         return size;
     }
 
     public List<ByteBuffer> getCopyOfFullMessageBody() {
         List<ByteBuffer> fullMessageBody = getFullMessageBody();
-        List<ByteBuffer> newCopy = new ArrayList<>();
-        for (ByteBuffer byteBuffer : fullMessageBody) {
-            newCopy.add(MessageUtil.deepCopy(byteBuffer));
-            addMessageBody(byteBuffer);
-
-        }
+        List<ByteBuffer> newCopy = fullMessageBody.stream().map(byteBuffer -> MessageUtil.deepCopy(byteBuffer))
+                .collect(Collectors.toList());
+        fullMessageBody.forEach(byteBuffer -> addMessageBody(byteBuffer));
         return newCopy;
     }
 
