@@ -191,7 +191,7 @@ public abstract class CarbonMessage {
 
     public int getFullMessageLength() {
         List<ByteBuffer> fullMessageBody = getFullMessageBody();
-        int size = (int) fullMessageBody.stream().mapToInt(byteBuffer -> byteBuffer.limit()).count();
+        int size = (int) fullMessageBody.stream().mapToInt(byteBuffer -> byteBuffer.limit()).sum();
         fullMessageBody.forEach(byteBuffer -> addMessageBody(byteBuffer));
         return size;
     }
