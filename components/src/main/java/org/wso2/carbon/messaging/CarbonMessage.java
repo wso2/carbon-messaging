@@ -26,12 +26,13 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.stream.Collectors;
@@ -43,8 +44,8 @@ public abstract class CarbonMessage {
 
     private static final Logger LOG = LoggerFactory.getLogger(CarbonMessage.class);
 
-    protected Map<String, String> headers = new ConcurrentHashMap<>();
-    protected Map<String, Object> properties = new ConcurrentHashMap<>();
+    protected Map<String, String> headers = new HashMap<>();
+    protected Map<String, Object> properties = new HashMap<>();
     protected BlockingQueue messageBody = new LinkedBlockingQueue<>();
     protected Stack<FaultHandler> faultHandlerStack = new Stack<>();
     protected MessageDataSource messageDataSource;
@@ -59,7 +60,7 @@ public abstract class CarbonMessage {
 
     protected boolean alreadyRead;
 
-    private boolean endOfMsgAdded = false;
+    private AtomicBoolean endOfMsgAdded = new AtomicBoolean(false);
 
     private Writer writer;
     private boolean isMessageBodyAdded;
@@ -79,14 +80,14 @@ public abstract class CarbonMessage {
 
     public void setBufferContent(boolean bufferContent) {
         if (isMessageBodyAdded) {
-            throw new IllegalStateException("CarbonMessage#setBufferContent cannot " +
-                    "be called after adding message body");
+            throw new IllegalStateException(
+                    "CarbonMessage#setBufferContent cannot " + "be called after adding message body");
         }
         this.bufferContent = bufferContent;
     }
 
     public boolean isEndOfMsgAdded() {
-        return endOfMsgAdded;
+        return endOfMsgAdded.get();
     }
 
     public boolean isEmpty() {
@@ -113,7 +114,7 @@ public abstract class CarbonMessage {
 
         while (true) {
             try {
-                if (endOfMsgAdded && messageBody.isEmpty()) {
+                if (endOfMsgAdded.get() && messageBody.isEmpty()) {
                     break;
                 }
                 byteBufferList.add((ByteBuffer) messageBody.take());
@@ -205,7 +206,7 @@ public abstract class CarbonMessage {
     }
 
     public void setEndOfMsgAdded(boolean endOfMsgAdded) {
-        this.endOfMsgAdded = endOfMsgAdded;
+        this.endOfMsgAdded.compareAndSet(false, endOfMsgAdded);
         if (byteBufferOutputStream != null) {
             try {
                 this.byteBufferOutputStream.flush();
