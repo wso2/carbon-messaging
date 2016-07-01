@@ -138,6 +138,14 @@ public abstract class CarbonMessage {
         }
     }
 
+    /**
+     * Method to be used for resources clean up after using Carbon Messaging.
+     */
+    public void release(){
+
+    }
+
+
     public Map<String, String> getHeaders() {
         return headers;
     }
@@ -153,6 +161,7 @@ public abstract class CarbonMessage {
     public void setHeaders(Map<String, String> headerMap) {
         headerMap.forEach(headers::put);
     }
+
 
     public Object getProperty(String key) {
         if (properties != null) {
