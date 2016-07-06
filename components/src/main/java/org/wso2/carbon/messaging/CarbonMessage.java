@@ -58,7 +58,7 @@ public abstract class CarbonMessage {
 
     protected boolean bufferContent = true;
 
-    protected boolean alreadyRead;
+    protected AtomicBoolean alreadyRead = new AtomicBoolean(false);
 
     private AtomicBoolean endOfMsgAdded = new AtomicBoolean(false);
 
@@ -141,10 +141,9 @@ public abstract class CarbonMessage {
     /**
      * Method to be used for resources clean up after using Carbon Messaging.
      */
-    public void release(){
+    public void release() {
 
     }
-
 
     public Map<String, String> getHeaders() {
         return headers;
@@ -161,7 +160,6 @@ public abstract class CarbonMessage {
     public void setHeaders(Map<String, String> headerMap) {
         headerMap.forEach(headers::put);
     }
-
 
     public Object getProperty(String key) {
         if (properties != null) {
@@ -251,11 +249,11 @@ public abstract class CarbonMessage {
     }
 
     public boolean isAlreadyRead() {
-        return alreadyRead;
+        return alreadyRead.get();
     }
 
     public void setAlreadyRead(boolean alreadyRead) {
-        this.alreadyRead = alreadyRead;
+        this.alreadyRead.set(alreadyRead);
     }
 
     /**
@@ -305,6 +303,9 @@ public abstract class CarbonMessage {
                 byteBuffer = getMessageBody();
                 count = 0;
                 limit = byteBuffer.limit();
+                if (limit == 0) {
+                    return -1;
+                }
                 chunkFinished = false;
             }
             count++;
