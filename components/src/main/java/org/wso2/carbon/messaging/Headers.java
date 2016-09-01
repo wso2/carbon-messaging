@@ -68,7 +68,7 @@ public class Headers {
      * @param map map containing header fields
      */
     public void set(Map<String, String> map) {
-        map.forEach((k, v) -> add(k, v));
+        map.forEach(this::add);
     }
 
     /**
@@ -139,6 +139,14 @@ public class Headers {
     public void clear() {
         headerList.clear();
         headerMap.clear();
+    }
+
+    /**
+     * To get the distinct size of headers
+     * @return distinct size of the headers
+     */
+    public int distinctSize() {
+        return headerMap.size();
     }
 
     private void add(String key, String value) {
