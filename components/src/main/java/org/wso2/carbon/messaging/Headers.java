@@ -25,17 +25,17 @@ import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 /**
- * To hold the headers of incoming message.
- * This will hold all the headers received to server
+ * This will hold all the headers of incoming message
  */
 public class Headers {
     /**
-     *     to hold the header with case sensitivity
+     * A map that case insensitive to hold the headers
      */
     private Map<String, String> headerMap = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
 
     /**
-     * to hold all the headers without considering the header name case and duplication
+     * A list to hold all the headers without considering the header name case. This will hold
+     * duplicated headers as well if incoming message containing duplicated headers
      */
     private List<Header> headerList = new LinkedList<>();
 
@@ -46,6 +46,13 @@ public class Headers {
         this.set(list);
     }
 
+    /**
+     * To add a header. if the header name is already exist, It will replace the existing header
+     * value and if there is duplicated header with same name, remove all of them and add the given
+     * header
+     * @param name name of the header field
+     * @param value value of the header field
+     */
     public void set(String name, String value) {
         for (Iterator<Header> headerItr = headerList.iterator(); headerItr.hasNext(); ) {
             Header h = headerItr.next();
@@ -56,14 +63,26 @@ public class Headers {
         add(name, value);
     }
 
+    /**
+     * This will add all header in given map to the message
+     * @param map map containing header fields
+     */
     public void set(Map<String, String> map) {
         map.forEach((k, v) -> add(k, v));
     }
 
+    /**
+     * This will add all header objects in given list into the message
+     * @param list list containing Header objects
+     */
     public void set(List<Header> list) {
         list.forEach(h -> add(h.getName(), h.getValue()));
     }
 
+    /**
+     * This will remove all the headers from the message regardless of the case sensitivity
+     * @param name name of the header to be removed
+     */
     public void remove(String name) {
         for (Iterator<Header> headerItr = headerList.iterator(); headerItr.hasNext();) {
             Header h = headerItr.next();
@@ -74,24 +93,49 @@ public class Headers {
         headerMap.remove(name);
     }
 
-    public String get(String key) {
-        return headerMap.get(key);
+    /**
+     * This will return the header field value for given name. if there are multiple headers with
+     * same name, It will return the value of last header matching the name regardless of
+     * case sensitivity of the name of the header
+     * @param name name of the header field
+     * @return value of the header for given name
+     */
+    public String get(String name) {
+        return headerMap.get(name);
     }
 
+    /**
+     * This will return a LinkedList having all the headers.
+     * @return a list containing all the headers fields.
+     */
     public List<Header> getAll() {
         return headerList;
     }
 
-    public List<String> getAll(String key) {
-        List<String> hList = headerList.stream().filter(entry -> entry.getName().equalsIgnoreCase(key))
+    /**
+     * This will return a values fo given header name regardless of case sensitivity as a ArrayList.
+     * @param name name of the header
+     * @return a list containing the value of given header name regardless of case sensitivity
+     */
+    public List<String> getAll(String name) {
+        List<String> hList = headerList.stream().filter(entry -> entry.getName().equalsIgnoreCase(name))
                 .map(Header::getValue).collect(Collectors.toCollection(() -> new LinkedList<>()));
         return hList;
     }
 
+    /**
+     * To check whether given header name is exist in the header map regardless of the
+     * case sensitivity
+     * @param name name of a header
+     * @return true if the header is exist.
+     */
     public boolean contains(String name) {
         return headerMap.containsKey(name);
     }
 
+    /**
+     * To clear all the header from list
+     */
     public void clear() {
         headerList.clear();
         headerMap.clear();
