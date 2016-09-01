@@ -113,13 +113,13 @@ public class Headers {
     }
 
     /**
-     * This will return a values fo given header name regardless of case sensitivity as a ArrayList.
+     * This will return a values fo given header name regardless of case sensitivity as a LikedList.
      * @param name name of the header
      * @return a list containing the value of given header name regardless of case sensitivity
      */
     public List<String> getAll(String name) {
         List<String> hList = headerList.stream().filter(entry -> entry.getName().equalsIgnoreCase(name))
-                .map(Header::getValue).collect(Collectors.toCollection(() -> new LinkedList<>()));
+                .map(Header::getValue).collect(Collectors.toCollection(LinkedList::new));
         return hList;
     }
 
