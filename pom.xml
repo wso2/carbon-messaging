@@ -67,6 +67,12 @@
                 <artifactId>org.wso2.carbon.messaging</artifactId>
                 <version>${carbon.messaging.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.testng</groupId>
+                <artifactId>testng</artifactId>
+                <version>${testng.version}</version>
+                <scope>test</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -86,6 +92,8 @@
         <!--following versions are used in the parent pom-->
         <wso2.maven.compiler.source>1.8</wso2.maven.compiler.source>
         <wso2.maven.compiler.target>1.8</wso2.maven.compiler.target>
+
+        <testng.version>6.9.10</testng.version>
 
     </properties>
 
