@@ -19,6 +19,7 @@
 package org.wso2.carbon.messaging;
 
 import java.nio.ByteBuffer;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -36,7 +37,7 @@ public class MessageUtil {
 
         CarbonMessage newCarbonMessage = new DefaultCarbonMessage(carbonMessage.isBufferContent());
 
-        Map transportHeaders = carbonMessage.getHeaders();
+        List<Header> transportHeaders = carbonMessage.getHeaders().getAll();
 
         newCarbonMessage.setHeaders(transportHeaders);
 
@@ -59,7 +60,7 @@ public class MessageUtil {
 
         CarbonMessage newCarbonMessage = new DefaultCarbonMessage(carbonMessage.isBufferContent());
 
-        Map transportHeaders = carbonMessage.getHeaders();
+        List<Header> transportHeaders = carbonMessage.getHeaders().getAll();
 
         newCarbonMessage.setHeaders(transportHeaders);
 

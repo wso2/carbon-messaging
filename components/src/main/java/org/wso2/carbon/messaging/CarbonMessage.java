@@ -44,7 +44,7 @@ public abstract class CarbonMessage {
 
     private static final Logger LOG = LoggerFactory.getLogger(CarbonMessage.class);
 
-    protected Map<String, String> headers = new HashMap<>();
+    protected Headers headers = new Headers();
     protected Map<String, Object> properties = new HashMap<>();
     protected BlockingQueue messageBody = new LinkedBlockingQueue<>();
     protected Stack<FaultHandler> faultHandlerStack = new Stack<>();
@@ -145,7 +145,7 @@ public abstract class CarbonMessage {
 
     }
 
-    public Map<String, String> getHeaders() {
+    public Headers getHeaders() {
         return headers;
     }
 
@@ -154,11 +154,15 @@ public abstract class CarbonMessage {
     }
 
     public void setHeader(String key, String value) {
-        headers.put(key, value);
+        headers.set(key, value);
     }
 
     public void setHeaders(Map<String, String> headerMap) {
-        headerMap.forEach(headers::put);
+        headers.set(headerMap);
+    }
+
+    public void setHeaders(List<Header> headerList) {
+        headers.set(headerList);
     }
 
     public Object getProperty(String key) {
