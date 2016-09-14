@@ -17,7 +17,6 @@
 */
 package org.wso2.carbon.messaging;
 
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -25,17 +24,17 @@ import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 /**
- * This will hold all the headers of incoming message
+ * This will hold all the headers of incoming message.
  */
 public class Headers {
     /**
-     * A map that case insensitive to hold the headers
+     * A map that case insensitive to hold the headers.
      */
     private Map<String, String> headerMap = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
 
     /**
      * A list to hold all the headers without considering the header name case. This will hold
-     * duplicated headers as well if incoming message containing duplicated headers
+     * duplicated headers as well if incoming message containing duplicated headers.
      */
     private List<Header> headerList = new LinkedList<>();
 
@@ -49,54 +48,44 @@ public class Headers {
     /**
      * To add a header. if the header name is already exist, It will replace the existing header
      * value and if there is duplicated header with same name, remove all of them and add the given
-     * header
+     * header.
      * @param name name of the header field
      * @param value value of the header field
      */
     public void set(String name, String value) {
-        for (Iterator<Header> headerItr = headerList.iterator(); headerItr.hasNext(); ) {
-            Header h = headerItr.next();
-            if (h.getName().equalsIgnoreCase(name)) {
-                headerItr.remove();
-            }
-        }
+        headerList.removeIf(header -> header.getName().equalsIgnoreCase(name));
         add(name, value);
     }
 
     /**
-     * This will add all header in given map to the message
+     * This will add all header in given map to the message.
      * @param map map containing header fields
      */
-    public void set(Map<String, String> map) {
+    public void set(final Map<String, String> map) {
         map.forEach(this::add);
     }
 
     /**
-     * This will add all header objects in given list into the message
+     * This will add all header objects in given list into the message.
      * @param list list containing Header objects
      */
-    public void set(List<Header> list) {
+    public void set(final List<Header> list) {
         list.forEach(h -> add(h.getName(), h.getValue()));
     }
 
     /**
-     * This will remove all the headers from the message regardless of the case sensitivity
+     * This will remove all the headers from the message regardless of the case sensitivity.
      * @param name name of the header to be removed
      */
     public void remove(String name) {
-        for (Iterator<Header> headerItr = headerList.iterator(); headerItr.hasNext();) {
-            Header h = headerItr.next();
-            if (h.getName().equalsIgnoreCase(name)) {
-                headerItr.remove();
-            }
-        }
+        headerList.removeIf(header -> header.getName().equalsIgnoreCase(name));
         headerMap.remove(name);
     }
 
     /**
      * This will return the header field value for given name. if there are multiple headers with
      * same name, It will return the value of last header matching the name regardless of
-     * case sensitivity of the name of the header
+     * case sensitivity of the name of the header.
      * @param name name of the header field
      * @return value of the header for given name
      */
@@ -106,6 +95,7 @@ public class Headers {
 
     /**
      * This will return a LinkedList having all the headers.
+     *
      * @return a list containing all the headers fields.
      */
     public List<Header> getAll() {
@@ -117,7 +107,7 @@ public class Headers {
      * @param name name of the header
      * @return a list containing the value of given header name regardless of case sensitivity
      */
-    public List<String> getAll(String name) {
+    public List<String> getAllBy(String name) {
         List<String> hList = headerList.stream().filter(entry -> entry.getName().equalsIgnoreCase(name))
                 .map(Header::getValue).collect(Collectors.toCollection(LinkedList::new));
         return hList;
@@ -125,7 +115,7 @@ public class Headers {
 
     /**
      * To check whether given header name is exist in the header map regardless of the
-     * case sensitivity
+     * case sensitivity.
      * @param name name of a header
      * @return true if the header is exist.
      */
@@ -134,7 +124,7 @@ public class Headers {
     }
 
     /**
-     * To clear all the header from list
+     * To clear all the header from list.
      */
     public void clear() {
         headerList.clear();
@@ -142,11 +132,19 @@ public class Headers {
     }
 
     /**
-     * To get the distinct size of headers
+     * To get the distinct size of headers.
      * @return distinct size of the headers
      */
     public int distinctSize() {
         return headerMap.size();
+    }
+
+    /**
+     * To get the  number of of headers in list.
+     * @return size of header list
+     */
+    public int size() {
+        return headerList.size();
     }
 
     private void add(String key, String value) {
