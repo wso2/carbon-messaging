@@ -49,6 +49,7 @@ public abstract class CarbonMessage {
     protected BlockingQueue messageBody = new LinkedBlockingQueue<>();
     protected Stack<FaultHandler> faultHandlerStack = new Stack<>();
     protected MessageDataSource messageDataSource;
+    protected Exception nelException = null;
 
     protected ByteBufferInputStream byteBufferInputStream;
 
@@ -369,4 +370,11 @@ public abstract class CarbonMessage {
         }
     }
 
+    public Exception getNelException() {
+        return nelException;
+    }
+
+    public void setNelException(Exception nelException) {
+        this.nelException = nelException;
+    }
 }
