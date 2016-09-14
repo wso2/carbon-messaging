@@ -71,17 +71,17 @@ public class HeadersTestCase {
     @Test(description = "Testing the getAll operation")
     public void getAllTest() {
         Headers headers = new Headers(list);
-        Assert.assertEquals(headers.getAll("Content-Type").size(), 1, "Only one record should exist");
-        Assert.assertEquals(headers.getAll("content-type").size(), 1, "Only one record should exist");
-        Assert.assertEquals(headers.getAll("content-type").get(0), "application/xml"
+        Assert.assertEquals(headers.getAllBy("Content-Type").size(), 1, "Only one record should exist");
+        Assert.assertEquals(headers.getAllBy("content-type").size(), 1, "Only one record should exist");
+        Assert.assertEquals(headers.getAllBy("content-type").get(0), "application/xml"
                 , "Header value not correct");
-        Assert.assertEquals(headers.getAll("Content-Type").get(0), "application/xml"
+        Assert.assertEquals(headers.getAllBy("Content-Type").get(0), "application/xml"
                 , "Header value not correct");
-        Assert.assertEquals(headers.getAll("Set-Cookie").size(), 3, "List should have 3 elements");
-        Assert.assertEquals(headers.getAll("Set-Cookie").get(0), "31abd753ed23r876", "Invalid value");
-        Assert.assertEquals(headers.getAll("Set-Cookie").get(1), "41abd054ed23r325", "Invalid value");
-        Assert.assertEquals(headers.getAll("Set-Cookie").get(2), "51abv054ed23r338", "Invalid value");
-        Assert.assertEquals(headers.getAll("NonExistingHeader").size(), 0
+        Assert.assertEquals(headers.getAllBy("Set-Cookie").size(), 3, "List should have 3 elements");
+        Assert.assertEquals(headers.getAllBy("Set-Cookie").get(0), "31abd753ed23r876", "Invalid value");
+        Assert.assertEquals(headers.getAllBy("Set-Cookie").get(1), "41abd054ed23r325", "Invalid value");
+        Assert.assertEquals(headers.getAllBy("Set-Cookie").get(2), "51abv054ed23r338", "Invalid value");
+        Assert.assertEquals(headers.getAllBy("NonExistingHeader").size(), 0
                 , "Should be a empty list for nun existing header");
     }
 

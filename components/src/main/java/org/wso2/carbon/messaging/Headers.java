@@ -17,7 +17,6 @@
 */
 package org.wso2.carbon.messaging;
 
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -54,12 +53,7 @@ public class Headers {
      * @param value value of the header field
      */
     public void set(String name, String value) {
-        for (Iterator<Header> headerItr = headerList.iterator(); headerItr.hasNext(); ) {
-            Header h = headerItr.next();
-            if (h.getName().equalsIgnoreCase(name)) {
-                headerItr.remove();
-            }
-        }
+        headerList.removeIf(header -> header.getName().equalsIgnoreCase(name));
         add(name, value);
     }
 
@@ -67,7 +61,7 @@ public class Headers {
      * This will add all header in given map to the message
      * @param map map containing header fields
      */
-    public void set(Map<String, String> map) {
+    public void set(final Map<String, String> map) {
         map.forEach(this::add);
     }
 
@@ -75,7 +69,7 @@ public class Headers {
      * This will add all header objects in given list into the message
      * @param list list containing Header objects
      */
-    public void set(List<Header> list) {
+    public void set(final List<Header> list) {
         list.forEach(h -> add(h.getName(), h.getValue()));
     }
 
@@ -84,12 +78,7 @@ public class Headers {
      * @param name name of the header to be removed
      */
     public void remove(String name) {
-        for (Iterator<Header> headerItr = headerList.iterator(); headerItr.hasNext();) {
-            Header h = headerItr.next();
-            if (h.getName().equalsIgnoreCase(name)) {
-                headerItr.remove();
-            }
-        }
+        headerList.removeIf(header -> header.getName().equalsIgnoreCase(name));
         headerMap.remove(name);
     }
 
@@ -106,6 +95,7 @@ public class Headers {
 
     /**
      * This will return a LinkedList having all the headers.
+     *
      * @return a list containing all the headers fields.
      */
     public List<Header> getAll() {
@@ -117,7 +107,7 @@ public class Headers {
      * @param name name of the header
      * @return a list containing the value of given header name regardless of case sensitivity
      */
-    public List<String> getAll(String name) {
+    public List<String> getAllBy(String name) {
         List<String> hList = headerList.stream().filter(entry -> entry.getName().equalsIgnoreCase(name))
                 .map(Header::getValue).collect(Collectors.toCollection(LinkedList::new));
         return hList;
@@ -147,6 +137,14 @@ public class Headers {
      */
     public int distinctSize() {
         return headerMap.size();
+    }
+
+    /**
+     * To get the  number of of headers in list
+     * @return size of header list
+     */
+    public int size() {
+        return headerList.size();
     }
 
     private void add(String key, String value) {
