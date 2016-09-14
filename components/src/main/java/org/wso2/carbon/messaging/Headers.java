@@ -24,17 +24,17 @@ import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 /**
- * This will hold all the headers of incoming message
+ * This will hold all the headers of incoming message.
  */
 public class Headers {
     /**
-     * A map that case insensitive to hold the headers
+     * A map that case insensitive to hold the headers.
      */
     private Map<String, String> headerMap = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
 
     /**
      * A list to hold all the headers without considering the header name case. This will hold
-     * duplicated headers as well if incoming message containing duplicated headers
+     * duplicated headers as well if incoming message containing duplicated headers.
      */
     private List<Header> headerList = new LinkedList<>();
 
@@ -48,7 +48,7 @@ public class Headers {
     /**
      * To add a header. if the header name is already exist, It will replace the existing header
      * value and if there is duplicated header with same name, remove all of them and add the given
-     * header
+     * header.
      * @param name name of the header field
      * @param value value of the header field
      */
@@ -58,7 +58,7 @@ public class Headers {
     }
 
     /**
-     * This will add all header in given map to the message
+     * This will add all header in given map to the message.
      * @param map map containing header fields
      */
     public void set(final Map<String, String> map) {
@@ -66,7 +66,7 @@ public class Headers {
     }
 
     /**
-     * This will add all header objects in given list into the message
+     * This will add all header objects in given list into the message.
      * @param list list containing Header objects
      */
     public void set(final List<Header> list) {
@@ -74,7 +74,7 @@ public class Headers {
     }
 
     /**
-     * This will remove all the headers from the message regardless of the case sensitivity
+     * This will remove all the headers from the message regardless of the case sensitivity.
      * @param name name of the header to be removed
      */
     public void remove(String name) {
@@ -85,7 +85,7 @@ public class Headers {
     /**
      * This will return the header field value for given name. if there are multiple headers with
      * same name, It will return the value of last header matching the name regardless of
-     * case sensitivity of the name of the header
+     * case sensitivity of the name of the header.
      * @param name name of the header field
      * @return value of the header for given name
      */
@@ -115,7 +115,7 @@ public class Headers {
 
     /**
      * To check whether given header name is exist in the header map regardless of the
-     * case sensitivity
+     * case sensitivity.
      * @param name name of a header
      * @return true if the header is exist.
      */
@@ -124,7 +124,7 @@ public class Headers {
     }
 
     /**
-     * To clear all the header from list
+     * To clear all the header from list.
      */
     public void clear() {
         headerList.clear();
@@ -132,7 +132,7 @@ public class Headers {
     }
 
     /**
-     * To get the distinct size of headers
+     * To get the distinct size of headers.
      * @return distinct size of the headers
      */
     public int distinctSize() {
@@ -140,7 +140,7 @@ public class Headers {
     }
 
     /**
-     * To get the  number of of headers in list
+     * To get the  number of of headers in list.
      * @return size of header list
      */
     public int size() {
