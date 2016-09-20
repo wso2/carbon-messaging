@@ -20,6 +20,7 @@ package org.wso2.carbon.messaging;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.wso2.carbon.messaging.exceptions.NelException;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -49,7 +50,7 @@ public abstract class CarbonMessage {
     protected BlockingQueue messageBody = new LinkedBlockingQueue<>();
     protected Stack<FaultHandler> faultHandlerStack = new Stack<>();
     protected MessageDataSource messageDataSource;
-    protected Exception nelException = null;
+    protected NelException nelException = null;
 
     protected ByteBufferInputStream byteBufferInputStream;
 
@@ -370,11 +371,15 @@ public abstract class CarbonMessage {
         }
     }
 
-    public Exception getNelException() {
+    public NelException getNelException() {
         return nelException;
     }
 
-    public void setNelException(Exception nelException) {
+    public void setNelException(NelException nelException) {
         this.nelException = nelException;
+    }
+
+    public boolean isFaulty() {
+        return this.nelException == null;
     }
 }
