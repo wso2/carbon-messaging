@@ -18,7 +18,7 @@
 package org.wso2.carbon.messaging;
 
 /**
- * To hold the header data
+ * To hold the header data.
  */
 public class Header {
     private String name;
