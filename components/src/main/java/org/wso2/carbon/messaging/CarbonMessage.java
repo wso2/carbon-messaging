@@ -380,6 +380,6 @@ public abstract class CarbonMessage {
     }
 
     public boolean isFaulty() {
-        return this.nelException == null;
+        return this.nelException == null ? false : true;
     }
 }
