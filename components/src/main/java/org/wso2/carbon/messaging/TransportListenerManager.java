@@ -23,7 +23,15 @@ package org.wso2.carbon.messaging;
  */
 public interface TransportListenerManager {
 
-    TransportListener getTransportListener(String id);
+    /**
+     * Provide Registered TransportListener
+     * @return
+     */
+    TransportListener getTransportListener();
 
-    void registerTransportListener(String id, TransportListener transportListener);
+    /**
+     * Register TransportListener
+     * @param transportListener
+     */
+    void registerTransportListener(TransportListener transportListener);
 }

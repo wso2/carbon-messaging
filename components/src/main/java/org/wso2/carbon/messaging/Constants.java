@@ -54,6 +54,8 @@ public final class Constants {
 
     public static final String ERROR_EXCEPTION = "ERROR_EXCEPTION";
 
+    public static final String LISTENER_INTERFACE_ID = "LISTENER_INTERFACE_ID";
+
 
 
     private Constants() {
