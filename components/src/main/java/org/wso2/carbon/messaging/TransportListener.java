@@ -39,7 +39,7 @@ public abstract class TransportListener extends CarbonTransport {
     public abstract boolean listen(String  interfaceId);
 
     /**
-     * Stop Listening in given interface
+     * Stop Listening in given interface if already listening
      * @param interfaceId
      * @return
      */
