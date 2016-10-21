@@ -32,16 +32,16 @@ public abstract class TransportListener extends CarbonTransport {
     public abstract void setMessageProcessor(CarbonMessageProcessor messageProcessor);
 
     /**
-     * Listen on given interface
-     * @param interfaceId has port , host and all listener parameters
+     * Bind on given interface
+     * @param interfaceId has port , host and all interface parameters
      * @return
      */
-    public abstract boolean listen(String  interfaceId);
+    public abstract boolean bind(String  interfaceId);
 
     /**
-     * Stop Listening in given interface if already listening
+     * Stop Listening in given interface if already listening (Un binding interface)
      * @param interfaceId
      * @return
      */
-    public abstract boolean stopListening(String  interfaceId);
+    public abstract boolean unBind(String  interfaceId);
 }
