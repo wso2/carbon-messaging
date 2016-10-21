@@ -20,8 +20,6 @@ package org.wso2.carbon.messaging;
 
 import org.wso2.carbon.kernel.transports.CarbonTransport;
 
-import java.util.Map;
-
 /**
  * Abstract class for Message listener.
  */
@@ -33,9 +31,17 @@ public abstract class TransportListener extends CarbonTransport {
 
     public abstract void setMessageProcessor(CarbonMessageProcessor messageProcessor);
 
-    public abstract boolean listen(String host, int port);
+    /**
+     * Bind on given interface
+     * @param interfaceId has port , host and all interface parameters
+     * @return
+     */
+    public abstract boolean bind(String  interfaceId);
 
-    public abstract boolean listen(String host, int port, Map<String, String> propertyMap);
-
-    public abstract boolean stopListening(String host, int port);
+    /**
+     * Stop Listening in given interface if already listening (Un binding interface)
+     * @param interfaceId
+     * @return
+     */
+    public abstract boolean unBind(String  interfaceId);
 }

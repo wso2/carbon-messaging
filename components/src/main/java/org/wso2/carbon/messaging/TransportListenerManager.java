@@ -19,11 +19,19 @@
 package org.wso2.carbon.messaging;
 
 /**
- * A class that manages Transport Listeners.
+ * A class that manages Transport Listener and its bounded interfaces.
  */
 public interface TransportListenerManager {
 
-    TransportListener getTransportListener(String id);
+    /**
+     * Provide Registered TransportListener
+     * @return TransportListener
+     */
+    TransportListener getTransportListener();
 
-    void registerTransportListener(String id, TransportListener transportListener);
+    /**
+     * Register TransportListener
+     * @param transportListener
+     */
+    void registerTransportListener(TransportListener transportListener);
 }
