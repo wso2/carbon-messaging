@@ -30,9 +30,9 @@ package org.wso2.carbon.messaging.exceptions;
  *
  * Eg: ( Demonstration purpose only. Refer CarbonMessageProcess implantation for specific errorCodes)
  *
- * 10100 -> HTTP Connection timeout.
- * 10101 -> HTTP Connection Failed.
- * 10102 -> HTTP Connection Failed. etc.
+ * 10100  HTTP Connection timeout.
+ * 10101  HTTP Connection Failed.
+ * 10102  HTTP Connection Failed. etc.
  */
 public class MessagingException extends Exception {
 

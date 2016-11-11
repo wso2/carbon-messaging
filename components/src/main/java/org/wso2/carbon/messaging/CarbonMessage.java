@@ -84,7 +84,7 @@ public abstract class CarbonMessage {
      * This enable you to avoid filling content in to internal buffer.
      * Use this constructor when creating response message and need to write content and
      *
-     * @param buffercontent
+     * @param buffercontent enables direct writing to channel if true else buffer content in message queue
      */
     public CarbonMessage(Boolean buffercontent) {
         this.bufferContent = buffercontent;
@@ -276,7 +276,7 @@ public abstract class CarbonMessage {
      * This is a blocking call and provides full message as inputStream
      * removes original content from queue.
      *
-     * @return
+     * @return InputStream Instance.
      */
     public InputStream getInputStream() {
         if (byteBufferInputStream == null) {
@@ -289,7 +289,7 @@ public abstract class CarbonMessage {
      * This provide access to write byte stream in to message content Queue as
      * Stream
      *
-     * @return
+     * @return OutputStream Instance.
      */
     public OutputStream getOutputStream() {
         if (byteBufferOutputStream == null) {
@@ -395,7 +395,7 @@ public abstract class CarbonMessage {
     /**
      * Set NelException.
      *
-     * @param nelException
+     * @param nelException NelException instance related to faulty CarbonMessage.
      * @deprecated Set NelException will be replaced by
      * {@link #setMessagingException(MessagingException carbonMessageException)} method.
      */

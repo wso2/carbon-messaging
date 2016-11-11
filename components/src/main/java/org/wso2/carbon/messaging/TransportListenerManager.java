@@ -31,7 +31,7 @@ public interface TransportListenerManager {
 
     /**
      * Register TransportListener
-     * @param transportListener
+     * @param transportListener TransportListener instance.
      */
     void registerTransportListener(TransportListener transportListener);
 }

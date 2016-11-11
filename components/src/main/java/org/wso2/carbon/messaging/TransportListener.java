@@ -34,14 +34,14 @@ public abstract class TransportListener extends CarbonTransport {
     /**
      * Bind on given interface
      * @param interfaceId has port , host and all interface parameters
-     * @return
+     * @return true if bind success, false otherwise.
      */
     public abstract boolean bind(String  interfaceId);
 
     /**
      * Stop Listening in given interface if already listening (Un binding interface)
-     * @param interfaceId
-     * @return
+     * @param interfaceId has port , host and all interface parameters
+     * @return true if unbind success, false otherwise.
      */
     public abstract boolean unBind(String  interfaceId);
 }
