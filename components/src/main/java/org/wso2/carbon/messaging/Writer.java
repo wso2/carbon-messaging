@@ -27,14 +27,14 @@ public interface Writer {
     /**
      * A method which is used to write content to underlying IO channel directly.
      *
-     * @param byteBuffer
+     * @param byteBuffer ByteBuffer instance.
      */
     void write(ByteBuffer byteBuffer);
 
     /**
      * A method which is used to write Last content and flush  to underlying IO channel directly.
      *
-     * @param carbonMessage
+     * @param carbonMessage Carbon Message Instance.
      */
     void writeLastContent(CarbonMessage carbonMessage);
 }
