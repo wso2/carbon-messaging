@@ -20,6 +20,7 @@ package org.wso2.carbon.messaging;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.wso2.carbon.messaging.exceptions.MessagingException;
 import org.wso2.carbon.messaging.exceptions.NelException;
 
 import java.io.IOException;
@@ -50,7 +51,16 @@ public abstract class CarbonMessage {
     protected BlockingQueue messageBody = new LinkedBlockingQueue<>();
     protected Stack<FaultHandler> faultHandlerStack = new Stack<>();
     protected MessageDataSource messageDataSource;
+    /**
+     * @deprecated This field will be replace by {@link #messagingException}
+     */
+    @Deprecated
     protected NelException nelException = null;
+
+    /**
+     * Exception related to fault CarbonMessage.
+     */
+    protected MessagingException messagingException = null;
 
     protected ByteBufferInputStream byteBufferInputStream;
 
@@ -371,15 +381,49 @@ public abstract class CarbonMessage {
         }
     }
 
+    /**
+     * Get NelException
+     *
+     * @return NelException instance.
+     * @deprecated Get NelException method will be replaced by {@link #getMessagingException()} method.
+     */
+    @Deprecated
     public NelException getNelException() {
         return nelException;
     }
 
+    /**
+     * Set NelException.
+     *
+     * @param nelException
+     * @deprecated Set NelException will be replaced by
+     * {@link #setMessagingException(MessagingException carbonMessageException)} method.
+     */
+    @Deprecated
     public void setNelException(NelException nelException) {
         this.nelException = nelException;
     }
 
+    /**
+     * Get CarbonMessageException
+     *
+     * @return CarbonMessageException instance related to faulty CarbonMessage.
+     */
+    public MessagingException getMessagingException() {
+        return messagingException;
+    }
+
+    /**
+     * Set CarbonMessageException.
+     *
+     * @param messagingException exception related to faulty CarbonMessage.
+     */
+    public void setMessagingException(MessagingException messagingException) {
+        this.messagingException = messagingException;
+    }
+
     public boolean isFaulty() {
-        return this.nelException == null ? false : true;
+        // TODO: Remove {@link #nelException} reference.
+        return (this.messagingException != null || this.nelException != null);
     }
 }
