@@ -1,0 +1,39 @@
+/*
+ *   Copyright (c) ${date}, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+ *
+ *   WSO2 Inc. licenses this file to you under the Apache License,
+ *   Version 2.0 (the "License"); you may not use this file except
+ *   in compliance with the License.
+ *   You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
+ */
+
+package org.wso2.carbon.messaging.websocket;
+
+import java.nio.ByteBuffer;
+
+/**
+ * {@link WebSocketCarbonMessage} for WebSocket ping messages.
+ * This is just a extend of {@link BinaryWebSocketCarbonMessage} since all the methods are same for both.
+ */
+public class PingWebSocketCarbonMessage extends BinaryWebSocketCarbonMessage {
+    /**
+     * @param bytes              byte array of binary data
+     * @param finalFragment      true if the message is the final fragment of the binary message. First fragment can
+     *                           also be
+     *                           the final fragment
+     * @param webSocketResponder WebSocket Responder is necessary if the implementation needs WebSocket server-push.
+     */
+    public PingWebSocketCarbonMessage(ByteBuffer bytes, boolean finalFragment,
+                                      WebSocketResponder webSocketResponder) {
+        super(bytes, finalFragment, webSocketResponder);
+    }
+}
