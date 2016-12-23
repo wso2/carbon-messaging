@@ -24,7 +24,7 @@ import java.nio.ByteBuffer;
  * {@link WebSocketCarbonMessage} for WebSocket pong messages.
  * This is just a extend of {@link BinaryWebSocketCarbonMessage} since all the methods are same for both.
  */
-public class PongWebsocketCarbonMessage extends BinaryWebSocketCarbonMessage{
+public class PongWebsocketCarbonMessage extends BinaryWebSocketCarbonMessage {
     /**
      * @param bytes              byte array of binary data
      * @param finalFragment      true if the message is the final fragment of the binary message. First fragment can
