@@ -19,13 +19,17 @@
 package org.wso2.carbon.messaging.websocket;
 
 /**
- * Server-side responder for WebSocket Connection
+ * Server-side responder for WebSocket Connection.
+ * This class is responsible for sending server side events to the client.
+ * WebSocket protocol is compatible with pushing data to client side without client request.
+ * To do so this interface should be implemented using an appropriate underlying layer.
+ * @since 1.0.0
  */
 public interface WebSocketResponder {
 
     /**
-     * Pushes server events to the client
-     * @param webSocketCarbonMessage Any kind of {@link WebSocketCarbonMessage} which needs to push to the client
+     * Pushes server events to the client.
+     * @param webSocketMessage Any kind of {@link WebSocketMessage} which needs to push to the client.
      */
-    void pushToClient(WebSocketCarbonMessage webSocketCarbonMessage);
+    void pushToClient(WebSocketMessage webSocketMessage);
 }

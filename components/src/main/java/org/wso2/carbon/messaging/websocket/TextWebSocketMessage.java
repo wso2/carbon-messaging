@@ -20,24 +20,25 @@ package org.wso2.carbon.messaging.websocket;
 
 
 /**
- * {@link WebSocketCarbonMessage} type for WebSocket Text Message
+ * {@link WebSocketMessage} type for WebSocket Text Message.
+ * @since 1.0.0
  */
-public class TextWebSocketCarbonMessage extends WebSocketCarbonMessage {
+public class TextWebSocketMessage extends WebSocketMessage {
 
     private final String text;
 
     /**
      * @param text Text Message
      * @param webSocketResponder WebSocket Responder is necessary if the implementation needs WebSocket server-push.
-     *                           Otherwise leave it null
+     *                           Otherwise leave it null.
      */
-    public TextWebSocketCarbonMessage(String text, WebSocketResponder webSocketResponder) {
+    public TextWebSocketMessage(String text, WebSocketResponder webSocketResponder) {
         super(webSocketResponder);
         this.text = text;
     }
 
     /**
-     * @return String included in WebSocket Text Message
+     * @return String included in WebSocket Text Message.
      */
     public String getText() {
         return text;

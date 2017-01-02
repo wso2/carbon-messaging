@@ -21,19 +21,19 @@ package org.wso2.carbon.messaging.websocket;
 import java.nio.ByteBuffer;
 
 /**
- * {@link WebSocketCarbonMessage} for WebSocket pong messages.
- * This is just a extend of {@link BinaryWebSocketCarbonMessage} since all the methods are same for both.
+ * {@link WebSocketMessage} for WebSocket pong messages.
+ * This is just a extend of {@link BinaryWebSocketMessage} since all the methods are same for both.
+ * @since 1.0.0
  */
-public class PongWebsocketCarbonMessage extends BinaryWebSocketCarbonMessage {
+public class PongWebsocketMessage extends BinaryWebSocketMessage {
     /**
-     * @param bytes              byte array of binary data
+     * @param bytes              byte array of binary data.
      * @param finalFragment      true if the message is the final fragment of the binary message. First fragment can
-     *                           also be
-     *                           the final fragment
+     *                           also be the final fragment.
      * @param webSocketResponder WebSocket Responder is necessary if the implementation needs WebSocket server-push.
      */
-    public PongWebsocketCarbonMessage(ByteBuffer bytes, boolean finalFragment,
-                                      WebSocketResponder webSocketResponder) {
+    public PongWebsocketMessage(ByteBuffer bytes, boolean finalFragment,
+                                WebSocketResponder webSocketResponder) {
         super(bytes, finalFragment, webSocketResponder);
     }
 }

@@ -21,36 +21,37 @@ package org.wso2.carbon.messaging.websocket;
 import java.nio.ByteBuffer;
 
 /**
- * {@link WebSocketCarbonMessage} type for WebSocket Binary Message
+ * {@link WebSocketMessage} type for WebSocket Binary Message.
+ * @since 1.0.0
  */
-public class BinaryWebSocketCarbonMessage extends WebSocketCarbonMessage {
+public class BinaryWebSocketMessage extends WebSocketMessage {
 
     private ByteBuffer bytes;
     private boolean finalFragment;
 
     /**
-     * @param bytes byte array of binary data
+     * @param bytes byte array of binary data.
      * @param finalFragment true if the message is the final fragment of the binary message.
-     *                      First fragment can also be the final fragment
+     *                      First fragment can also be the final fragment.
      * @param webSocketResponder WebSocket Responder is necessary if the implementation needs WebSocket server-push.
-     *                           Otherwise leave it null
+     *                           Otherwise leave it null.
      */
-    public BinaryWebSocketCarbonMessage(ByteBuffer bytes, boolean finalFragment,
-                                        WebSocketResponder webSocketResponder) {
+    public BinaryWebSocketMessage(ByteBuffer bytes, boolean finalFragment,
+                                  WebSocketResponder webSocketResponder) {
         super(webSocketResponder);
         this.bytes = bytes;
         this.finalFragment = finalFragment;
     }
 
     /**
-     * @return byte array of binary data contained in the message
+     * @return byte array of binary data contained in the message.
      */
     public ByteBuffer readBytes() {
         return bytes;
     }
 
     /**
-     * @return true if the message is the final fragment of the binary message
+     * @return true if the message is the final fragment of the binary message.
      */
     public boolean isFinalFragment() {
         return finalFragment;

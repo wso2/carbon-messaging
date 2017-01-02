@@ -18,37 +18,22 @@
 
 package org.wso2.carbon.messaging.websocket;
 
+import java.nio.ByteBuffer;
+
 /**
- * {@link WebSocketCarbonMessage} type for WebSocket Close Message
+ * {@link WebSocketMessage} for WebSocket ping messages.
+ * This is just a extend of {@link BinaryWebSocketMessage} since all the methods are same for both.
+ * @since 1.0.0
  */
-public class CloseWebSocketCarbonMessage extends WebSocketCarbonMessage {
-
-    private String reasonText;
-    private int statusCode;
-
+public class PingWebSocketMessage extends BinaryWebSocketMessage {
     /**
-     * @param statusCode Status code of reason to close
-     * @param reasonText Reason to close the connection
+     * @param bytes              byte array of binary data.
+     * @param finalFragment      true if the message is the final fragment of the binary message. First fragment can
+     *                           also be the final fragment.
      * @param webSocketResponder WebSocket Responder is necessary if the implementation needs WebSocket server-push.
-     *                           Otherwise leave it null
      */
-    public CloseWebSocketCarbonMessage(int statusCode, String reasonText, WebSocketResponder webSocketResponder) {
-        super(webSocketResponder);
-        this.statusCode = statusCode;
-        this.reasonText = reasonText;
-    }
-
-    /**
-     * @return Reason for closing the connection
-     */
-    public String getReasonText() {
-        return reasonText;
-    }
-
-    /**
-     * @return Status code of the reason to close the connection
-     */
-    public int getStatusCode() {
-        return statusCode;
+    public PingWebSocketMessage(ByteBuffer bytes, boolean finalFragment,
+                                WebSocketResponder webSocketResponder) {
+        super(bytes, finalFragment, webSocketResponder);
     }
 }
