@@ -24,8 +24,8 @@ package org.wso2.carbon.messaging.websocket;
  */
 public class CloseWebSocketMessage extends WebSocketMessage {
 
-    private String reasonText;
-    private int statusCode;
+    private String reasonText; //Reason saying why the connection is closed
+    private int statusCode; //Status code of the connection close
 
     /**
      * @param statusCode Status code of reason to close.

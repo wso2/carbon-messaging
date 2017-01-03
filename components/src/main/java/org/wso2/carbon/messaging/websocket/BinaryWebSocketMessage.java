@@ -26,8 +26,8 @@ import java.nio.ByteBuffer;
  */
 public class BinaryWebSocketMessage extends WebSocketMessage {
 
-    private ByteBuffer bytes;
-    private boolean finalFragment;
+    private ByteBuffer bytes; //ByteBuffer to store binary data
+    private boolean finalFragment; //Check whether given fragment is final when partial messages are sent
 
     /**
      * @param bytes byte array of binary data.
