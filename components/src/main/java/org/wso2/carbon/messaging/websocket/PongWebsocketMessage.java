@@ -30,10 +30,8 @@ public class PongWebsocketMessage extends BinaryWebSocketMessage {
      * @param bytes              byte array of binary data.
      * @param finalFragment      true if the message is the final fragment of the binary message. First fragment can
      *                           also be the final fragment.
-     * @param webSocketResponder WebSocket Responder is necessary if the implementation needs WebSocket server-push.
      */
-    public PongWebsocketMessage(ByteBuffer bytes, boolean finalFragment,
-                                WebSocketResponder webSocketResponder) {
-        super(bytes, finalFragment, webSocketResponder);
+    public PongWebsocketMessage(ByteBuffer bytes, boolean finalFragment) {
+        super(bytes, finalFragment);
     }
 }

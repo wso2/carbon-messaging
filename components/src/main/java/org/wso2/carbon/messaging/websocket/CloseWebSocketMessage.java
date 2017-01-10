@@ -30,11 +30,8 @@ public class CloseWebSocketMessage extends WebSocketMessage {
     /**
      * @param statusCode Status code of reason to close.
      * @param reasonText Reason to close the connection.
-     * @param webSocketResponder WebSocket Responder is necessary if the implementation needs WebSocket server-push.
-     *                           Otherwise leave it null.
      */
-    public CloseWebSocketMessage(int statusCode, String reasonText, WebSocketResponder webSocketResponder) {
-        super(webSocketResponder);
+    public CloseWebSocketMessage(int statusCode, String reasonText) {
         this.statusCode = statusCode;
         this.reasonText = reasonText;
     }

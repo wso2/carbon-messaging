@@ -22,26 +22,9 @@ import org.wso2.carbon.messaging.CarbonMessage;
 
 /**
  * {@link CarbonMessage} type of WebSocket Messages.
+ * This does not include anything. But it supports to identify child class instances of {@link WebSocketMessage}
  * @since 1.0.0
  */
 public class WebSocketMessage extends CarbonMessage {
 
-    private WebSocketResponder webSocketResponder;
-
-
-    /**
-     * In WebSocket protocol there should be a capability to send server events without clinet request.
-     * So it is necessary to add {@link WebSocketResponder} for the Constructor.
-     * @param webSocketResponder Responder for a given channel.
-     */
-    public WebSocketMessage(WebSocketResponder webSocketResponder) {
-        this.webSocketResponder = webSocketResponder;
-    }
-
-    /**
-     * @return {@link WebSocketResponder} of a given channel.
-     */
-    public WebSocketResponder getWebSocketResponder() {
-        return webSocketResponder;
-    }
 }

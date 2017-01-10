@@ -29,11 +29,8 @@ public class TextWebSocketMessage extends WebSocketMessage {
 
     /**
      * @param text Text Message
-     * @param webSocketResponder WebSocket Responder is necessary if the implementation needs WebSocket server-push.
-     *                           Otherwise leave it null.
      */
-    public TextWebSocketMessage(String text, WebSocketResponder webSocketResponder) {
-        super(webSocketResponder);
+    public TextWebSocketMessage(String text) {
         this.text = text;
     }
 

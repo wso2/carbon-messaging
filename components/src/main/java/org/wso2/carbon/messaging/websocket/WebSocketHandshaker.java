@@ -19,24 +19,20 @@
 package org.wso2.carbon.messaging.websocket;
 
 /**
- * WebSocket handshake should be done after checking whether there is a endpoint exists or not.
- * So this abstract class should be implemented and sent to the application level to do necessary checks and
- * handshake appropriately.
+ * This interface is responsible for handling the Handshake.
+ * This interface implementation should be added as a property to {@link org.wso2.carbon.messaging.CarbonMessage}
+ * in and should be sent to application and if all the needs are satisfied the handshake can be done.
+ * @since 1.0.0
  */
-public abstract class WebSocketHandshakeMessage extends WebSocketMessage {
-
-    public WebSocketHandshakeMessage(WebSocketResponder webSocketResponder) {
-        super(webSocketResponder); //WebSocketMessage initialization is not necessary for this class
-    }
-
+public interface WebSocketHandshaker {
     /**
      * If all necessities are satisfied call this method to handshake.
      * @return true when the handshake is completed properly.
      */
-    public abstract boolean handshake();
+    boolean handshake();
 
     /**
      * Call this unless all necessities are completed to do the handshake.
      */
-    public abstract void cancel();
+    void cancel();
 }
