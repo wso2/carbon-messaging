@@ -1,5 +1,5 @@
 /*
- *   Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+ *   Copyright (c) 2017, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
  *
  *   WSO2 Inc. licenses this file to you under the Apache License,
  *   Version 2.0 (the "License"); you may not use this file except
@@ -16,15 +16,15 @@
  *  under the License.
  */
 
-package org.wso2.carbon.messaging.websocket;
+package org.wso2.carbon.messaging;
 
 import java.nio.ByteBuffer;
 
 /**
- * {@link WebSocketMessage} type for WebSocket Binary Message.
+ * {@link CarbonMessage} type for Binary Message.
  * @since 1.0.0
  */
-public class BinaryWebSocketMessage extends WebSocketMessage {
+public class BinaryCarbonMessage extends CarbonMessage {
 
     private ByteBuffer bytes; //ByteBuffer to store binary data
     private boolean finalFragment; //Check whether given fragment is final when partial messages are sent
@@ -34,7 +34,7 @@ public class BinaryWebSocketMessage extends WebSocketMessage {
      * @param finalFragment true if the message is the final fragment of the binary message.
      *                      First fragment can also be the final fragment.
      */
-    public BinaryWebSocketMessage(ByteBuffer bytes, boolean finalFragment) {
+    public BinaryCarbonMessage(ByteBuffer bytes, boolean finalFragment) {
         this.bytes = bytes;
         this.finalFragment = finalFragment;
     }

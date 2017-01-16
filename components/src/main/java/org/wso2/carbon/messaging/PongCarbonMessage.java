@@ -16,23 +16,22 @@
  *  under the License.
  */
 
-package org.wso2.carbon.messaging.websocket;
+package org.wso2.carbon.messaging;
+
+import java.nio.ByteBuffer;
 
 /**
- * This interface is responsible for handling the Handshake.
- * This interface implementation should be added as a property to {@link org.wso2.carbon.messaging.CarbonMessage}
- * in and should be sent to application and if all the needs are satisfied the handshake can be done.
+ * {@link CarbonMessage} for pong messages.
+ * This is just a extend of {@link BinaryCarbonMessage} since all the methods are same for both.
  * @since 1.0.0
  */
-public interface WebSocketHandshaker {
+public class PongCarbonMessage extends BinaryCarbonMessage {
     /**
-     * If all necessities are satisfied call this method to handshake.
-     * @return true when the handshake is completed properly.
+     * @param bytes              byte array of binary data.
+     * @param finalFragment      true if the message is the final fragment of the binary message. First fragment can
+     *                           also be the final fragment.
      */
-    boolean handshake();
-
-    /**
-     * Call this unless all necessities are completed to do the handshake.
-     */
-    void cancel();
+    public PongCarbonMessage(ByteBuffer bytes, boolean finalFragment) {
+        super(bytes, finalFragment);
+    }
 }

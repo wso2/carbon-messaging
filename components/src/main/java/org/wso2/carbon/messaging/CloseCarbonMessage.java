@@ -1,5 +1,5 @@
 /*
- *   Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+ *   Copyright (c) 2017, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
  *
  *   WSO2 Inc. licenses this file to you under the Apache License,
  *   Version 2.0 (the "License"); you may not use this file except
@@ -16,13 +16,14 @@
  *  under the License.
  */
 
-package org.wso2.carbon.messaging.websocket;
+package org.wso2.carbon.messaging;
+
 
 /**
- * {@link WebSocketMessage} type for WebSocket Close Message.
+ * {@link CarbonMessage} type for Close Messages.
  * @since 1.0.0
  */
-public class CloseWebSocketMessage extends WebSocketMessage {
+public class CloseCarbonMessage extends CarbonMessage {
 
     private String reasonText; //Reason saying why the connection is closed
     private int statusCode; //Status code of the connection close
@@ -31,7 +32,7 @@ public class CloseWebSocketMessage extends WebSocketMessage {
      * @param statusCode Status code of reason to close.
      * @param reasonText Reason to close the connection.
      */
-    public CloseWebSocketMessage(int statusCode, String reasonText) {
+    public CloseCarbonMessage(int statusCode, String reasonText) {
         this.statusCode = statusCode;
         this.reasonText = reasonText;
     }
