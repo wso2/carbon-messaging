@@ -21,7 +21,7 @@ package org.wso2.carbon.messaging;
 import org.wso2.carbon.kernel.transports.CarbonTransport;
 
 /**
- * Abstract class for Message listener.
+ * Abstract class for Transport listener.
  */
 public abstract class TransportListener extends CarbonTransport {
 
@@ -29,7 +29,17 @@ public abstract class TransportListener extends CarbonTransport {
         super(id);
     }
 
+    /**
+     * Sets the {@code CarbonMessageProcessor} that will be used for this listener instance.
+     * @param messageProcessor the messageProcessor instance to be used
+     */
     public abstract void setMessageProcessor(CarbonMessageProcessor messageProcessor);
+
+    /**
+     * Returns the {@code CarbonMessageProcessor} associated with this listener.
+     * @return messageProcessor instance
+     */
+    public abstract CarbonMessageProcessor getMessageProcessor();
 
     /**
      * Bind on given interface
@@ -44,4 +54,10 @@ public abstract class TransportListener extends CarbonTransport {
      * @return true if unbind success, false otherwise.
      */
     public abstract boolean unBind(String  interfaceId);
+
+    /**
+     * Returns the string value of the transport protocol (eg: "http", "jms", etc. ) this listener is bound to.
+     * @return transport protocol
+     */
+    public abstract String getProtocol();
 }
