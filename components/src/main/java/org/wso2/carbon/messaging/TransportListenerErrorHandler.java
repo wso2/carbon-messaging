@@ -19,7 +19,8 @@ package org.wso2.carbon.messaging;
 
 /**
  * Error handler interface that should be implemented for handling transport listener related errors.
- * This will be used for a given transport protocol with a {@code TransportListener} implementation.
+ * This will be used by the application for a given transport protocol associated with a {@code TransportListener}
+ * implementation.
  */
 public interface TransportListenerErrorHandler {
 
