@@ -33,6 +33,11 @@ public abstract class TransportListener {
         this.id = id;
     }
 
+    public TransportListener() {}
+
+    public void setId(String id) {
+        this.id = id;
+    }
     /**
      * Sets the {@code CarbonMessageProcessor} that will be used for this listener instance.
      * @param messageProcessor the messageProcessor instance to be used
