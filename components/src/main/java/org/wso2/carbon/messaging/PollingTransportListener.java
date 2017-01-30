@@ -29,8 +29,9 @@ public abstract class PollingTransportListener extends TransportListener {
     }
 
     /**
-     * Generic listen method which accepts the configuration metadata that will be used when listening.
+     * Generic polling method which accepts the configuration metadata that will be used when listening.
      * @param parameters data to be used when starting to listen.
      */
-    public abstract void listen(Map<String, String> parameters);
+    public abstract void poll(Map<String, String> parameters);
+
 }
