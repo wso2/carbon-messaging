@@ -21,16 +21,16 @@ package org.wso2.carbon.messaging;
 import java.nio.ByteBuffer;
 
 /**
- * {@link CarbonMessage} for ping messages.
+ * {@link CarbonMessage} for control messages. This is used for control messages of a connection.
  * This is just a extend of {@link BinaryCarbonMessage} since all the methods are same for both.
  */
-public class PingCarbonMessage extends BinaryCarbonMessage {
+public class ControlCarbonMessage extends BinaryCarbonMessage {
     /**
      * @param bytes              byte array of binary data.
      * @param finalFragment      true if the message is the final fragment of the binary message. First fragment can
      *                           also be the final fragment.
      */
-    public PingCarbonMessage(ByteBuffer bytes, boolean finalFragment) {
+    public ControlCarbonMessage(ByteBuffer bytes, boolean finalFragment) {
         super(bytes, finalFragment);
     }
 }
