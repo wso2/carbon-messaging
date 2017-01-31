@@ -33,8 +33,6 @@ public abstract class TransportListener {
         this.id = id;
     }
 
-    public TransportListener() {}
-
     public void setId(String id) {
         this.id = id;
     }

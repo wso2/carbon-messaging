@@ -24,6 +24,10 @@ import java.util.Map;
  */
 public abstract class PollingTransportListener extends TransportListener {
 
+    public PollingTransportListener(String id) {
+        super(id);
+    }
+
     /**
      * Generic polling method which accepts the configuration metadata that will be used when listening.
      * @param parameters data to be used when starting to listen.
