@@ -33,9 +33,6 @@ public abstract class TransportListener {
         this.id = id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
     /**
      * Sets the {@code CarbonMessageProcessor} that will be used for this listener instance.
      * @param messageProcessor the messageProcessor instance to be used
@@ -55,12 +52,6 @@ public abstract class TransportListener {
      * @return true if unbind success, false otherwise.
      */
     public abstract boolean unBind(String  interfaceId);
-
-    /**
-     * Returns the string value of the transport protocol (eg: "http", "jms", etc. ) this listener is bound to.
-     * @return transport protocol
-     */
-    public abstract String getProtocol();
 
     /**
      * Returns the ID for this transport listener
