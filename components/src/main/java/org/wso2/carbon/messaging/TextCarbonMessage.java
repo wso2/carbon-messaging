@@ -23,7 +23,8 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
 /**
- * {@link CarbonMessage} type for WebSocket Text Message.
+ * {@link CarbonMessage} type for WebSocket Text Messages. This message type is better if you are dealing with
+ * text data. This will work as the text data carrier from transport level to application level.
  */
 public class TextCarbonMessage extends CarbonMessage {
 

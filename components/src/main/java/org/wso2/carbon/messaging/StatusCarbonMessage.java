@@ -19,7 +19,9 @@
 package org.wso2.carbon.messaging;
 
 /**
- * {@link CarbonMessage} type for Status Message. This contains a status, status code and if prefers a reason text
+ * {@link CarbonMessage} type for Status Message. This contains a status, status code and if prefers a reason text.
+ * This is a useful message type to know about the status of a connection. If you have to process something when
+ * the status of a connection is changed use this message type to transfer all the necessary details.
  */
 public class StatusCarbonMessage extends CarbonMessage {
 

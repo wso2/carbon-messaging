@@ -23,6 +23,7 @@ import java.nio.ByteBuffer;
 /**
  * {@link CarbonMessage} for control messages. This is used for control messages of a connection.
  * This is just a extend of {@link BinaryCarbonMessage} since all the methods are same for both.
+ * This message type is useful when you need to send control messages for a given connection.
  */
 public class ControlCarbonMessage extends BinaryCarbonMessage {
     /**

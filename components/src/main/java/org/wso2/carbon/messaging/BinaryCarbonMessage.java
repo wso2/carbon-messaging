@@ -18,10 +18,13 @@
 
 package org.wso2.carbon.messaging;
 
+import java.io.InputStream;
 import java.nio.ByteBuffer;
 
 /**
- * {@link CarbonMessage} type for Binary Message.
+ * {@link CarbonMessage} type for Binary Messages. This message type handles the binary data easily. So if you are
+ * dealing with binary data it is better to use this message type. This will work as a binary data carrier from
+ * transport level to application level.
  */
 public class BinaryCarbonMessage extends CarbonMessage {
 
