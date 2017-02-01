@@ -18,7 +18,6 @@
 
 package org.wso2.carbon.messaging;
 
-import java.io.InputStream;
 import java.nio.ByteBuffer;
 
 /**
