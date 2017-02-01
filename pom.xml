@@ -28,7 +28,7 @@
     <groupId>org.wso2.carbon.messaging</groupId>
     <artifactId>org.wso2.carbon.messaging.parent</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.12-SNAPSHOT</version>
+    <version>1.1.0-SNAPSHOT</version>
     <name>WSO2 Carbon Messaging Parent</name>
 
     <scm>
@@ -85,9 +85,9 @@
 
         <carbon.feature.plugin.version>2.0.1</carbon.feature.plugin.version>
 
-        <carbon.messaging.version>1.0.12-SNAPSHOT</carbon.messaging.version>
+        <carbon.messaging.version>1.1.0-SNAPSHOT</carbon.messaging.version>
 
-        <carbon.messaging.package.export.version>1.0.11</carbon.messaging.package.export.version>
+        <carbon.messaging.package.export.version>1.1.0</carbon.messaging.package.export.version>
 
         <!--following versions are used in the parent pom-->
         <wso2.maven.compiler.source>1.8</wso2.maven.compiler.source>
