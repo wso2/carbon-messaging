@@ -51,6 +51,9 @@ public class TextCarbonMessage extends CarbonMessage {
      */
     @Override
     public InputStream getInputStream() {
+        if (text == null) {
+            return null;
+        }
         return new ByteArrayInputStream(text.getBytes(StandardCharsets.UTF_8));
     }
 }
