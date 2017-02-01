@@ -56,7 +56,9 @@ public final class Constants {
 
     public static final String LISTENER_INTERFACE_ID = "LISTENER_INTERFACE_ID";
 
-
+    //State of a connection
+    public static final String STATUS_OPEN = "STATUS_OPEN";
+    public static final String STATUS_CLOSE = "STATUS_CLOSE";
 
     private Constants() {
     }

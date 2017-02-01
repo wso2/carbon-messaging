@@ -19,20 +19,29 @@
 package org.wso2.carbon.messaging;
 
 /**
- * {@link CarbonMessage} type for Close Messages.
+ * {@link CarbonMessage} type for Status Message. This contains a status, status code and if prefers a reason text
  */
-public class CloseCarbonMessage extends CarbonMessage {
+public class StatusCarbonMessage extends CarbonMessage {
 
-    private String reasonText; //Reason saying why the connection is closed
-    private int statusCode; //Status code of the connection close
+    private final String status;
+    private final String reasonText; //Reason saying why the connection is closed
+    private final int statusCode; //Status code of the connection close
 
     /**
      * @param statusCode Status code of reason to close.
      * @param reasonText Reason to close the connection.
      */
-    public CloseCarbonMessage(int statusCode, String reasonText) {
+    public StatusCarbonMessage(String status, int statusCode, String reasonText) {
+        this.status = status;
         this.statusCode = statusCode;
         this.reasonText = reasonText;
+    }
+
+    /**
+     * @return the status of a connection
+     */
+    public String getStatus() {
+        return status;
     }
 
     /**

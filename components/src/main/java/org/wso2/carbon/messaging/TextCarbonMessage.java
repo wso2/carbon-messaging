@@ -18,6 +18,10 @@
 
 package org.wso2.carbon.messaging;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+
 /**
  * {@link CarbonMessage} type for WebSocket Text Message.
  */
@@ -39,4 +43,14 @@ public class TextCarbonMessage extends CarbonMessage {
         return text;
     }
 
+    /**
+     * This is a blocking call and provides full message as inputStream
+     * removes original content from queue.
+     *
+     * @return InputStream Instance.
+     */
+    @Override
+    public InputStream getInputStream() {
+        return new ByteArrayInputStream(text.getBytes(StandardCharsets.UTF_8));
+    }
 }
