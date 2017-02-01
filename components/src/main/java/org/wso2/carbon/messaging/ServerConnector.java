@@ -34,6 +34,12 @@ public abstract class ServerConnector {
     }
 
     /**
+     * Set the message processor to be used with this connector for dispatching.
+     * @param messageProcessor message processor instance
+     */
+    public abstract void setMessageProcessor(CarbonMessageProcessor messageProcessor);
+
+    /**
      * Returns the id of the connector.
      * @return connector id
      */
@@ -49,7 +55,7 @@ public abstract class ServerConnector {
         return state;
     }
 
-    void startConnector() {
+    public void startConnector() {
         if (state.equals(State.UNINITIALIZED) || state.equals(State.IN_MAINTENANCE) || state.equals(State.STOPPED)) {
             start();
             state = State.STARTED;
@@ -63,7 +69,7 @@ public abstract class ServerConnector {
      */
     protected abstract void start();
 
-    void stopConnector() {
+    public void stopConnector() {
         if (state.equals(State.STARTED)) {
             stop();
             state = State.STOPPED;
@@ -77,7 +83,7 @@ public abstract class ServerConnector {
      */
     protected abstract void stop();
 
-    void beginConnectorMaintenance() {
+    public void beginConnectorMaintenance() {
         if (state.equals(State.STARTED)) {
             beginMaintenance();
             state = State.IN_MAINTENANCE;
@@ -92,7 +98,7 @@ public abstract class ServerConnector {
      */
     protected abstract void beginMaintenance();
 
-    void endConnectorMaintenance() {
+    public void endConnectorMaintenance() {
         if (state.equals(State.IN_MAINTENANCE)) {
             endMaintenance();
             state = State.STARTED;

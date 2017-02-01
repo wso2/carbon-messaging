@@ -48,12 +48,12 @@ public abstract class ServerConnectorProvider {
      * Initialize the default set of server connectors using the given configuration and return them.
      * @return list of initialized connectors.
      */
-    public abstract List<ServerConnector> initializeServerConnectors();
+    public abstract List<ServerConnector> initializeConnectors();
 
     /**
      * Returns an instance of the {@link ServerConnector} using the given id.
      * @param id id used to create the server connector instance.
      * @return newly created server connector instance.
      */
-    public abstract ServerConnector createSeverConnector(String id);
+    public abstract ServerConnector createConnector(String id);
 }
