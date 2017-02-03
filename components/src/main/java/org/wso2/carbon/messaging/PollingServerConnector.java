@@ -24,14 +24,14 @@ import java.util.Map;
  */
 public abstract class PollingServerConnector extends ServerConnector {
 
-    private final long interval;
+    private static final String POLLING_INTERVAL = "pollingInterval";
+    private long interval = 1000L;  //default polling interval
     private PollingTaskRunner inboundRunner;
 
     private Map<String, String> parameters;
 
-    public PollingServerConnector(String id, long interval) {
+    public PollingServerConnector(String id) {
         super(id);
-        this.interval = interval;
     }
 
     /**
@@ -41,6 +41,10 @@ public abstract class PollingServerConnector extends ServerConnector {
      */
     public void startPolling(Map<String, String> parameters) {
         this.parameters = parameters;
+        String pollingInterval = parameters.get(POLLING_INTERVAL);
+        if (pollingInterval != null) {
+            this.interval = Long.parseLong(pollingInterval);
+        }
         inboundRunner = new PollingTaskRunner(this);
         Thread runningThread = new Thread(inboundRunner);
         runningThread.start();
