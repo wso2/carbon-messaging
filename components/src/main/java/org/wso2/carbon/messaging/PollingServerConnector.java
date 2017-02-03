@@ -24,13 +24,43 @@ import java.util.Map;
  */
 public abstract class PollingServerConnector extends ServerConnector {
 
-    public PollingServerConnector(String id) {
+    private final long interval;
+    private PollingTaskRunner inboundRunner;
+    private Map<String, String> parameters;
+
+    public PollingServerConnector(String id, long interval) {
         super(id);
+        this.interval = interval;
     }
 
     /**
-     * Generic polling method which accepts the configuration metadata that will be used when starting to poll.
-     * @param parameters data to be used when starting to listen.
+     * Call this method to start polling.
+     * @param parameters Any parameters that may be required to be referred to
+     *                   within the poll() method
      */
-    public abstract void poll(Map<String, String> parameters);
+    public void startPolling(Map<String, String> parameters) {
+        this.parameters = parameters;
+        inboundRunner = new PollingTaskRunner(this);
+        Thread runningThread = new Thread(inboundRunner);
+        runningThread.start();
+    }
+
+    /**
+     * Call this method when polling needs to be stopped.
+     */
+    public void destroy() {
+        if (inboundRunner != null) {
+            inboundRunner.terminate();
+        }
+    }
+
+    /**
+     * Specific {@link PollingServerConnector} should implement this method,
+     * specifying what should be done in the poll
+     */
+    protected abstract void poll();
+
+    protected long getInterval() {
+        return interval;
+    }
 }
