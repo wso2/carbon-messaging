@@ -26,6 +26,7 @@ public abstract class PollingServerConnector extends ServerConnector {
 
     private final long interval;
     private PollingTaskRunner inboundRunner;
+
     private Map<String, String> parameters;
 
     public PollingServerConnector(String id, long interval) {
@@ -62,5 +63,9 @@ public abstract class PollingServerConnector extends ServerConnector {
 
     protected long getInterval() {
         return interval;
+    }
+
+    public Map<String, String> getParameters() {
+        return parameters;
     }
 }
