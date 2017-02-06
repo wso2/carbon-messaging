@@ -18,9 +18,10 @@
 package org.wso2.carbon.messaging.exceptions;
 
 /**
- * Exception class used with {@code ServerConnectorErrorHandler} handle error method.
+ * Exception class used with {@code ServerConnectorErrorHandler} handle error method to handle runtime exception
+ * occurring when handling errors.
  */
-public class ErrorHandlerException extends Exception {
+public class ErrorHandlerException extends RuntimeException {
     public ErrorHandlerException(String message) {
         super(message);
     }
