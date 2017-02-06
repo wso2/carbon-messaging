@@ -39,4 +39,6 @@ public interface MessageDataSource {
 
     public void serializeData();
 
+    public String getMessageAsString();
+
 }
