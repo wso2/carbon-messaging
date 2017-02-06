@@ -21,6 +21,7 @@ package org.wso2.carbon.messaging;
 /**
  * A class that manages Transport Listener and its bounded interfaces.
  */
+@Deprecated
 public interface TransportListenerManager {
 
     /**

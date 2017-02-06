@@ -22,7 +22,9 @@ import org.wso2.carbon.kernel.transports.CarbonTransport;
 
 /**
  * Abstract class for Message listener.
+ * @deprecated use {@link ServerConnector} instead.
  */
+@Deprecated
 public abstract class TransportListener extends CarbonTransport {
 
     public TransportListener(String id) {
