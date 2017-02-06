@@ -32,7 +32,7 @@ public abstract class PollingServerConnector extends ServerConnector {
     }
 
     @Override
-    protected void stop() throws ServerConnectorException {
+    public void stop() throws ServerConnectorException {
         if (pollingTaskRunner != null) {
             pollingTaskRunner.terminate();
         }
