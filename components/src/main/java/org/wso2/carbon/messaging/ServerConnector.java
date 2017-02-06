@@ -17,9 +17,11 @@
  */
 package org.wso2.carbon.messaging;
 
+import org.wso2.carbon.messaging.exceptions.ServerConnectorException;
+
 /**
  * This class represents a server connector. When adding a new server connector, this class needs to be
- * extended, implement the start, stop, beginMaintenance, endMaintenance methods.
+ * extended, implement the init, destroy, beginMaintenance, endMaintenance methods.
  */
 public abstract class ServerConnector {
     /**
@@ -55,36 +57,36 @@ public abstract class ServerConnector {
         return state;
     }
 
-    public void startConnector() {
-        if (state.equals(State.UNINITIALIZED) || state.equals(State.IN_MAINTENANCE) || state.equals(State.STOPPED)) {
-            start();
-            state = State.STARTED;
+    void initConnector() throws ServerConnectorException {
+        if (state.equals(State.UNINITIALIZED) || state.equals(State.IN_MAINTENANCE)) {
+            init();
+            state = State.INITIALIZED;
         } else {
-            throw new IllegalStateException("Cannot start connector " + id + ". Current state: " + state);
+            throw new IllegalStateException("Cannot initialize connector " + id + ". Current state: " + state);
         }
     }
 
     /**
-     * Implementation of the connector start process.
+     * Implementation of the connector init process.
      */
-    protected abstract void start();
+    protected abstract void init() throws ServerConnectorException;
 
-    public void stopConnector() {
-        if (state.equals(State.STARTED)) {
-            stop();
-            state = State.STOPPED;
+    void destroyConnector() throws ServerConnectorException {
+        if (state.equals(State.INITIALIZED)) {
+            destroy();
+            state = State.UNINITIALIZED;
         } else {
-            throw new IllegalStateException("Cannot stop connector " + id + ". Current state: " + state);
+            throw new IllegalStateException("Cannot destroy connector " + id + ". Current state: " + state);
         }
     }
 
     /**
-     * Implementation of the connector stop process.
+     * Implementation of the connector destroy process.
      */
-    protected abstract void stop();
+    protected abstract void destroy() throws ServerConnectorException;
 
-    public void beginConnectorMaintenance() {
-        if (state.equals(State.STARTED)) {
+    public void beginConnectorMaintenance() throws ServerConnectorException {
+        if (state.equals(State.INITIALIZED)) {
             beginMaintenance();
             state = State.IN_MAINTENANCE;
         } else {
@@ -94,14 +96,14 @@ public abstract class ServerConnector {
     }
 
     /**
-     * Implementation of the connector start maintenance process.
+     * Implementation of the connector begin maintenance process.
      */
-    protected abstract void beginMaintenance();
+    protected abstract void beginMaintenance() throws ServerConnectorException;
 
-    public void endConnectorMaintenance() {
+    public void endConnectorMaintenance() throws ServerConnectorException {
         if (state.equals(State.IN_MAINTENANCE)) {
             endMaintenance();
-            state = State.STARTED;
+            state = State.INITIALIZED;
         } else {
             throw new IllegalStateException("Cannot end maintenance of connector " + id + ". Current state: " + state);
         }
@@ -110,13 +112,29 @@ public abstract class ServerConnector {
     /**
      * Implementation of the connector end maintenance process.
      */
-    protected abstract void endMaintenance();
+    protected abstract void endMaintenance() throws ServerConnectorException;
+
+    /**
+     * Implementation of the connector start method. Different connectors will use various approach to start the
+     * connector (http will start bind on an interface, jms will start subscribe to a topic/queue).
+     *
+     * @throws ServerConnectorException when an error occurs during starting the connector.
+     */
+    protected abstract void start() throws ServerConnectorException;
+
+    /**
+     * Implementation of the connector stop method. Different connectors will use various approach to stop the
+     * connector (http will stop bind from an interface, jms will un-subscribe from a topic/queue)
+     *
+     * @throws ServerConnectorException when an error occurs during stoping the connector.
+     */
+    protected abstract void stop() throws ServerConnectorException;
 
     /**
      * Enum to holds the state of connector.
      */
     public enum State {
-        UNINITIALIZED, STARTED, STOPPED, IN_MAINTENANCE;
+        UNINITIALIZED, INITIALIZED, IN_MAINTENANCE;
 
         @Override
         public String toString() {

@@ -17,20 +17,45 @@
  */
 package org.wso2.carbon.messaging;
 
-import java.util.Map;
+import org.wso2.carbon.messaging.exceptions.ServerConnectorException;
 
 /**
  * Abstract class for the polling type of server connectors.
  */
 public abstract class PollingServerConnector extends ServerConnector {
+    private long interval = 1000L;  //default polling interval
+    private PollingTaskRunner pollingTaskRunner;
+
 
     public PollingServerConnector(String id) {
         super(id);
     }
 
+    @Override
+    protected void stop() throws ServerConnectorException {
+        if (pollingTaskRunner != null) {
+            pollingTaskRunner.terminate();
+        }
+    }
+
     /**
-     * Generic polling method which accepts the configuration metadata that will be used when starting to poll.
-     * @param parameters data to be used when starting to listen.
+     * The start polling method which should be called when starting the polling with given interval.
+     * @param interval polling interval
      */
-    public abstract void poll(Map<String, String> parameters);
+    public void startPoll(long interval) {
+        this.interval = interval;
+        pollingTaskRunner = new PollingTaskRunner(this);
+        Thread runningThread = new Thread(pollingTaskRunner);
+        runningThread.start();
+    }
+
+    /**
+     * Generic polling method which will be invoked with each polling invocation.
+     */
+    public abstract void poll();
+
+
+    protected long getInterval() {
+        return interval;
+    }
 }
