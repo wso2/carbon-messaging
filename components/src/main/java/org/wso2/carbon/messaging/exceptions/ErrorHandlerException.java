@@ -15,15 +15,17 @@
  *  specific language governing permissions and limitations
  *  under the License.
  */
-package org.wso2.carbon.messaging;
+package org.wso2.carbon.messaging.exceptions;
 
 /**
- * This class represents listening type of server connector. When adding a new listening type of server connector
- * (eg: http), this class needs to be extended, implement the start, stop the methods.
+ * Exception class used with {@code ServerConnectorErrorHandler} handle error method.
  */
-public abstract class ListeningServerConnector extends ServerConnector {
+public class ErrorHandlerException extends Exception {
+    public ErrorHandlerException(String message) {
+        super(message);
+    }
 
-    public ListeningServerConnector(String id) {
-        super(id);
+    public ErrorHandlerException(String message, Throwable cause) {
+        super(message, cause);
     }
 }

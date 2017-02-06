@@ -17,22 +17,26 @@
  */
 package org.wso2.carbon.messaging;
 
+import org.wso2.carbon.messaging.exceptions.ErrorHandlerException;
+
 /**
  * {@code ServerConnectorErrorHandler} is the interface for protocol specific error handlers in ballerina.
  * This error handler interface should be implemented for handling transport listener related errors.
- * This will be used by the application for a given transport protocol associated with a {@code TransportListener}
+ * This will be used by the application for a given transport protocol associated with a {@code ServerConnector}
  * implementation.
  *
  */
 public interface ServerConnectorErrorHandler {
     /**
-     * The error handling method which will be invoked by the application using the {@code TransportListener}
+     * The error handling method which will be invoked by the application using the {@code ServerConnector}
      * associated with this error handler.
      * @param throwable error caught from the application to be handled.
      * @param carbonMessage the carbonMessage associated with the currently request/response flow
      * @param callback the callback used with responding
+     * @throws ErrorHandlerException thrown when error need to be propagated in a chain
      */
-    void handleError(Throwable throwable, CarbonMessage carbonMessage, CarbonCallback callback);
+    void handleError(Throwable throwable, CarbonMessage carbonMessage, CarbonCallback callback)
+            throws ErrorHandlerException;
 
     /**
      * Returns the string value of the transport protocol (eg: "http", "jms", etc. ) this listener is bound to.
