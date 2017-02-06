@@ -59,7 +59,7 @@ public abstract class ServerConnector {
         return state;
     }
 
-    void initConnector() throws ServerConnectorException {
+    public void initConnector() throws ServerConnectorException {
         if (state.equals(State.UNINITIALIZED) || state.equals(State.IN_MAINTENANCE)) {
             init();
             state = State.INITIALIZED;
@@ -73,7 +73,7 @@ public abstract class ServerConnector {
      */
     protected abstract void init() throws ServerConnectorException;
 
-    void destroyConnector() throws ServerConnectorException {
+    public void destroyConnector() throws ServerConnectorException {
         if (state.equals(State.INITIALIZED)) {
             destroy();
             state = State.UNINITIALIZED;
@@ -87,7 +87,7 @@ public abstract class ServerConnector {
      */
     protected abstract void destroy() throws ServerConnectorException;
 
-    void beginConnectorMaintenance() throws ServerConnectorException {
+    public void beginConnectorMaintenance() throws ServerConnectorException {
         if (state.equals(State.INITIALIZED)) {
             beginMaintenance();
             state = State.IN_MAINTENANCE;
@@ -102,7 +102,7 @@ public abstract class ServerConnector {
      */
     protected abstract void beginMaintenance() throws ServerConnectorException;
 
-    void endConnectorMaintenance() throws ServerConnectorException {
+    public void endConnectorMaintenance() throws ServerConnectorException {
         if (state.equals(State.IN_MAINTENANCE)) {
             endMaintenance();
             state = State.INITIALIZED;

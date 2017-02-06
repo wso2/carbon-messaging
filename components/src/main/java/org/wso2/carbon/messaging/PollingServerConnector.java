@@ -30,6 +30,10 @@ public abstract class PollingServerConnector extends ServerConnector {
     private long interval = 1000L;  //default polling interval
     private PollingTaskRunner pollingTaskRunner;
 
+    public PollingServerConnector(String id) {
+        super(id);
+    }
+
     /**
      * The start polling method which should be called when starting the polling with given interval.
      * @param parameters parameters passed from starting this polling connector.
@@ -46,11 +50,6 @@ public abstract class PollingServerConnector extends ServerConnector {
         runningThread.start();
     }
 
-
-    public PollingServerConnector(String id) {
-        super(id);
-    }
-
     @Override
     public void stop() throws ServerConnectorException {
         if (pollingTaskRunner != null) {
@@ -65,7 +64,7 @@ public abstract class PollingServerConnector extends ServerConnector {
     public abstract void poll();
 
 
-    protected long getInterval() {
+    public long getInterval() {
         return interval;
     }
 
