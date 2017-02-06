@@ -46,8 +46,7 @@ public abstract class PollingServerConnector extends ServerConnector {
             this.interval = Long.parseLong(pollingInterval);
         }
         pollingTaskRunner = new PollingTaskRunner(this);
-        Thread runningThread = new Thread(pollingTaskRunner);
-        runningThread.start();
+        pollingTaskRunner.start();
     }
 
     @Override

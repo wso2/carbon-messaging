@@ -41,6 +41,11 @@ public class PollingTaskRunner implements Runnable {
         this.interval = connector.getInterval();
     }
 
+    public void start() {
+        Thread runningThread = new Thread(this);
+        runningThread.start();
+    }
+
     @Override
     public void run() {
         log.debug("Starting the polling task for server connector ID: " + connector.id);
