@@ -19,6 +19,8 @@ package org.wso2.carbon.messaging;
 
 import org.wso2.carbon.messaging.exceptions.ServerConnectorException;
 
+import java.util.Map;
+
 /**
  * This class represents a server connector. When adding a new server connector, this class needs to be
  * extended, implement the init, destroy, beginMaintenance, endMaintenance methods.
@@ -85,7 +87,7 @@ public abstract class ServerConnector {
      */
     protected abstract void destroy() throws ServerConnectorException;
 
-    public void beginConnectorMaintenance() throws ServerConnectorException {
+    void beginConnectorMaintenance() throws ServerConnectorException {
         if (state.equals(State.INITIALIZED)) {
             beginMaintenance();
             state = State.IN_MAINTENANCE;
@@ -100,7 +102,7 @@ public abstract class ServerConnector {
      */
     protected abstract void beginMaintenance() throws ServerConnectorException;
 
-    public void endConnectorMaintenance() throws ServerConnectorException {
+    void endConnectorMaintenance() throws ServerConnectorException {
         if (state.equals(State.IN_MAINTENANCE)) {
             endMaintenance();
             state = State.INITIALIZED;
@@ -120,7 +122,7 @@ public abstract class ServerConnector {
      *
      * @throws ServerConnectorException when an error occurs during starting the connector.
      */
-    protected abstract void start() throws ServerConnectorException;
+    protected abstract void start(Map<String, String> parameters) throws ServerConnectorException;
 
     /**
      * Implementation of the connector stop method. Different connectors will use various approach to stop the

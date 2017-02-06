@@ -19,12 +19,32 @@ package org.wso2.carbon.messaging;
 
 import org.wso2.carbon.messaging.exceptions.ServerConnectorException;
 
+import java.util.Map;
+
 /**
  * Abstract class for the polling type of server connectors.
  */
 public abstract class PollingServerConnector extends ServerConnector {
+    private static final String POLLING_INTERVAL = "pollingInterval";
+    private Map<String, String> parameters;
     private long interval = 1000L;  //default polling interval
     private PollingTaskRunner pollingTaskRunner;
+
+    /**
+     * The start polling method which should be called when starting the polling with given interval.
+     * @param parameters parameters passed from starting this polling connector.
+     */
+    @Override
+    public void start(Map<String, String> parameters) throws ServerConnectorException {
+        this.parameters = parameters;
+        String pollingInterval = parameters.get(POLLING_INTERVAL);
+        if (pollingInterval != null) {
+            this.interval = Long.parseLong(pollingInterval);
+        }
+        pollingTaskRunner = new PollingTaskRunner(this);
+        Thread runningThread = new Thread(pollingTaskRunner);
+        runningThread.start();
+    }
 
 
     public PollingServerConnector(String id) {
@@ -38,16 +58,6 @@ public abstract class PollingServerConnector extends ServerConnector {
         }
     }
 
-    /**
-     * The start polling method which should be called when starting the polling with given interval.
-     * @param interval polling interval
-     */
-    public void startPoll(long interval) {
-        this.interval = interval;
-        pollingTaskRunner = new PollingTaskRunner(this);
-        Thread runningThread = new Thread(pollingTaskRunner);
-        runningThread.start();
-    }
 
     /**
      * Generic polling method which will be invoked with each polling invocation.
@@ -57,5 +67,9 @@ public abstract class PollingServerConnector extends ServerConnector {
 
     protected long getInterval() {
         return interval;
+    }
+
+    public Map<String, String> getParameters() {
+        return parameters;
     }
 }
