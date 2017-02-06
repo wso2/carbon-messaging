@@ -122,7 +122,7 @@ public abstract class ServerConnector {
      *
      * @throws ServerConnectorException when an error occurs during starting the connector.
      */
-    protected abstract void start(Map<String, String> parameters) throws ServerConnectorException;
+    public abstract void start(Map<String, String> parameters) throws ServerConnectorException;
 
     /**
      * Implementation of the connector stop method. Different connectors will use various approach to stop the
@@ -130,7 +130,7 @@ public abstract class ServerConnector {
      *
      * @throws ServerConnectorException when an error occurs during stoping the connector.
      */
-    protected abstract void stop() throws ServerConnectorException;
+    public abstract void stop() throws ServerConnectorException;
 
     /**
      * Enum to holds the state of connector.
