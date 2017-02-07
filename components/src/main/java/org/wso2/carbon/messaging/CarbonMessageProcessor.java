@@ -34,6 +34,7 @@ public interface CarbonMessageProcessor {
     /**
      * @deprecated use {@link CarbonMessageProcessor#setClientConnector(ClientConnector)} instead.
      */
+    @Deprecated
     void setTransportSender(TransportSender sender);
 
     /**
