@@ -50,8 +50,6 @@ public interface ClientConnector {
     boolean send(CarbonMessage msg, CarbonCallback callback, Map<String, String> parameters)
             throws ClientConnectorException;
 
-
-
     /**
      * Transport protocol associated with this client connector instance.
      * @return string value of the transport protocol.
