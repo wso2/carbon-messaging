@@ -55,4 +55,14 @@ public interface ClientConnector {
      * @return string value of the transport protocol.
      */
     String getProtocol();
+
+    /**
+     * Set message processor reference to the ClientConnector.
+     *
+     * Reference to the engine Message Processor might be required for some of the client connectors to
+     * get back to the engine with the response.
+     *
+     * @param messageProcessor CarbonMessageProcessor
+     */
+    void setMessageProcessor(CarbonMessageProcessor messageProcessor);
 }
