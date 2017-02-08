@@ -25,7 +25,7 @@ import java.util.Map;
 
 /**
  * {@link CarbonMessage} type for Map message. This message type is better if you are dealing with
- * map type of messages.
+ * map types of messages.
  */
 public class MapCarbonMessage extends CarbonMessage {
     private Map<String, String> mapData;
@@ -39,13 +39,20 @@ public class MapCarbonMessage extends CarbonMessage {
 
     /**
      * To set a value in the map.
+     *
      * @param mapKeyName Key that need to be added to map.
-     * @param mapValue Value of the key that need to be added to map.
+     * @param mapValue   Value of the key that need to be added to map.
      */
     public void setValue(String mapKeyName, String mapValue) {
         mapData.put(mapKeyName, mapValue);
     }
 
+    /**
+     * To get the value of a particular key
+     *
+     * @param mapKeyName Key to get the value for
+     * @return the value for the specific key
+     */
     public String getValue(String mapKeyName) {
         return mapData.get(mapKeyName);
     }
