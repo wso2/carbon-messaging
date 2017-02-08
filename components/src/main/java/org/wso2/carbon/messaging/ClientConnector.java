@@ -32,12 +32,25 @@ public interface ClientConnector {
      *
      * @param msg the carbon message used with sending the a message to backend.
      * @param callback carbon callback used with responding any error.
-     * @param parameters data passed from application level to be used with
+     * @return return true if the sending was successful, false otherwise.
+     * @throws ClientConnectorException on error while trying to send message to backend.
+     */
+    boolean send(CarbonMessage msg, CarbonCallback callback) throws ClientConnectorException;
+
+    /**
+     * Message sending logic to send message to a backend endpoint. Additionally, this method accepts a map of
+     * parameters that is used as data to construct the message to be send.
+     *
+     * @param msg the carbon message used with sending the a message to backend.
+     * @param callback carbon callback used with responding any error.
+     * @param parameters data passed from application level to be used with creating the message.
      * @return return true if the sending was successful, false otherwise.
      * @throws ClientConnectorException on error while trying to send message to backend.
      */
     boolean send(CarbonMessage msg, CarbonCallback callback, Map<String, String> parameters)
             throws ClientConnectorException;
+
+
 
     /**
      * Transport protocol associated with this client connector instance.
