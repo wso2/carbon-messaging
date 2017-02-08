@@ -40,15 +40,15 @@ public class MapCarbonMessage extends CarbonMessage {
     /**
      * To set a value in the map.
      *
-     * @param mapKeyName Key that need to be added to map.
-     * @param mapValue   Value of the key that need to be added to map.
+     * @param mapKeyName Key that need to be added to map
+     * @param mapValue   Value of the key that need to be added to map
      */
     public void setValue(String mapKeyName, String mapValue) {
         mapData.put(mapKeyName, mapValue);
     }
 
     /**
-     * To get the value of a particular key
+     * To get the value of a particular key.
      *
      * @param mapKeyName Key to get the value for
      * @return the value for the specific key
@@ -58,12 +58,11 @@ public class MapCarbonMessage extends CarbonMessage {
     }
 
     /**
-     * Return all the keys in the {@link MapCarbonMessage} object
+     * Return all the keys in the {@link MapCarbonMessage} object.
      *
      * @return an enumeration of all the keys in the {@link MapCarbonMessage}
      */
     public Enumeration<String> getMapNames() {
         return Collections.enumeration(mapData.keySet());
     }
-
 }
