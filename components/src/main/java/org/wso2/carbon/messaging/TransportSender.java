@@ -20,7 +20,9 @@ package org.wso2.carbon.messaging;
 
 /**
  * Interface for Message Sender to the BE.
+ * @deprecated use {@link ClientConnector} instead.
  */
+@Deprecated
 public interface TransportSender {
     /**
      * Should include the logic for handover messages to BE.

@@ -18,7 +18,7 @@
 package org.wso2.carbon.messaging.exceptions;
 
 /**
- * Server connector exception class that is used with from server connector related invocation errors.
+ * Server connector exception class used with server connector related invocation errors.
  */
 public class ServerConnectorException extends Exception {
     public ServerConnectorException(String message) {

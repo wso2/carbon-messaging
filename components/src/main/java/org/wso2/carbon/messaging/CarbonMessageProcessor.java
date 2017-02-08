@@ -31,7 +31,18 @@ public interface CarbonMessageProcessor {
      */
     boolean receive(CarbonMessage msg, CarbonCallback callback) throws Exception;
 
+    /**
+     * @deprecated use {@link CarbonMessageProcessor#setClientConnector(ClientConnector)} instead.
+     */
+    @Deprecated
     void setTransportSender(TransportSender sender);
+
+    /**
+     * Method which sets the given client connector for this message processor instance which is used with
+     * sending message via a response channel.
+     * @param clientConnector client connector instance.
+     */
+    void setClientConnector(ClientConnector clientConnector);
 
     String getId();
 }
