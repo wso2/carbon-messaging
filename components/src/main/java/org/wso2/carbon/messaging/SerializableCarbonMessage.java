@@ -21,7 +21,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 
 /**
- * Serializable message used to create JMS object message.
+ * Serializable carbon message implementation.
  */
 
 public class SerializableCarbonMessage extends CarbonMessage implements Serializable {
