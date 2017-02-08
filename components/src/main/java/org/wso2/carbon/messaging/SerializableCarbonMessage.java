@@ -17,8 +17,6 @@
  */
 package org.wso2.carbon.messaging;
 
-import org.wso2.carbon.messaging.CarbonMessage;
-
 import java.io.Serializable;
 import java.util.HashMap;
 
