@@ -22,7 +22,8 @@ import org.wso2.carbon.messaging.exceptions.ClientConnectorException;
 import java.util.Map;
 
 /**
- * Messaging sending interface that will be used with sending messages to a desired endpoint.
+ * Message sending interface that should be implemented for a given transport protocol which will be used with
+ * sending messages to a desired endpoint.
  */
 public interface ClientConnector {
 
@@ -32,7 +33,7 @@ public interface ClientConnector {
      * @param msg the carbon message used with sending the a message to backend.
      * @param callback carbon callback used with responding any error.
      * @param parameters data passed from application level to be used with
-     * @return return truw if the sending was successful, false otherwise.
+     * @return return true if the sending was successful, false otherwise.
      * @throws ClientConnectorException on error while trying to send message to backend.
      */
     boolean send(CarbonMessage msg, CarbonCallback callback, Map<String, String> parameters)
