@@ -21,7 +21,8 @@ package org.wso2.carbon.messaging;
 import java.io.InputStream;
 
 /**
- * CarbonMessage which can transport an input stream.
+ * {@link CarbonMessage} for streaming. This message type is capable of carrying a reference
+ * to an {@link InputStream}.
  */
 public class StreamingCarbonMessage extends CarbonMessage {
     private InputStream inputStream;
