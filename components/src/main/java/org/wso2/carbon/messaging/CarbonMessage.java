@@ -225,7 +225,14 @@ public abstract class CarbonMessage {
         List<ByteBuffer> newCopy = fullMessageBody.stream().map(byteBuffer -> MessageUtil.deepCopy(byteBuffer))
                 .collect(Collectors.toList());
         fullMessageBody.forEach(byteBuffer -> addMessageBody(byteBuffer));
+        markMessageEnd();
         return newCopy;
+    }
+
+    /**
+     * This method is used to mark the end of the message when cloning the content.
+     */
+    public void markMessageEnd() {
     }
 
     public void setEndOfMsgAdded(boolean endOfMsgAdded) {
