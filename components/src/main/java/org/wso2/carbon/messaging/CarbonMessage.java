@@ -319,7 +319,7 @@ public abstract class CarbonMessage {
 
         @Override
         public int read() throws IOException {
-            setAlreadyRead(true);
+            setAlreadyRead(true); // TODO: No need to set this again and again
             if (isEndOfMsgAdded() && isEmpty() && chunkFinished) {
                 return -1;
             } else if (chunkFinished) {
