@@ -17,7 +17,10 @@
  */
 package org.wso2.carbon.messaging;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.io.Serializable;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 
 /**
@@ -83,5 +86,13 @@ public class SerializableCarbonMessage extends CarbonMessage implements Serializ
      */
     public void setPayloadType(String payloadType) {
         this.payloadType = payloadType;
+    }
+
+    @Override
+    public InputStream getInputStream() {
+        if (payload == null) {
+            return null;
+        }
+        return new ByteArrayInputStream(payload.getBytes(StandardCharsets.UTF_8));
     }
 }
