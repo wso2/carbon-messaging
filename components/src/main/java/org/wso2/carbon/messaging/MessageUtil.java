@@ -37,7 +37,7 @@ public class MessageUtil {
 
         CarbonMessage newCarbonMessage = new DefaultCarbonMessage(carbonMessage.isBufferContent());
 
-        List<Header> transportHeaders = carbonMessage.getHeaders().getAll();
+        List<Header> transportHeaders = carbonMessage.getHeaders().getClone();
 
         newCarbonMessage.setHeaders(transportHeaders);
 
@@ -60,7 +60,7 @@ public class MessageUtil {
 
         CarbonMessage newCarbonMessage = new DefaultCarbonMessage(carbonMessage.isBufferContent());
 
-        List<Header> transportHeaders = carbonMessage.getHeaders().getAll();
+        List<Header> transportHeaders = carbonMessage.getHeaders().getClone();
 
         newCarbonMessage.setHeaders(transportHeaders);
 

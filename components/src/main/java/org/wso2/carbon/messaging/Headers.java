@@ -102,6 +102,15 @@ public class Headers {
         return headerList;
     }
 
+    public List<Header> getClone() {
+        List<Header> clonedHeaderList = new LinkedList<>();
+
+        headerList.forEach(header -> {
+            clonedHeaderList.add(header.getClone());
+        });
+        return clonedHeaderList;
+    }
+
     /**
      * This will return a values fo given header name regardless of case sensitivity as a LikedList.
      * @param name name of the header
