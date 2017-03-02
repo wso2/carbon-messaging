@@ -36,8 +36,23 @@ public abstract class ServerConnector {
 
     protected State state = State.UNINITIALIZED;
 
+    protected Map<String, String> properties;
+
     public ServerConnector(String id) {
         this.id = id;
+    }
+
+    public ServerConnector(String id, Map<String, String> properties) {
+        this.id = id;
+        this.properties = properties;
+    }
+
+    /**
+     * Get the properties of the connector.
+     * @return properties.
+     */
+    public Map<String, String> getProperties() {
+        return properties;
     }
 
     /**
@@ -125,7 +140,16 @@ public abstract class ServerConnector {
      *
      * @throws ServerConnectorException when an error occurs during starting the connector.
      */
+    @Deprecated
     public abstract void start(Map<String, String> parameters) throws ServerConnectorException;
+
+    /**
+     * Implementation of the connector start method. Different connectors will use various approach to start the
+     * connector (http will start bind on an interface, jms will start subscribe to a topic/queue).
+     *
+     * @throws ServerConnectorException when an error occurs during starting the connector.
+     */
+    public abstract void start() throws ServerConnectorException;
 
     /**
      * Implementation of the connector stop method. Different connectors will use various approach to stop the
