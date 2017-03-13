@@ -18,6 +18,7 @@
 package org.wso2.carbon.messaging;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * This class represents the provider for server connectors. This should be used when a new connector instance
@@ -53,7 +54,8 @@ public abstract class ServerConnectorProvider {
     /**
      * Returns an instance of the {@link ServerConnector} using the given id.
      * @param id id used to create the server connector instance.
+     * @param properties properties required for the {@link ServerConnector}
      * @return newly created server connector instance.
      */
-    public abstract ServerConnector createConnector(String id);
+    public abstract ServerConnector createConnector(String id, Map<String, String> properties);
 }

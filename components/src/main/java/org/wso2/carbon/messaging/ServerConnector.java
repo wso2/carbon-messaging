@@ -36,8 +36,19 @@ public abstract class ServerConnector {
 
     protected State state = State.UNINITIALIZED;
 
-    public ServerConnector(String id) {
+    protected Map<String, String> properties;
+
+    public ServerConnector(String id, Map<String, String> properties) {
         this.id = id;
+        this.properties = properties;
+    }
+
+    /**
+     * Get the properties of the connector.
+     * @return properties.
+     */
+    public Map<String, String> getProperties() {
+        return properties;
     }
 
     /**
@@ -125,7 +136,7 @@ public abstract class ServerConnector {
      *
      * @throws ServerConnectorException when an error occurs during starting the connector.
      */
-    public abstract void start(Map<String, String> parameters) throws ServerConnectorException;
+    public abstract void start() throws ServerConnectorException;
 
     /**
      * Implementation of the connector stop method. Different connectors will use various approach to stop the
