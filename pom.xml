@@ -77,13 +77,13 @@
     </dependencyManagement>
 
     <properties>
-        <carbon.kernel.version>5.1.0</carbon.kernel.version>
+        <carbon.kernel.version>5.2.0-m3</carbon.kernel.version>
         <carbon.kernel.package.import.version.range>[5.0.0, 6.0.0)</carbon.kernel.package.import.version.range>
 
         <slf4j.version>1.7.5</slf4j.version>
         <slf4j.logging.package.import.version.range>[1.7.1, 2.0.0)</slf4j.logging.package.import.version.range>
 
-        <carbon.feature.plugin.version>2.0.1</carbon.feature.plugin.version>
+        <carbon.feature.plugin.version>3.0.0</carbon.feature.plugin.version>
 
         <carbon.messaging.version>2.3.1-SNAPSHOT</carbon.messaging.version>
 
