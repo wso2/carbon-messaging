@@ -22,16 +22,35 @@ import java.nio.ByteBuffer;
 
 /**
  * {@link CarbonMessage} for control messages. This is used for control messages of a connection.
- * This is just a extend of {@link BinaryCarbonMessage} since all the methods are same for both.
  * This message type is useful when you need to send control messages for a given connection.
  */
-public class ControlCarbonMessage extends BinaryCarbonMessage {
+public class ControlCarbonMessage extends CarbonMessage {
+
+    private final ByteBuffer byteBuffer;
+    private final boolean finalFragment;
+
     /**
-     * @param bytes              byte array of binary data.
+     * @param byteBuffer         byte array of binary data.
      * @param finalFragment      true if the message is the final fragment of the binary message. First fragment can
      *                           also be the final fragment.
      */
-    public ControlCarbonMessage(ByteBuffer bytes, boolean finalFragment) {
-        super(bytes, finalFragment);
+    public ControlCarbonMessage(ByteBuffer byteBuffer, boolean finalFragment) {
+        this.byteBuffer = byteBuffer;
+        this.finalFragment = finalFragment;
     }
+
+    /**
+     * @return byte array of binary data contained in the message.
+     */
+    public ByteBuffer readBytes() {
+        return byteBuffer;
+    }
+
+    /**
+     * @return true if the message is the final fragment of the binary message.
+     */
+    public boolean isFinalFragment() {
+        return finalFragment;
+    }
+
 }
