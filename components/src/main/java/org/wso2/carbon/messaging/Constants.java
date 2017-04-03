@@ -56,9 +56,14 @@ public final class Constants {
 
     public static final String LISTENER_INTERFACE_ID = "LISTENER_INTERFACE_ID";
 
-    //Status of a status message
+    // Status of a status message
     public static final String STATUS_OPEN = "STATUS_OPEN";
     public static final String STATUS_CLOSE = "STATUS_CLOSE";
+
+    // Control Signals for control message
+    public static final String CONTROL_SIGNAL_OPEN = "CONTROL_SIGNAL_OPEN";
+    public static final String CONTROL_SIGNAL_CLOSE = "CONTROL_SIGNAL_CLOSE";
+    public static final String CONTROL_SIGNAL_HEARTBEAT = "CONTROL_SIGNAL_HEARTBEAT";
 
     private Constants() {
     }
