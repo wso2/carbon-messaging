@@ -65,4 +65,11 @@ public class MapCarbonMessage extends CarbonMessage {
     public Enumeration<String> getMapNames() {
         return Collections.enumeration(mapData.keySet());
     }
+
+    /**
+     * Clear internal payload of the message
+     */
+    public void clearMapPayload() {
+        mapData = new HashMap<>();
+    }
 }
