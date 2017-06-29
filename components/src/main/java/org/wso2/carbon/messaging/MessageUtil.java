@@ -19,6 +19,7 @@
 package org.wso2.carbon.messaging;
 
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -109,4 +110,34 @@ public class MessageUtil {
         }
     }
 
+    /**
+     * Creates a {@link MapCarbonMessage} using a {@link CarbonMessage}. Internal Map content is
+     * not populated when {@link MapCarbonMessage} is constructed.
+     *
+     * @param carbonMessage {@link CarbonMessage}
+     */
+    public static MapCarbonMessage createMapMessageWithoutData(CarbonMessage carbonMessage) {
+        MapCarbonMessage mapCarbonMessage = new MapCarbonMessage();
+        mapCarbonMessage.setHeaders(new ArrayList<>(carbonMessage.headers.getAll()));
+        carbonMessage.getProperties().forEach(mapCarbonMessage::setProperty);
+        mapCarbonMessage.setWriter(carbonMessage.getWriter());
+        mapCarbonMessage.setFaultHandlerStack(carbonMessage.getFaultHandlerStack());
+        return mapCarbonMessage;
+    }
+
+    /**
+     * Creates a {@link TextCarbonMessage} using a {@link CarbonMessage}.
+     *
+     * @param message {@link CarbonMessage}
+     * @return TextCarbonMessage
+     */
+    public static TextCarbonMessage createTextMessageWithData(CarbonMessage message) {
+        TextCarbonMessage textCarbonMessage =
+                new TextCarbonMessage(message.getMessageDataSource().getMessageAsString());
+        textCarbonMessage.setHeaders(new ArrayList<>(message.headers.getAll()));
+        message.getProperties().forEach(textCarbonMessage::setProperty);
+        textCarbonMessage.setWriter(message.getWriter());
+        textCarbonMessage.setFaultHandlerStack(message.getFaultHandlerStack());
+        return textCarbonMessage;
+    }
 }

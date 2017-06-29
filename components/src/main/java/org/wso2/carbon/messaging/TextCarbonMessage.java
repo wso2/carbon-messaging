@@ -43,7 +43,7 @@ public class TextCarbonMessage extends CarbonMessage {
     public String getText() {
         return text;
     }
-    
+
     @Override
     public InputStream getInputStream() {
         if (text == null) {
