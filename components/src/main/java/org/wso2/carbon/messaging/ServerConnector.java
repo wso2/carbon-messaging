@@ -38,6 +38,8 @@ public abstract class ServerConnector {
 
     protected Map<String, String> properties;
 
+    protected ServerConnectorErrorHandler errorHandler;
+
     public ServerConnector(String id, Map<String, String> properties) {
         this.id = id;
         this.properties = properties;
@@ -56,6 +58,22 @@ public abstract class ServerConnector {
      * @param messageProcessor message processor instance
      */
     public abstract void setMessageProcessor(CarbonMessageProcessor messageProcessor);
+
+    /**
+     * Set the error handler to be used with this connector
+     * @param errorHandler error handler instance
+     */
+    public void setServerConnectorErrorHandler(ServerConnectorErrorHandler errorHandler) {
+        this.errorHandler = errorHandler;
+    }
+
+    /**
+     * Returns the error handler associated with this connector
+     * @return error handler instance
+     */
+    public ServerConnectorErrorHandler getServerConnectorErrorHandler() {
+        return errorHandler;
+    }
 
     /**
      * Returns the id of the connector.
