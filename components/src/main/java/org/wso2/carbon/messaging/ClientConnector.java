@@ -28,6 +28,18 @@ import java.util.Map;
 public interface ClientConnector {
 
     /**
+     * Initialize the connection. If initializing a connection is needed this can be used.
+     *
+     * @param cMsg carbon message used to initialize th connection.
+     * @param callback carbon callback used to get responds if needed.
+     * @param properties properties which needs to initialize the  connection.
+     * @return Object which can be retrieved after initializing the connection.
+     * @throws ClientConnectorException on error while trying to initializing the connection.
+     */
+    Object init(CarbonMessage cMsg, CarbonCallback callback, Map<String, Object> properties)
+            throws ClientConnectorException;
+
+    /**
      * Message sending logic to send message to a backend endpoint.
      *
      * @param msg the carbon message used with sending the a message to backend.
