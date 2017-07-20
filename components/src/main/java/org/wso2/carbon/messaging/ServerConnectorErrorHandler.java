@@ -30,9 +30,8 @@ public interface ServerConnectorErrorHandler {
      * @param exception error thrown from the application level to be handled.
      * @param carbonMessage the carbonMessage associated with the currently request/response flow
      * @param callback the callback used with responding
-     * @throws Exception thrown, if the error could not be handled.
      */
-    void handleError(Exception exception, CarbonMessage carbonMessage, CarbonCallback callback) throws Exception;
+    void handleError(Exception exception, CarbonMessage carbonMessage, CarbonCallback callback);
 
     /**
      * Returns the string value of the transport protocol (eg: "http", "jms", etc. ) this listener is bound to.
