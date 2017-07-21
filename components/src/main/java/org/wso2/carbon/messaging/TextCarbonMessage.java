@@ -18,8 +18,13 @@
 
 package org.wso2.carbon.messaging;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 
 /**
@@ -27,6 +32,8 @@ import java.nio.charset.StandardCharsets;
  * text data. This will work as the text data carrier from transport level to application level.
  */
 public class TextCarbonMessage extends CarbonMessage {
+
+    private static final Logger LOG = LoggerFactory.getLogger(TextCarbonMessage.class);
 
     private final String text;
 
@@ -50,5 +57,16 @@ public class TextCarbonMessage extends CarbonMessage {
             return null;
         }
         return new ByteArrayInputStream(text.getBytes(StandardCharsets.UTF_8));
+    }
+
+    @Override
+    public ByteBuffer getMessageBody() {
+        setEndOfMsgAdded(true);
+        try {
+            return ByteBuffer.wrap(text.getBytes("UTF-8"));
+        } catch (UnsupportedEncodingException e) {
+            LOG.error("Couldn't get the byteBuffer from the string payload");
+            return null;
+        }
     }
 }
