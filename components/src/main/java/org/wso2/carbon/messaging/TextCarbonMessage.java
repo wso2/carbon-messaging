@@ -65,7 +65,7 @@ public class TextCarbonMessage extends CarbonMessage {
         try {
             return ByteBuffer.wrap(text.getBytes("UTF-8"));
         } catch (UnsupportedEncodingException e) {
-            LOG.error("Couldn't get the byteBuffer from the string payload");
+            LOG.error("Couldn't get the byteBuffer from string payload");
             return null;
         }
     }
