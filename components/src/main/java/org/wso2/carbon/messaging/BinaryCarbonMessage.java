@@ -53,4 +53,10 @@ public class BinaryCarbonMessage extends CarbonMessage {
     public boolean isFinalFragment() {
         return finalFragment;
     }
+
+    @Override
+    public ByteBuffer getMessageBody() {
+        setAlreadyRead(true);
+        return bytes;
+    }
 }
