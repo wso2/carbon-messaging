@@ -17,6 +17,8 @@
  */
 package org.wso2.carbon.messaging;
 
+import org.wso2.carbon.kernel.startupresolver.CapabilityProvider;
+
 import java.util.List;
 import java.util.Map;
 
@@ -27,7 +29,7 @@ import java.util.Map;
  * when the id is given. Also this will initialize the default server connectors that should be initialized
  * during application startup.
  */
-public abstract class ServerConnectorProvider {
+public abstract class ServerConnectorProvider implements CapabilityProvider {
     /**
      * Protocol representing this server connector provider.
      */
