@@ -92,7 +92,7 @@
 
         <carbon.messaging.version>3.0.0-SNAPSHOT</carbon.messaging.version>
 
-        <carbon.messaging.package.export.version>2.0.0</carbon.messaging.package.export.version>
+        <carbon.messaging.package.export.version>${carbon.messaging.version}</carbon.messaging.package.export.version>
 
         <!--following versions are used in the parent pom-->
         <wso2.maven.compiler.source>1.8</wso2.maven.compiler.source>
