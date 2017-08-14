@@ -23,13 +23,13 @@
     <parent>
         <groupId>org.wso2.carbon.messaging</groupId>
         <artifactId>org.wso2.carbon.messaging.parent</artifactId>
-        <version>2.3.8-SNAPSHOT</version>
+        <version>3.0.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>org.wso2.carbon.messaging</artifactId>
     <packaging>bundle</packaging>
-    <version>2.3.8-SNAPSHOT</version>
+    <version>3.0.0-SNAPSHOT</version>
     <name>WSO2 Carbon Messaging Component</name>
 
     <dependencies>
@@ -39,12 +39,16 @@
         </dependency>
         <dependency>
             <groupId>org.wso2.carbon</groupId>
-            <artifactId>org.wso2.carbon.kernel.feature</artifactId>
+            <artifactId>org.wso2.carbon.core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.wso2.carbon</groupId>
+            <artifactId>org.wso2.carbon.server.feature</artifactId>
             <type>zip</type>
         </dependency>
         <dependency>
             <groupId>org.wso2.carbon</groupId>
-            <artifactId>org.wso2.carbon.runtime.feature</artifactId>
+            <artifactId>org.wso2.carbon.osgi.feature</artifactId>
             <type>zip</type>
         </dependency>
         <dependency>
@@ -78,6 +82,7 @@
         </export.package>
         <import.package>
             org.wso2.carbon.kernel.transports.*;version="${carbon.kernel.package.import.version.range}",
+            org.wso2.carbon.kernel.startupresolver.*;version="${carbon.kernel.package.import.version.range}",
             org.slf4j.*;version="${slf4j.logging.package.import.version.range}",
             org.apache.log4j.*,
             org.apache.commons.logging.*

@@ -28,7 +28,7 @@
     <groupId>org.wso2.carbon.messaging</groupId>
     <artifactId>org.wso2.carbon.messaging.parent</artifactId>
     <packaging>pom</packaging>
-    <version>2.3.8-SNAPSHOT</version>
+    <version>3.0.0-SNAPSHOT</version>
     <name>WSO2 Carbon Messaging Parent</name>
 
     <scm>
@@ -42,18 +42,23 @@
         <dependencies>
             <dependency>
                 <groupId>org.wso2.carbon</groupId>
+                <artifactId>org.wso2.carbon.core</artifactId>
+                <version>${carbon.kernel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.wso2.carbon</groupId>
                 <artifactId>org.wso2.carbon.launcher</artifactId>
                 <version>${carbon.kernel.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.wso2.carbon</groupId>
-                <artifactId>org.wso2.carbon.kernel.feature</artifactId>
+                <artifactId>org.wso2.carbon.server.feature</artifactId>
                 <version>${carbon.kernel.version}</version>
                 <type>zip</type>
             </dependency>
             <dependency>
                 <groupId>org.wso2.carbon</groupId>
-                <artifactId>org.wso2.carbon.runtime.feature</artifactId>
+                <artifactId>org.wso2.carbon.osgi.feature</artifactId>
                 <version>${carbon.kernel.version}</version>
                 <type>zip</type>
             </dependency>
@@ -77,7 +82,7 @@
     </dependencyManagement>
 
     <properties>
-        <carbon.kernel.version>5.2.0-m3</carbon.kernel.version>
+        <carbon.kernel.version>5.2.0-alpha</carbon.kernel.version>
         <carbon.kernel.package.import.version.range>[5.0.0, 6.0.0)</carbon.kernel.package.import.version.range>
 
         <slf4j.version>1.7.5</slf4j.version>
@@ -85,9 +90,9 @@
 
         <carbon.feature.plugin.version>3.0.0</carbon.feature.plugin.version>
 
-        <carbon.messaging.version>2.3.8-SNAPSHOT</carbon.messaging.version>
+        <carbon.messaging.version>3.0.0-SNAPSHOT</carbon.messaging.version>
 
-        <carbon.messaging.package.export.version>2.0.0</carbon.messaging.package.export.version>
+        <carbon.messaging.package.export.version>${carbon.messaging.version}</carbon.messaging.package.export.version>
 
         <!--following versions are used in the parent pom-->
         <wso2.maven.compiler.source>1.8</wso2.maven.compiler.source>
