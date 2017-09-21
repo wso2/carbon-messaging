@@ -28,14 +28,14 @@
     <groupId>org.wso2.carbon.messaging</groupId>
     <artifactId>org.wso2.carbon.messaging.parent</artifactId>
     <packaging>pom</packaging>
-    <version>3.0.1-SNAPSHOT</version>
+    <version>3.0.1</version>
     <name>WSO2 Carbon Messaging Parent</name>
 
     <scm>
         <url>https://github.com/wso2/carbon-messaging.git</url>
         <developerConnection>scm:git:https://github.com/wso2/carbon-messaging.git</developerConnection>
         <connection>scm:git:https://github.com/wso2/carbon-messaging.git</connection>
-        <tag>HEAD</tag>
+        <tag>v3.0.1</tag>
     </scm>
 
     <dependencyManagement>
@@ -90,7 +90,7 @@
 
         <carbon.feature.plugin.version>3.0.0</carbon.feature.plugin.version>
 
-        <carbon.messaging.version>3.0.1-SNAPSHOT</carbon.messaging.version>
+        <carbon.messaging.version>3.0.1</carbon.messaging.version>
 
         <carbon.messaging.package.export.version>${carbon.messaging.version}</carbon.messaging.package.export.version>
 
